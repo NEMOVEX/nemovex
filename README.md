@@ -38,9 +38,7 @@ header {
   font-weight: 500;
 }
 
-.nav-links a:hover {
-  color: #000;
-}
+.nav-links a:hover { color: #000; }
 
 .btn-primary {
   padding: 8px 18px;
@@ -58,25 +56,26 @@ header {
   background: url('https://copilot.microsoft.com/th/id/BCO.e579fb29-d8fc-45d0-94fb-61222e622c61.png') no-repeat center center/cover;
 }
 
-.hero-text {
+.hero-card {
   position: absolute;
-  bottom: 30px;
-  left: 30px;
-  background-color: rgba(0,0,0,0.4);
-  padding: 20px 30px;
-  border-radius: 12px;
+  top: 30px;
+  right: 30px;
+  background: #f0f0f0;
+  color: #111;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  text-align: center;
 }
 
-.hero-text h2 {
-  color: white;
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.hero-text p {
-  color: white;
-  font-size: 16px;
-}
+.hero-card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #555; margin-bottom: 8px; }
+.hero-card-main { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.hero-card-sub { font-size: 13px; color: #666; }
 
 main {
   max-width: 1200px;
@@ -106,6 +105,9 @@ main {
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project-title {
@@ -117,6 +119,24 @@ main {
 .project-meta {
   font-size: 13px;
   color: #666;
+  margin-bottom: 12px;
+}
+
+.project-card button {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #2f2f2f;
+  background: transparent;
+  color: #2f2f2f;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.project-card button:hover {
+  background: #2f2f2f;
+  color: #fff;
 }
 
 footer {
@@ -140,13 +160,21 @@ footer {
 </header>
 
 <section class="hero">
-  <div class="hero-text">
-    <h2>Klenovka</h2>
-    <p>Dům 5+kk &nbsp; | &nbsp; Cena: 10 000 000 Kč</p>
+  <div class="hero-card">
+    <div class="hero-card-label">Aktuálně v nabídce</div>
+    <div class="hero-card-main">Klenovka</div>
+    <div class="hero-card-sub">Dům 5+kk<br>Cena: 10 000 000 Kč</div>
   </div>
 </section>
 
 <main>
+  <section id="lokality">
+    <div class="section-header">
+      <h2>Nabídky lokalit</h2>
+      <p>Vyberte si z našich projektů v atraktivních lokalitách – Chrudim, Klenovka, Voleč a Kutná Hora. Každá lokalita nabízí jedinečné možnosti moderního bydlení.</p>
+    </div>
+  </section>
+
   <section id="projekty">
     <div class="section-header">
       <h2>Přehled projektů v nabídce</h2>
@@ -155,20 +183,32 @@ footer {
 
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-title">Rezidence Chrudim</div>
-        <div class="project-meta">Byty 2+kk – 4+kk &nbsp; | &nbsp; Cena od 5 500 000 Kč</div>
+        <div>
+          <div class="project-title">Rezidence Chrudim</div>
+          <div class="project-meta">Byty 2+kk – 4+kk | Cena od 5 500 000 Kč</div>
+        </div>
+        <button onclick="location.href='#projekty'">Více informací</button>
       </div>
       <div class="project-card">
-        <div class="project-title">Klenovka</div>
-        <div class="project-meta">Rodinné domy 5+kk &nbsp; | &nbsp; Cena od 10 000 000 Kč</div>
+        <div>
+          <div class="project-title">Klenovka</div>
+          <div class="project-meta">Rodinné domy 5+kk | Cena od 10 000 000 Kč</div>
+        </div>
+        <button onclick="location.href='#projekty'">Více informací</button>
       </div>
       <div class="project-card">
-        <div class="project-title">Voleč</div>
-        <div class="project-meta">Domy 3+kk – 5+kk &nbsp; | &nbsp; Cena od 7 800 000 Kč</div>
+        <div>
+          <div class="project-title">Voleč</div>
+          <div class="project-meta">Domy 3+kk – 5+kk | Cena od 7 800 000 Kč</div>
+        </div>
+        <button onclick="location.href='#projekty'">Více informací</button>
       </div>
       <div class="project-card">
-        <div class="project-title">Kutná Hora</div>
-        <div class="project-meta">Byty 1+kk – 3+kk &nbsp; | &nbsp; Cena od 4 200 000 Kč</div>
+        <div>
+          <div class="project-title">Kutná Hora</div>
+          <div class="project-meta">Byty 1+kk – 3+kk | Cena od 4 200 000 Kč</div>
+        </div>
+        <button onclick="location.href='#projekty'">Více informací</button>
       </div>
     </div>
   </section>
