@@ -31,10 +31,10 @@ header {
   letter-spacing: 0.08em;
   font-size: 36px;
   text-transform: uppercase;
-  color: pink; /* růžový nápis */
+  color: #2f2f2f; /* antracitové logo */
 }
 
-.logo span { color: pink; }
+.logo span { color: #2f2f2f; }
 
 .nav-links {
   display: flex;
@@ -44,17 +44,47 @@ header {
 
 .nav-links a {
   text-decoration: none;
-  color: #2f2f2f; /* antracitová barva */
+  color: #2f2f2f; /* antracitové odkazy */
   font-weight: 500;
 }
 
 .nav-links a:hover {
-  color: #555; /* jemný hover */
+  color: #000; /* černý hover */
+}
+
+.btn-primary {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #2f2f2f; /* antracitové tlačítko */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #000; /* černý hover */
+}
+
+.btn-secondary {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid #2f2f2f;
+  background: transparent;
+  color: #2f2f2f;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #f0f0f0; /* světle šedý hover */
 }
 
 .hero {
   background: linear-gradient(135deg, lightgreen 0%, lightgreen 50%, white 50%);
-  color: #fff;
+  color: #000; /* text černý */
 }
 
 .hero-inner {
@@ -87,6 +117,11 @@ header {
 .hero-card-sub { font-size: 13px; color: #666; margin-bottom: 14px; }
 .hero-card-grid { font-size: 12px; color: #555; }
 
+.section-header h2 {
+  font-size: 22px;
+  color: #2f2f2f; /* antracitové nadpisy */
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -109,13 +144,13 @@ header {
 
 .project-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .project-location { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #888; }
-.project-title { font-size: 16px; font-weight: 600; }
+.project-title { font-size: 16px; font-weight: 600; color: #2f2f2f; } /* antracitové názvy projektů */
 .project-meta { font-size: 13px; color: #666; }
 .project-price { font-size: 14px; font-weight: 600; margin-top: 4px; }
 .project-footer { padding: 0 18px 16px; display: flex; justify-content: space-between; font-size: 12px; color: #777; }
-.badge { padding: 3px 9px; border-radius: 999px; background: #e6f2ff; color: #005da4; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
+.badge { padding: 3px 9px; border-radius: 999px; background: #f0f0f0; color: #2f2f2f; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
 
-.contact { margin-top: 50px; padding: 26px 22px; border-radius: 18px; background: #0b2347; color: #fff; display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; }
+.contact { margin-top: 50px; padding: 26px 22px; border-radius: 18px; background: #2f2f2f; color: #fff; display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; }
 footer { padding: 24px 20px 30px; font-size: 12px; color: #777; text-align: center; }
 </style>
 </head>
@@ -136,19 +171,16 @@ footer { padding: 24px 20px 30px; font-size: 12px; color: #777; text-align: cent
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-kicker">Nové bydlení v Praze a okolí</div>
+      <div class="hero-kicker">Nové bydlení v Chrudimi a okolí</div>
       <h1 class="hero-title">Moderní byty a domy pro skutečný život.</h1>
       <p class="hero-subtitle">Vyberte si z nabídky nových bytů a rodinných domů v nejžádanějších lokalitách. Kvalitní standard, promyšlené dispozice a důraz na detail.</p>
     </div>
     <aside class="hero-card">
       <div class="hero-card-label">Aktuálně v nabídce</div>
-      <div class="hero-card-main">Praha – Zelené Město</div>
-      <div class="hero-card-sub">Nová etapa moderního bydlení v dosahu centra.</div>
+      <div class="hero-card-main">Klenovka</div>
+      <div class="hero-card-sub">Dům 5+kk</div>
       <div class="hero-card-grid">
-        <div>Dispozice: 1+kk – 4+kk</div>
-        <div>Cena od: 4 890 000 Kč</div>
-        <div>Dostupnost: Q4 2026</div>
-        <div>Metro: do 8 minut MHD</div>
+        <div>Cena: 10 000 000 Kč</div>
       </div>
     </aside>
   </div>
@@ -162,7 +194,5 @@ footer { padding: 24px 20px 30px; font-size: 12px; color: #777; text-align: cent
     </div>
 
     <div class="projects-grid">
-      <!-- původní tři projekty -->
-      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 9 – Vysočany</div><div class="project-title">Rezidence Park Vysočany</div><div class="project-meta">Byty 1+kk až 4+kk s výhledem do zeleně.</div><div class="project-price">Ceny od 4,6 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2027</span><span class="badge">Novinka</span></div></article>
-      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha-západ</div><div class="project-title">Rodinné domy Javorová čtvrť</div><div class="project-meta">Moderní domy s vlastní zahradou v klidné lokalitě.</div><div class="project-price">Ceny od 12,9 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2026</span><span class="badge">Domy</span></div></article>
-      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 5 – Smíchov</div><div class="project-title">City Living Smíchov</div><div class="project-meta">Městské bydlení v docházkové vzdálenosti centra
+      <!-- původní projekty -->
+      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 9 – Vysočany</div><div class="project-title">Rezidence Park Vysočany</div><div class="project-meta">Byty 1+kk až 4+kk s výhledem do zeleně.</div><div class="project-price">Ceny od 4,6 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2027</span><span class="badge">Novinka</span
