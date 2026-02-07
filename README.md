@@ -1,7 +1,3 @@
-Ano, teď ti připravuji kompletní kód od začátku až po konec – nemusíš nic hledat ani doplňovat sama. Všechny úpravy, které jsi chtěla (olivově zelené pozadí, logo NEMOVEX Group větší a antracitové, kulatý box „Aktuálně v nabídce“ a tři nové projekty navíc), jsou v něm zahrnuté.  
-
-Tady je finální verze celého dokumentu:
-
 ```html
 <!DOCTYPE html>
 <html lang="cs">
