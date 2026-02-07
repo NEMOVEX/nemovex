@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -7,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-body { color: #222; background-color: olive; }
+body { color: #222; background-color: white; } /* bílé pozadí */
 
 header {
   position: sticky;
@@ -32,13 +31,29 @@ header {
   letter-spacing: 0.08em;
   font-size: 36px;
   text-transform: uppercase;
-  color: #2f2f2f; /* antracitová */
+  color: pink; /* růžový nápis */
 }
 
-.logo span { color: #2f2f2f; }
+.logo span { color: pink; }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2f2f2f; /* antracitová barva */
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #555; /* jemný hover */
+}
 
 .hero {
-  background: linear-gradient(135deg, #0b2347 0%, #174f8a 50%, olive 50%);
+  background: linear-gradient(135deg, lightgreen 0%, lightgreen 50%, white 50%);
   color: #fff;
 }
 
@@ -53,7 +68,7 @@ header {
 }
 
 .hero-card {
-  background: #fff;
+  background: #f0f0f0; /* světle šedý box */
   color: #111;
   border-radius: 50%;
   width: 280px;
@@ -88,7 +103,7 @@ header {
 }
 
 .project-image {
-  background: linear-gradient(135deg, #174f8a, #00a0b0);
+  background: linear-gradient(135deg, lightgreen, #a8e6a1);
   height: 160px;
 }
 
@@ -150,7 +165,4 @@ footer { padding: 24px 20px 30px; font-size: 12px; color: #777; text-align: cent
       <!-- původní tři projekty -->
       <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 9 – Vysočany</div><div class="project-title">Rezidence Park Vysočany</div><div class="project-meta">Byty 1+kk až 4+kk s výhledem do zeleně.</div><div class="project-price">Ceny od 4,6 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2027</span><span class="badge">Novinka</span></div></article>
       <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha-západ</div><div class="project-title">Rodinné domy Javorová čtvrť</div><div class="project-meta">Moderní domy s vlastní zahradou v klidné lokalitě.</div><div class="project-price">Ceny od 12,9 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2026</span><span class="badge">Domy</span></div></article>
-      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 5 – Smíchov</div><div class="project-title">City Living Smíchov</div><div class="project-meta">Městské bydlení v docházkové vzdálenosti centra.</div><div class="project-price">Ceny od 6,9 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2028</span><span class="badge">Město</span></div></article>
-
-      <!-- nové tři projekty -->
-      <article class="project-card"><div class="project
+      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 5 – Smíchov</div><div class="project-title">City Living Smíchov</div><div class="project-meta">Městské bydlení v docházkové vzdálenosti centra
