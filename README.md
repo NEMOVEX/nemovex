@@ -38,9 +38,7 @@ header {
   font-weight: 500;
 }
 
-.nav-links a:hover {
-  color: #000;
-}
+.nav-links a:hover { color: #000; }
 
 .btn-primary {
   padding: 8px 18px;
@@ -93,6 +91,47 @@ header {
   font-size: 13px;
   color: #666;
 }
+
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-header h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: #f0f0f0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.project-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.project-meta {
+  font-size: 13px;
+  color: #666;
+}
 </style>
 </head>
 <body>
@@ -109,11 +148,4 @@ header {
 
 <section class="hero">
   <div class="hero-card">
-    <div class="hero-card-label">Aktuálně v nabídce</div>
-    <div class="hero-card-main">Klenovka</div>
-    <div class="hero-card-sub">Dům 5+kk<br>Cena: 10 000 000 Kč</div>
-  </div>
-</section>
-
-</body>
-</html>
+    <div class="hero-card-label">
