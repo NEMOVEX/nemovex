@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <title>NEMOVEX GROUP – Developerské projekty</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy a rezidenční bydlení v kvalitních lokalitách.">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
-body{background:#f4f4f4;color:#222;line-height:1.6}
+body{background:#f4f4f4;color:#222;line-height:1.6;scroll-behavior:smooth}
 
 /* HEADER */
 header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e0e0e0}
@@ -15,23 +16,32 @@ header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid 
 .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .logo span{color:#1f7a4f}
 .nav-links{display:flex;gap:26px}
-.nav-links a{text-decoration:none;color:#333;font-size:14px;font-weight:500}
-.nav-links a:hover{color:#1f7a4f}
-.btn-primary{padding:9px 20px;border-radius:999px;border:none;background:#1f7a4f;color:#fff;font-weight:600;cursor:pointer}
+.nav-links a{text-decoration:none;color:#333;font-size:14px;font-weight:500;position:relative}
+.nav-links a::after{
+content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.3s}
+.nav-links a:hover::after{width:100%}
+
+.btn-primary{
+padding:9px 20px;border-radius:999px;border:none;
+background:#1f7a4f;color:#fff;font-weight:600;
+cursor:pointer;text-decoration:none;display:inline-block}
 .btn-primary:hover{background:#16603d}
 
 /* HERO */
-.hero{min-height:75vh;background:
+.hero{
+min-height:75vh;
+background:
 linear-gradient(to right,rgba(0,0,0,.55),rgba(0,0,0,.15)),
 url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
 display:flex;align-items:center;color:#fff}
 .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
 .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:18px}
 .hero p{max-width:45ch;font-size:16px;margin-bottom:26px}
-.hero-actions{display:flex;gap:14px}
 
 /* OFFER CARD */
-.offer-card{background:#fff;color:#111;border-radius:20px;padding:26px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.offer-card{
+background:#fff;color:#111;border-radius:20px;
+padding:26px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
 .offer-label{text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:#888;margin-bottom:12px}
 .offer-title{font-size:24px;font-weight:700}
 .offer-sub{font-size:14px;color:#555;margin-bottom:16px}
@@ -46,26 +56,40 @@ section{padding:70px 20px}
 
 /* PROJECTS */
 .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.project-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.08)}
-.project-img{height:160px;background:linear-gradient(135deg,#1f7a4f,#2d2d2d)}
+.project-card{
+background:#fff;border-radius:16px;overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.3s}
+.project-card:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.project-img{height:180px}
 .project-body{padding:18px}
 .project-body h3{font-size:18px;margin-bottom:6px}
 .project-body p{font-size:13px;color:#666}
-.project-price{margin-top:10px;font-weight:600}
+.project-price{margin:10px 0;font-weight:600}
 
-/* LOCATIONS */
+/* DETAIL LOKALIT */
+.detail-hero{
+min-height:60vh;color:#fff;
+display:flex;align-items:center}
+.detail-hero h2{font-size:42px;margin-bottom:12px}
+
 .locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.location{background:#fff;border-radius:14px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+.location{
+background:#fff;border-radius:14px;padding:20px;
+box-shadow:0 6px 16px rgba(0,0,0,.06)}
 .location h4{margin-bottom:6px}
 
 /* CONTACT */
-.contact{background:#1f7a4f;color:#fff;border-radius:20px;padding:40px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
-.contact p{max-width:45ch;font-size:14px}
+.contact{
+background:#1f7a4f;color:#fff;border-radius:20px;
+padding:40px;display:flex;flex-wrap:wrap;
+gap:20px;align-items:center;justify-content:space-between}
 
 /* FOOTER */
 footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 
-/* MOBILE */
 @media(max-width:900px){
 .hero-inner{grid-template-columns:1fr}
 .nav-links{display:none}
@@ -80,111 +104,23 @@ footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 <div class="logo"><span>NEMOVEX</span> GROUP</div>
 <nav class="nav-links">
 <a href="#projekty">Projekty</a>
-<a href="#lokality">Lokality</a>
+<a href="#klenovka">Klenovka</a>
+<a href="#kutnahora">Kutná Hora</a>
+<a href="#chrudim">Chrudim</a>
 <a href="#kontakt">Kontakt</a>
 </nav>
-<button class="btn-primary">Chci bydlet</button>
 </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
 <div class="hero-inner">
 <div>
-<h1>Moderní developerské projekty<br>bez kompromisů</h1>
-<p>Stavíme kvalitní rodinné domy a rezidenční bydlení v prověřených lokalitách.
-Důraz klademe na architekturu, funkčnost a dlouhodobou hodnotu.</p>
-<div class="hero-actions">
-<button class="btn-primary">Zobrazit projekty</button>
-<button class="btn-primary" style="background:#333">Kontakt</button>
-</div>
+<h1>NEMOVEX GROUP<br>Moderní developerské projekty</h1>
+<p>Stavíme kvalitní rodinné domy a rezidenční bydlení
+v lokalitách s dlouhodobou hodnotou.</p>
+<a href="#projekty" class="btn-primary">Zobrazit projekty</a>
 </div>
 
 <div class="offer-card">
-<div class="offer-label">Aktuálně v nabídce</div>
-<div class="offer-title">Klenovka</div>
-<div class="offer-sub">Rodinný dům 5+kk</div>
-<div class="offer-grid">
-<span>Cena</span><span>10 000 000 Kč</span>
-<span>Lokalita</span><span>Středočeský kraj</span>
-<span>Stav</span><span>Novostavba</span>
-</div>
-</div>
-</div>
-</section>
-
-<section id="projekty">
-<div class="container">
-<h2 class="section-title">Naše projekty</h2>
-<p class="section-sub">Vybrané developerské projekty v nabídce</p>
-
-<div class="projects">
-<div class="project-card">
-<div class="project-img"></div>
-<div class="project-body">
-<h3>Klenovka</h3>
-<p>Rodinné domy v klidné lokalitě</p>
-<div class="project-price">od 10 000 000 Kč</div>
-</div>
-</div>
-
-<div class="project-card">
-<div class="project-img"></div>
-<div class="project-body">
-<h3>Zelené Údolí</h3>
-<p>Moderní bydlení blízko přírody</p>
-<div class="project-price">od 8 500 000 Kč</div>
-</div>
-</div>
-
-<div class="project-card">
-<div class="project-img"></div>
-<div class="project-body">
-<h3>Rezidence Park</h3>
-<p>Městské bydlení s parkem</p>
-<div class="project-price">od 6 900 000 Kč</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="lokality">
-<div class="container">
-<h2 class="section-title">Lokality</h2>
-<p class="section-sub">Stavíme tam, kde se dobře žije</p>
-
-<div class="locations">
-<div class="location">
-<h4>Středočeský kraj</h4>
-<p>Klid, dostupnost, příroda</p>
-</div>
-<div class="location">
-<h4>Praha – západ</h4>
-<p>Blízkost města</p>
-</div>
-<div class="location">
-<h4>Jižní Čechy</h4>
-<p>Rekreační i trvalé bydlení</p>
-</div>
-</div>
-</div>
-</section>
-
-<section id="kontakt">
-<div class="container">
-<div class="contact">
-<div>
-<h3>Máte zájem o bydlení?</h3>
-<p>Kontaktujte nás a rádi vám představíme aktuální nabídku a možnosti financování.</p>
-</div>
-<button class="btn-primary">Kontaktovat NEMOVEX</button>
-</div>
-</div>
-</section>
-
-<footer>
-© 2026 NEMOVEX GROUP · Developerské projekty
-</footer>
-
-</body>
-</html>
+<div class="offer-label">Aktuálně
