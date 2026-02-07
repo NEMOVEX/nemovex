@@ -15,11 +15,24 @@ header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid 
 .nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .logo span{color:#1f7a4f}
-.nav-links{display:flex;gap:26px}
+.nav-links{display:flex;gap:26px;position:relative}
 .nav-links a{text-decoration:none;color:#333;font-size:14px;font-weight:500;position:relative}
-.nav-links a::after{
-content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.3s}
 .nav-links a:hover::after{width:100%}
+
+/* DROPDOWN */
+.dropdown{position:relative}
+.dropdown > a{cursor:pointer}
+.dropdown-menu{
+  display:none;position:absolute;top:100%;left:0;
+  background:#fff;border:1px solid #e0e0e0;border-radius:6px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  padding:10px 0;min-width:160px;z-index:20}
+.dropdown-menu a{
+  display:block;padding:8px 16px;color:#333;
+  text-decoration:none;font-size:14px}
+.dropdown-menu a:hover{background:#f4f4f4}
+.dropdown:hover .dropdown-menu{display:block}
 
 .btn-primary{
 padding:9px 20px;border-radius:999px;border:none;
@@ -31,7 +44,7 @@ cursor:pointer;text-decoration:none;display:inline-block}
 .hero{
 min-height:75vh;
 background:
-linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),
+linear-gradient(to right,rgba(0,0,0,.55),rgba(0,0,0,.15)),
 url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
 display:flex;align-items:center;color:#fff}
 .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
@@ -90,17 +103,10 @@ gap:20px;align-items:center;justify-content:space-between}
 /* FOOTER */
 footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 
-/* HAMBURGER MENU */
-.hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
-.hamburger div{width:25px;height:3px;background:#1f7a4f;border-radius:3px;transition:.3s}
-
-/* RESPONSIVE */
 @media(max-width:900px){
 .hero-inner{grid-template-columns:1fr}
-.nav-links{display:none;flex-direction:column;width:100%;background:#fff;position:absolute;top:60px;left:0;gap:0;border-top:1px solid #e0e0e0}
-.nav-links a{padding:12px 20px;border-bottom:1px solid #e0e0e0}
-.nav-links.show{display:flex}
-.hamburger{display:flex}
+.nav-links{flex-direction:column;gap:10px}
+.dropdown-menu{position:static;box-shadow:none;border:none}
 }
 </style>
 </head>
@@ -108,21 +114,28 @@ footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 <body>
 
 <header>
-<div class="nav">
-<div class="logo"><span>NEMOVEX</span> GROUP</div>
-<div class="hamburger" onclick="toggleMenu()">
-<div></div>
-<div></div>
-<div></div>
-</div>
-<nav class="nav-links">
-<a href="#projekty">Projekty</a>
-<a href="#klenovka">Klenovka</a>
-<a href="#kutnahora">Kutná Hora</a>
-<a href="#chrudim">Chrudim</a>
-<a href="#kontakt">Kontakt</a>
-</nav>
-</div>
+  <div class="nav">
+    <div class="logo"><span>NEMOVEX</span> GROUP</div>
+    <nav class="nav-links">
+      <div class="dropdown">
+        <a>Projekty ▾</a>
+        <div class="dropdown-menu">
+          <a href="#teplice">Teplice</a>
+          <a href="#chrudim">Chrudim</a>
+          <a href="#klenovka">Klenovka</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a>Aktuálně k prodeji ▾</a>
+        <div class="dropdown-menu">
+          <a href="#klenovka">Klenovka</a>
+          <a href="#kutnahora">Kutná Hora</a>
+          <a href="#chrudim">Chrudim</a>
+        </div>
+      </div>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -156,124 +169,15 @@ v lokalitách s dlouhodobou hodnotou.</p>
 
 <div class="projects">
 
-<div class="project-card">
-<div class="project-img" style="background:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994') center/cover"></div>
+<div class="project-card" id="teplice">
+<div class="project-img" style="background:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511') center/cover"></div>
 <div class="project-body">
-<h3>Rodinné domy Klenovka</h3>
-<p>Klidná rezidenční lokalita s přírodou.</p>
+<h3>Rodinné domy Teplice</h3>
+<p>Moderní bydlení v lázeňském městě.</p>
 <div class="project-price">od 10 000 000 Kč</div>
-<a href="#klenovka" class="btn-primary">Detail projektu</a>
+<a href="#teplice" class="btn-primary">Detail projektu</a>
 </div>
 </div>
 
-<div class="project-card">
-<div class="project-img" style="background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover"></div>
-<div class="project-body">
-<h3>Rodinné domy Kutná Hora</h3>
-<p>Prémiové bydlení v historickém městě.</p>
-<div class="project-price">od 10 000 000 Kč</div>
-<a href="#kutnahora" class="btn-primary">Detail projektu</a>
-</div>
-</div>
-
-<div class="project-card">
-<div class="project-img" style="background:url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c') center/cover"></div>
-<div class="project-body">
-<h3>Rodinné domy a byty Chrudim</h3>
-<p>Rodiny i investiční bydlení.</p>
-<div class="project-price">od 10 000 000 Kč</div>
-<a href="#chrudim" class="btn-primary">Detail projektu</a>
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- KLENOVKA -->
-<section id="klenovka" class="detail-hero" style="
-background:
-linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.2)),
-url('https://images.unsplash.com/photo-1568605114967-8130f3a36994') center/cover">
-<div class="container">
-<h2>Rodinné domy Klenovka</h2>
-<p>Moderní domy 5+kk v klidné lokalitě s výbornou dostupností.</p>
-</div>
-</section>
-
-<section>
-<div class="container locations">
-<div class="location"><h4>Super lokalita</h4><p>Minimum dopravy, zeleň, klid.</p></div>
-<div class="location"><h4>Školy a školky</h4><p>Do 5 minut pěšky.</p></div>
-<div class="location"><h4>Nemocnice</h4><p>Dostupná do 10 minut.</p></div>
-<div class="location"><h4>Dispozice</h4><p>5+kk, zahrada, parkování.</p></div>
-</div>
-</section>
-
-<!-- KUTNÁ HORA -->
-<section id="kutnahora" class="detail-hero" style="
-background:
-linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.2)),
-url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover">
-<div class="container">
-<h2>Rodinné domy Kutná Hora</h2>
-<p>Exkluzivní bydlení v historickém městě.</p>
-</div>
-</section>
-
-<section>
-<div class="container locations">
-<div class="location"><h4>Kompletní zázemí</h4><p>Školy, školky, gymnázium.</p></div>
-<div class="location"><h4>Zdravotní péče</h4><p>Nemocnice Kutná Hora.</p></div>
-<div class="location"><h4>Kultura</h4><p>Památky, restaurace, služby.</p></div>
-<div class="location"><h4>Dostupnost</h4><p>Rychlé spojení do Prahy.</p></div>
-</div>
-</section>
-
-<!-- CHRUDIM -->
-<section id="chrudim" class="detail-hero" style="
-background:
-linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.2)),
-url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c') center/cover">
-<div class="container">
-<h2>Rodinné domy a byty Chrudim</h2>
-<p>Moderní bydlení pro rodiny i investory.</p>
-</div>
-</section>
-
-<section>
-<div class="container locations">
-<div class="location"><h4>Rodinné zázemí</h4><p>Školy, školky, sportoviště.</p></div>
-<div class="location"><h4>Nemocnice</h4><p>Nemocnice Chrudim.</p></div>
-<div class="location"><h4>Město + klid</h4><p>Služby i příroda.</p></div>
-<div class="location"><h4>Investice</h4><p>Vhodné i k pronájmu.</p></div>
-</div>
-</section>
-
-<!-- KONTAKT -->
-<section id="kontakt">
-<div class="container">
-<div class="contact">
-<div>
-<h3>Máte zájem o bydlení?</h3>
-<p>📞 +420 777 000 000<br>
-✉️ info@nemovex.cz</p>
-</div>
-<a href="mailto:info@nemovex.cz" class="btn-primary">Kontaktovat NEMOVEX</a>
-</div>
-</div>
-</section>
-
-<footer>
-© 2026 NEMOVEX GROUP · Developerské projekty
-</footer>
-
-<script>
-function toggleMenu(){
-  const nav = document.querySelector('.nav-links');
-  nav.classList.toggle('show');
-}
-</script>
-
-</body>
-</html>
+<div class="project-card" id="chrudim">
+<div class="project-img" style
