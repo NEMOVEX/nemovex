@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-body { color: #222; background-color: white; } /* bílé pozadí */
+body { color: #222; background-color: white; }
 
 header {
   position: sticky;
@@ -48,24 +48,20 @@ header {
   font-weight: 500;
 }
 
-.nav-links a:hover {
-  color: #000; /* černý hover */
-}
+.nav-links a:hover { color: #000; }
 
 .btn-primary {
   padding: 8px 18px;
   border-radius: 999px;
   border: none;
-  background: #2f2f2f; /* antracitové tlačítko */
+  background: #2f2f2f;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
 
-.btn-primary:hover {
-  background: #000; /* černý hover */
-}
+.btn-primary:hover { background: #000; }
 
 .btn-secondary {
   padding: 8px 18px;
@@ -78,13 +74,11 @@ header {
   cursor: pointer;
 }
 
-.btn-secondary:hover {
-  background: #f0f0f0; /* světle šedý hover */
-}
+.btn-secondary:hover { background: #f0f0f0; }
 
 .hero {
-  background: linear-gradient(135deg, lightgreen 0%, lightgreen 50%, white 50%);
-  color: #000; /* text černý */
+  background: url('https://copilot.microsoft.com/th/id/BCO.e579fb29-d8fc-45d0-94fb-61222e622c61.png') no-repeat center center/cover;
+  color: #000;
 }
 
 .hero-inner {
@@ -119,7 +113,7 @@ header {
 
 .section-header h2 {
   font-size: 22px;
-  color: #2f2f2f; /* antracitové nadpisy */
+  color: #2f2f2f;
 }
 
 .projects-grid {
@@ -129,7 +123,7 @@ header {
 }
 
 .project-card {
-  background: #fff;
+  background: #f0f0f0; /* šedé boxy */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.06);
@@ -137,21 +131,9 @@ header {
   flex-direction: column;
 }
 
-.project-image {
-  background: linear-gradient(135deg, lightgreen, #a8e6a1);
-  height: 160px;
-}
-
 .project-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
-.project-location { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #888; }
-.project-title { font-size: 16px; font-weight: 600; color: #2f2f2f; } /* antracitové názvy projektů */
+.project-title { font-size: 16px; font-weight: 600; color: #2f2f2f; }
 .project-meta { font-size: 13px; color: #666; }
-.project-price { font-size: 14px; font-weight: 600; margin-top: 4px; }
-.project-footer { padding: 0 18px 16px; display: flex; justify-content: space-between; font-size: 12px; color: #777; }
-.badge { padding: 3px 9px; border-radius: 999px; background: #f0f0f0; color: #2f2f2f; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
-
-.contact { margin-top: 50px; padding: 26px 22px; border-radius: 18px; background: #2f2f2f; color: #fff; display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; }
-footer { padding: 24px 20px 30px; font-size: 12px; color: #777; text-align: center; }
 </style>
 </head>
 <body>
@@ -189,10 +171,19 @@ footer { padding: 24px 20px 30px; font-size: 12px; color: #777; text-align: cent
 <main>
   <section id="projekty">
     <div class="section-header">
-      <h2>Vybrané projekty</h2>
-      <p>Prohlédněte si několik aktuálních projektů. Všechny nabízejí kvalitní standard, dobrou dopravní dostupnost a občanskou vybavenost.</p>
+      <h2>Přehled projektů v nabídce</h2>
+      <p>Prohlédněte si aktuální projekty dostupné v našem portfoliu.</p>
     </div>
 
     <div class="projects-grid">
-      <!-- původní projekty -->
-      <article class="project-card"><div class="project-image"></div><div class="project-body"><div class="project-location">Praha 9 – Vysočany</div><div class="project-title">Rezidence Park Vysočany</div><div class="project-meta">Byty 1+kk až 4+kk s výhledem do zeleně.</div><div class="project-price">Ceny od 4,6 mil. Kč</div></div><div class="project-footer"><span>Dokončení 2027</span><span class="badge">Novinka</span
+      <article class="project-card">
+        <div class="project-body">
+          <div class="project-title">Rezidence Chrudim</div>
+          <div class="project-meta">Moderní byty v centru Chrudimi.</div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-body">
+          <div class="project-title">Klenovka</div>
+          <div class="project-meta">
