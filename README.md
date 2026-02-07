@@ -96,4 +96,32 @@ footer { text-align:center; font-size:12px; color:#777; padding:30px 20px; }
   © 2026 NEMOVEX Group a.s. | Přehled developerských projektů.
 </footer>
 </body>
-</html>    
+</html><!DOCTYPE html>
+<html lang="cs">
+<head><meta charset="UTF-8"><title>Rezidence Chrudim</title></head>
+<body>
+<h1>Rezidence Chrudim</h1>
+<img src="https://copilot.microsoft.com/th/id/BCO.8742c1be-f3de-452c-bbe0-68886aa65205.png" alt="Rezidence Chrudim">
+<p><strong>Dispozice:</strong> Byty 2+kk – 4+kk</p>
+<p><strong>Cena od:</strong> 5 500 000 Kč</p>
+<p>Nabízíme moderní byty v centru města s dostupností škol, obchodů a přírody. Ideální pro pohodlný městský život.</p>
+</body>
+</html><!DOCTYPE html>
+<html lang="cs">
+<head><meta charset="UTF-8"><title>Rezidence Chrudim</title></head>
+<body>
+<h1>Rezidence Chrudim</h1>
+<img src="https://copilot.microsoft.com/th/id/BCO.8742c1be-f3de-452c-bbe0-68886aa65205.png" alt="Rezidence Chrudim">
+<p><strong>Dispozice:</strong> Byty 2+kk – 4+kk</p>
+<p><strong>Cena od:</strong> 5 500 000 Kč</p>
+<p>Nabízíme moderní byty v centru města s dostupností škol, obchodů a přírody. Ideální pro pohodlný městský život.</p>
+</body>
+</html><!DOCTYPE html>
+<html lang="cs">
+<head><meta charset="UTF-8"><title>Klenovka</title></head>
+<body>
+<h1>Klenovka</h1>
+<img src="https://copilot.microsoft.com/th/id/BCO.e0dac60d-0552-4417-bb05-b818a2dcf7f1.png" alt="Klenovka">
+<p><strong>Dispozice:</strong> Rodinné domy 5+kk</p>
+<p><strong>Cena od:</strong> 10 000 000 Kč</p>
+<p>Rodinné
