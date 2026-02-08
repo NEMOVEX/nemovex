@@ -49,15 +49,26 @@
       display:flex;align-items:center;color:#fff
     }
     .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:18px}
-    .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:14px}
-    .hero p{max-width:70ch;font-size:16px;margin-bottom:22px}
+    .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:0;max-width:18ch}
 
     section{padding:70px 20px}
     .container{max-width:1200px;margin:auto}
     .section-title{font-size:26px;margin-bottom:10px}
     .section-sub{font-size:14px;color:#666;margin-bottom:24px}
 
-    /* ABOUT */
+    /* INTRO TEXT (pod hero) */
+    .intro{
+      background:#fff;border-radius:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      border:1px solid #eef0f2;
+      padding:28px;
+    }
+    .intro-quote{
+      font-size:20px;font-weight:900;margin-bottom:10px;
+    }
+    .intro p{color:#555;font-size:14px;max-width:95ch}
+
+    /* ABOUT (samostatná sekce pro záložku O nás) */
     .about{
       background:#fff;border-radius:20px;
       box-shadow:0 10px 28px rgba(0,0,0,.06);
@@ -323,37 +334,20 @@
     <div class="hero-inner">
       <div>
         <h1>NEMOVEX GROUP<br>Stavíme rodinné a bytové domy v lukrativních oblastech pro život.</h1>
-        <p>Projekty jsou rozdělené na „v nabídce“ a „v přípravě“. Seznamy se otevřou pouze kliknutím v horním menu.</p>
-        <button class="btn-primary" type="button" id="btnOfferHero">Zobrazit projekty v nabídce</button>
       </div>
     </div>
   </section>
 
-  <section id="onas">
+  <!-- Text pod hero -->
+  <section>
     <div class="container">
-      <h2 class="section-title">O nás</h2>
-      <p class="section-sub">Moderní developerské projekty s důrazem na kvalitu, dlouhodobou hodnotu a dobré lokality.</p>
-
-      <div class="about">
-        <div>
-          <h3>NEMOVEX GROUP</h3>
-          <p>
-            Připravujeme a realizujeme rezidenční projekty – od bytových domů po rodinnou výstavbu.
-            Zaměřujeme se na kvalitní architekturu, funkční dispozice a lokality s dlouhodobou hodnotou.
-          </p>
-          <p style="margin-top:10px">
-            Máte zájem o konkrétní projekt? Vyplňte nezávaznou poptávku a ozveme se s informacemi.
-          </p>
-          <div style="margin-top:14px">
-            <a class="btn-primary" href="#poptavka">Nezávazná poptávka</a>
-          </div>
-        </div>
-
-        <div class="about-cards">
-          <div class="mini"><strong>✅ Kvalita</strong><span>Prověřené standardy, důraz na detail.</span></div>
-          <div class="mini"><strong>✅ Lokality</strong><span>Lukrativní oblasti pro život i investici.</span></div>
-          <div class="mini"><strong>✅ Přístup</strong><span>Individuální komunikace a férové jednání.</span></div>
-        </div>
+      <div class="intro">
+        <div class="intro-quote">„Vytváříme domovy, které inspirují.“</div>
+        <p>
+          Naše developerská společnost staví moderní rodinné domy a rezidenční projekty s důrazem na kvalitu,
+          estetiku a pohodlí. Každý projekt je navržen tak, aby nabízel nejen prostor k bydlení, ale i místo,
+          kde vznikají životní příběhy.
+        </p>
       </div>
     </div>
   </section>
@@ -427,6 +421,33 @@
             <p>Residenční čtvrť (projekt v přípravě).</p>
             <span class="pill">Otevřít detail</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O NÁS (jen pod záložkou v liště) -->
+  <section id="onas">
+    <div class="container">
+      <div class="about">
+        <div>
+          <h3>NEMOVEX GROUP</h3>
+          <p>
+            Připravujeme a realizujeme rezidenční projekty – od bytových domů po rodinnou výstavbu.
+            Zaměřujeme se na kvalitní architekturu, funkční dispozice a lokality s dlouhodobou hodnotou.
+          </p>
+          <p style="margin-top:10px">
+            Máte zájem o konkrétní projekt? Vyplňte nezávaznou poptávku a ozveme se s informacemi.
+          </p>
+          <div style="margin-top:14px">
+            <a class="btn-primary" href="#poptavka">Nezávazná poptávka</a>
+          </div>
+        </div>
+
+        <div class="about-cards">
+          <div class="mini"><strong>✅ Kvalita</strong><span>Prověřené standardy, důraz na detail.</span></div>
+          <div class="mini"><strong>✅ Lokality</strong><span>Lukrativní oblasti pro život i investici.</span></div>
+          <div class="mini"><strong>✅ Přístup</strong><span>Individuální komunikace a férové jednání.</span></div>
         </div>
       </div>
     </div>
@@ -562,10 +583,16 @@
     </div>
   </section>
   <section><div class="container">
+    <div class="gallery">
+      <div class="gimg"><img alt="BD Hermann 1" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="BD Hermann 2" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="BD Hermann 3" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="BD Hermann 4" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
+    </div>
     <div class="locations">
       <div class="location"><h4>Stav</h4><p>V nabídce.</p></div>
       <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
-      <div class="location"><h4>Fotky</h4><p>Dočasné obrázky doplníme.</p></div>
+      <div class="location"><h4>Fotky</h4><p>Dočasné obrázky – později nahradíme reálnými.</p></div>
       <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
     </div>
   </div></section>
@@ -650,6 +677,57 @@
   </div></section>
 </div>
 
+<div class="view" id="view-prep-tribrichy">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>RD Třibřichy</h2>
+      <p>Rodinné domy (v přípravě).</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-rudnik">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Projekt Rudník</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-volec">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Projekt Voleč</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
 <footer>
   © 2026 NEMOVEX GROUP · Developerské projekty
 </footer>
@@ -664,7 +742,6 @@
 
     const btnOffer = document.getElementById('btnOffer');
     const btnPrep  = document.getElementById('btnPrep');
-    const btnOfferHero = document.getElementById('btnOfferHero');
 
     const btnCloseOffer = document.getElementById('btnCloseOffer');
     const btnClosePrep  = document.getElementById('btnClosePrep');
@@ -683,6 +760,12 @@
       hamburger.addEventListener('click', toggleMenu);
     }
 
+    function closeOverlay(){
+      if(offerOverlay){ offerOverlay.classList.remove('show'); offerOverlay.setAttribute('aria-hidden','true'); }
+      if(prepOverlay){ prepOverlay.classList.remove('show');  prepOverlay.setAttribute('aria-hidden','true'); }
+      document.body.style.overflow = '';
+    }
+
     function openOverlay(which){
       closeOverlay();
       if(which === 'offer' && offerOverlay){
@@ -696,35 +779,19 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function closeOverlay(){
-      if(offerOverlay){ offerOverlay.classList.remove('show'); offerOverlay.setAttribute('aria-hidden','true'); }
-      if(prepOverlay){ prepOverlay.classList.remove('show');  prepOverlay.setAttribute('aria-hidden','true'); }
-      document.body.style.overflow = '';
-    }
-
     if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
     if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
-    if(btnOfferHero) btnOfferHero.addEventListener('click', () => { goHome(); openOverlay('offer'); });
 
     if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
     if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
 
-    // klik mimo panel (na pozadí) zavře overlay
     if(offerOverlay){
-      offerOverlay.addEventListener('click', (e) => {
-        if(e.target === offerOverlay) closeOverlay();
-      });
+      offerOverlay.addEventListener('click', (e) => { if(e.target === offerOverlay) closeOverlay(); });
     }
     if(prepOverlay){
-      prepOverlay.addEventListener('click', (e) => {
-        if(e.target === prepOverlay) closeOverlay();
-      });
+      prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
     }
-
-    // ESC zavře overlay
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeOverlay();
-    });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeOverlay(); });
 
     function showView(viewId){
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
