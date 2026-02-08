@@ -57,7 +57,24 @@
     .section-title{font-size:26px;margin-bottom:10px}
     .section-sub{font-size:14px;color:#666;margin-bottom:24px}
 
-    /* CARDS (náhledy projektů na hlavní stránce) */
+    /* ABOUT */
+    .about{
+      background:#fff;border-radius:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      border:1px solid #eef0f2;
+      padding:28px;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start
+    }
+    .about h3{font-size:20px;margin-bottom:8px}
+    .about p{color:#555;font-size:14px;max-width:85ch}
+    .about-cards{display:grid;gap:10px}
+    .mini{
+      background:#f7f8f9;border:1px solid #eceff2;border-radius:14px;padding:14px
+    }
+    .mini strong{display:block;font-size:13px;margin-bottom:4px}
+    .mini span{color:#666;font-size:12px}
+
+    /* CARDS (náhledy projektů) */
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
     .card{
       background:#fff;border-radius:16px;overflow:hidden;
@@ -71,14 +88,14 @@
     .card-body p{font-size:13px;color:#666}
     .pill{display:inline-block;margin-top:10px;font-size:12px;font-weight:900;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px}
 
-    /* LIST PANEL (rozbalovací seznam pod sebou) */
+    /* LIST PANEL (rozbalovací seznam) */
     .panel{
       background:#fff;border-radius:20px;
       box-shadow:0 10px 28px rgba(0,0,0,.06);
       overflow:hidden;border:1px solid #eef0f2;
     }
     .proj-panel{max-height:0;transition:max-height .35s ease}
-    .proj-panel.open{max-height:1200px}
+    .proj-panel.open{max-height:1400px}
     .panel-inner{padding:18px}
 
     .proj-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
@@ -170,6 +187,7 @@
       }
       .nav-links > a::after, .nav-links > button::after{display:none}
       .form-wrap{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -185,6 +203,7 @@
     </div>
 
     <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
+      <a href="#onas" onclick="goHome();closeMenu();">O NÁS</a>
       <button type="button" id="btnOffer">PROJEKTY V NABÍDCE</button>
       <button type="button" id="btnPrep">PROJEKTY V PŘÍPRAVĚ</button>
       <a href="#poptavka" onclick="goHome();closeMenu();">NEZÁVAZNÁ POPTÁVKA</a>
@@ -203,9 +222,49 @@
     <div class="hero-inner">
       <div>
         <h1>NEMOVEX GROUP<br>Stavíme rodinné a bytové domy v lukrativních oblastech pro život.</h1>
-        <p>Vyberte si z projektů v nabídce nebo si prohlédněte projekty v přípravě. Reálné fotografie doplníme později – nyní používáme dočasné vizualizace.</p>
+        <p>Prohlédněte si projekty v nabídce a projekty v přípravě. Detail projektu otevřete kliknutím na kartu nebo přes menu.</p>
         <button class="btn-primary" type="button" id="btnOfferHero">Zobrazit projekty v nabídce</button>
       </div>
+    </div>
+  </section>
+
+  <!-- O NÁS -->
+  <section id="onas">
+    <div class="container">
+      <h2 class="section-title">O nás</h2>
+      <p class="section-sub">Moderní developerské projekty s důrazem na kvalitu, dlouhodobou hodnotu a dobré lokality.</p>
+
+      <div class="about">
+        <div>
+          <h3>NEMOVEX GROUP</h3>
+          <p>
+            Připravujeme a realizujeme rezidenční projekty – od bytových domů po rodinnou výstavbu.
+            Zaměřujeme se na kvalitní architekturu, funkční dispozice a lokality s dlouhodobou hodnotou.
+          </p>
+          <p style="margin-top:10px">
+            Máte zájem o konkrétní projekt? Vyplňte nezávaznou poptávku a ozveme se s informacemi.
+          </p>
+          <div style="margin-top:14px">
+            <a class="btn-primary" href="#poptavka">Nezávazná poptávka</a>
+          </div>
+        </div>
+
+        <div class="about-cards">
+          <div class="mini">
+            <strong>✅ Kvalita</strong>
+            <span>Prověřené standardy, důraz na detail.</span>
+          </div>
+          <div class="mini">
+            <strong>✅ Lokality</strong>
+            <span>Lukrativní oblasti vhodné pro život i investici.</span>
+          </div>
+          <div class="mini">
+            <strong>✅ Přístup</strong>
+            <span>Individuální komunikace a férové jednání.</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -213,11 +272,12 @@
   <section>
     <div class="container">
       <h2 class="section-title">Projekty v nabídce</h2>
-      <p class="section-sub">Náhled vybraných projektů (kliknutím otevřete detail).</p>
+      <p class="section-sub">Náhled 3 projektů (kliknutím otevřete detail).</p>
 
       <div class="cards">
+        <!-- Západní terasy -->
         <div class="card" onclick="openProject('zapadni')">
-          <div class="card-img" style="background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23eaf6ff%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22310%22%20width%3D%22880%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22360%22%20width%3D%22160%22%20height%3D%22120%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22420%22%20y%3D%22360%22%20width%3D%22160%22%20height%3D%22120%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22620%22%20y%3D%22360%22%20width%3D%22160%22%20height%3D%22120%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22820%22%20y%3D%22360%22%20width%3D%22160%22%20height%3D%22120%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Cpolygon%20points%3D%22140,315%20600,230%201060,315%201060,340%20140,340%22%20fill%3D%22%231f1f22%22/%3E%3C/svg%3E') center/cover;"></div>
+          <div class="card-img" style="background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23bfe3ff%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f2fbff%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23g)%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Cpolygon%20points%3D%22140,315%20600,230%201060,315%201060,340%20140,340%22%20fill%3D%22%231f1f22%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22340%22%20width%3D%22880%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22385%22%20width%3D%22170%22%20height%3D%22125%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22430%22%20y%3D%22385%22%20width%3D%22170%22%20height%3D%22125%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22640%22%20y%3D%22385%22%20width%3D%22170%22%20height%3D%22125%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22850%22%20y%3D%22385%22%20width%3D%22170%22%20height%3D%22125%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3C/svg%3E') center/cover;"></div>
           <div class="card-body">
             <h3>Západní terasy</h3>
             <p>Komplex 5 bytových domů a rodinné výstavby.</p>
@@ -225,20 +285,22 @@
           </div>
         </div>
 
-        <div class="card" onclick="openProject('puravida')">
-          <div class="card-img" style="background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23fff4e6%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23f1ece4%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22290%22%20width%3D%22760%22%20height%3D%22240%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e7d9c5%22%20stroke-width%3D%224%22/%3E%3Crect%20x%3D%22270%22%20y%3D%22340%22%20width%3D%22120%22%20height%3D%22140%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22430%22%20y%3D%22340%22%20width%3D%22120%22%20height%3D%22140%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22590%22%20y%3D%22340%22%20width%3D%22120%22%20height%3D%22140%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22750%22%20y%3D%22340%22%20width%3D%22120%22%20height%3D%22140%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Cpolygon%20points%3D%22200,295%20600,210%201000,295%201000,320%20200,320%22%20fill%3D%22%231f1f22%22/%3E%3C/svg%3E') center/cover;"></div>
+        <!-- R-Club (tvoje fotka) -->
+        <div class="card" onclick="openProject('rclub')">
+          <div class="card-img" style="background:url('{{RCLUB_IMAGE_DATA_URL}}') center/cover;"></div>
           <div class="card-body">
-            <h3>Residenční komplex Pura Vida</h3>
-            <p>Developerský projekt se 120 servisovanými apartmány.</p>
+            <h3>R – Club</h3>
+            <p>Luxusní bytový dům s více než 72 jednotkami.</p>
             <span class="pill">Otevřít detail</span>
           </div>
         </div>
 
-        <div class="card" onclick="openProject('malesov')">
-          <div class="card-img" style="background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23eef7ff%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22310%22%20width%3D%22410%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Crect%20x%3D%22630%22%20y%3D%22310%22%20width%3D%22410%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Cpolygon%20points%3D%22140,315%20365,240%20590,315%20590,340%20140,340%22%20fill%3D%22%231f1f22%22/%3E%3Cpolygon%20points%3D%22610,315%20835,240%201060,315%201060,340%20610,340%22%20fill%3D%22%231f1f22%22/%3E%3C/svg%3E') center/cover;"></div>
+        <!-- Hervítkovice -->
+        <div class="card" onclick="openProject('hervitkovice')">
+          <div class="card-img" style="background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23fff7ef%22/%3E%3Crect%20y%3D%22485%22%20width%3D%221200%22%20height%3D%22190%22%20fill%3D%22%23e6efe8%22/%3E%3Crect%20x%3D%22210%22%20y%3D%22305%22%20width%3D%22780%22%20height%3D%22245%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e2e2e2%22%20stroke-width%3D%224%22/%3E%3Cpolygon%20points%3D%22190,310%20600,215%201010,310%201010,335%20190,335%22%20fill%3D%22%231f1f22%22/%3E%3Crect%20x%3D%22260%22%20y%3D%22365%22%20width%3D%22140%22%20height%3D%22150%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22430%22%20y%3D%22365%22%20width%3D%22140%22%20height%3D%22150%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22600%22%20y%3D%22365%22%20width%3D%22140%22%20height%3D%22150%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%22770%22%20y%3D%22365%22%20width%3D%22140%22%20height%3D%22150%22%20fill%3D%22%23e8f4ee%22%20stroke%3D%22%23cfe5da%22%20stroke-width%3D%223%22/%3E%3C/svg%3E') center/cover;"></div>
           <div class="card-body">
-            <h3>Nový Malešov</h3>
-            <p>Pozemky na prodej pro individuální výstavbu a 33 bytových jednotek.</p>
+            <h3>Residenční čtvrť Hervítkovice</h3>
+            <p>Rezidenční čtvrť – doplníme detailní parametry.</p>
             <span class="pill">Otevřít detail</span>
           </div>
         </div>
@@ -246,7 +308,7 @@
     </div>
   </section>
 
-  <!-- PROJEKTY V NABÍDCE (rozbalovací seznam pod sebou) -->
+  <!-- PROJEKTY V NABÍDCE (rozbalovací seznam) -->
   <section id="nabidka">
     <div class="container">
       <h2 class="section-title">Projekty v nabídce – seznam</h2>
@@ -271,42 +333,34 @@
               <div class="chip">Otevřít</div>
             </div>
 
-            <div class="proj-item" onclick="openProject('puravida')">
+            <div class="proj-item" onclick="openProject('rclub')">
               <div class="proj-left">
-                <div class="proj-title">Residenční komplex Pura Vida</div>
-                <div class="proj-sub">120 servisovaných apartmánů</div>
+                <div class="proj-title">R – Club</div>
+                <div class="proj-sub">Luxusní bytový dům s více než 72 jednotkami</div>
               </div>
               <div class="chip">Otevřít</div>
             </div>
 
-            <div class="proj-item" onclick="openProject('malesov')">
+            <div class="proj-item" onclick="openProject('hervitkovice')">
               <div class="proj-left">
-                <div class="proj-title">Nový Malešov</div>
-                <div class="proj-sub">Pozemky + 33 bytových jednotek</div>
+                <div class="proj-title">Residenční čtvrť Hervítkovice</div>
+                <div class="proj-sub">Rezidenční čtvrť</div>
               </div>
               <div class="chip">Otevřít</div>
             </div>
 
-            <div class="proj-item" onclick="openProject('hermann')">
+            <div class="proj-item" onclick="openProject('tribrichy')">
               <div class="proj-left">
-                <div class="proj-title">BD Hermann</div>
-                <div class="proj-sub">Projekt v nabídce</div>
+                <div class="proj-title">RD Třibřichy</div>
+                <div class="proj-sub">Rodinné domy</div>
               </div>
               <div class="chip">Otevřít</div>
             </div>
 
-            <div class="proj-item" onclick="openProject('tresnovka')">
+            <div class="proj-item" onclick="openProject('rudnik')">
               <div class="proj-left">
-                <div class="proj-title">Nová Třešňovka III. etapa</div>
-                <div class="proj-sub">Komplex bytových domů a rodinné výstavby</div>
-              </div>
-              <div class="chip">Otevřít</div>
-            </div>
-
-            <div class="proj-item" onclick="openProject('volec')">
-              <div class="proj-left">
-                <div class="proj-title">Projekt Voleč</div>
-                <div class="proj-sub">Projekt v nabídce</div>
+                <div class="proj-title">Projekt Rudník</div>
+                <div class="proj-sub">Projekt – doplníme detail</div>
               </div>
               <div class="chip">Otevřít</div>
             </div>
@@ -317,7 +371,7 @@
     </div>
   </section>
 
-  <!-- PROJEKTY V PŘÍPRAVĚ (rozbalovací seznam pod sebou) -->
+  <!-- PROJEKTY V PŘÍPRAVĚ -->
   <section id="priprava">
     <div class="container">
       <h2 class="section-title">Projekty v přípravě</h2>
@@ -327,29 +381,14 @@
         <div class="panel-inner">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
             <div>
-              <div style="font-weight:900;font-size:16px">Vyberte projekt v přípravě</div>
-              <div style="color:#666;font-size:12px">Kliknutím otevřete detail projektu.</div>
+              <div style="font-weight:900;font-size:16px">Projekty v přípravě</div>
+              <div style="color:#666;font-size:12px">Zatím zde nejsou vyplněné položky – pošli mi názvy a doplním seznam i detailní stránky.</div>
             </div>
             <button class="btn-primary" type="button" id="btnClosePrep">Zavřít</button>
           </div>
 
-          <div class="proj-list" style="margin-top:14px">
-            <!-- ZATÍM JEN UKÁZKA – jakmile napíšeš názvy, doplním -->
-            <div class="proj-item" onclick="openProject('prep1')">
-              <div class="proj-left">
-                <div class="proj-title">Projekt v přípravě – 1</div>
-                <div class="proj-sub">Doplníme název a popis</div>
-              </div>
-              <div class="chip">Otevřít</div>
-            </div>
-
-            <div class="proj-item" onclick="openProject('prep2')">
-              <div class="proj-left">
-                <div class="proj-title">Projekt v přípravě – 2</div>
-                <div class="proj-sub">Doplníme název a popis</div>
-              </div>
-              <div class="chip">Otevřít</div>
-            </div>
+          <div style="margin-top:14px;color:#666;font-size:13px;max-width:85ch">
+            Jakmile mi pošleš projekty v přípravě (název + krátký popis), přidám je sem jako klikací seznam a vytvořím jim detailní stránky.
           </div>
         </div>
       </div>
@@ -384,11 +423,10 @@
           <select id="project" name="project">
             <option value="">— vyberte —</option>
             <option>Západní terasy</option>
-            <option>Residenční komplex Pura Vida</option>
-            <option>Nový Malešov</option>
-            <option>BD Hermann</option>
-            <option>Nová Třešňovka III. etapa</option>
-            <option>Projekt Voleč</option>
+            <option>R – Club</option>
+            <option>Residenční čtvrť Hervítkovice</option>
+            <option>RD Třibřichy</option>
+            <option>Projekt Rudník</option>
             <option>Projekty v přípravě</option>
           </select>
         </div>
@@ -425,12 +463,13 @@
 </div>
 
 <!-- =========================
-     DETAIL VIEWS – PROJEKTY V NABÍDCE
+     DETAIL VIEWS – PROJEKTY
 ========================= -->
 
+<!-- (Pomocné SVG obrázky pro detaily) -->
 <!-- ZÁPADNÍ TERASY -->
 <div class="view" id="view-zapadni">
-  <section class="detail-hero" style="--bg:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23eaf6ff%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Cpolygon%20points%3D%22140,315%20600,230%201060,315%201060,340%20140,340%22%20fill%3D%22%231f1f22%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22340%22%20width%3D%22880%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3C/svg%3E')">
+  <section class="detail-hero" style="--bg:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23bfe3ff%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f2fbff%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23g)%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Cpolygon%20points%3D%22140,315%20600,230%201060,315%201060,340%20140,340%22%20fill%3D%22%231f1f22%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22340%22%20width%3D%22880%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3C/svg%3E')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>Západní terasy</h2>
@@ -444,29 +483,61 @@
       <p style="color:#666">Dočasné obrázky – později nahradíme reálnými fotografiemi.</p>
 
       <div class="gallery">
-        <div class="gimg"><img alt="Západní terasy – vizualizace 1" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23eaf6ff%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Crect%20x%3D%22180%22%20y%3D%22320%22%20width%3D%22840%22%20height%3D%22230%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Cpolygon%20points%3D%22160,325%20600,235%201040,325%201040,350%20160,350%22%20fill%3D%22%231f1f22%22/%3E%3C/svg%3E"></div>
-        <div class="gimg"><img alt="Západní terasy – vizualizace 2" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Západní terasy – vizualizace 3" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Západní terasy – vizualizace 4" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Západní terasy – vizualizace 1" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Západní terasy – vizualizace 2" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Západní terasy – vizualizace 3" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Západní terasy – vizualizace 4" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70"></div>
       </div>
 
       <div class="locations">
         <div class="location"><h4>Typ projektu</h4><p>Bytové domy + rodinná výstavba.</p></div>
         <div class="location"><h4>Rozsah</h4><p>Komplex 5 bytových domů.</p></div>
-        <div class="location"><h4>Lokalita</h4><p>Upřesníme dle zadání.</p></div>
+        <div class="location"><h4>Lokalita</h4><p>Doplníme dle zadání.</p></div>
         <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- PURA VIDA -->
-<div class="view" id="view-puravida">
-  <section class="detail-hero" style="--bg:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23fff4e6%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23f1ece4%22/%3E%3Cpolygon%20points%3D%22200,295%20600,210%201000,295%201000,320%20200,320%22%20fill%3D%22%231f1f22%22/%3E%3Crect%20x%3D%22220%22%20y%3D%22320%22%20width%3D%22760%22%20height%3D%22230%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e7d9c5%22%20stroke-width%3D%224%22/%3E%3C/svg%3E')">
+<!-- R-CLUB -->
+<div class="view" id="view-rclub">
+  <section class="detail-hero" style="--bg:url('{{RCLUB_IMAGE_DATA_URL}}')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Residenční komplex Pura Vida</h2>
-      <p>Developerský projekt se 120 servisovanými apartmány.</p>
+      <h2>R – Club</h2>
+      <p>Luxusní bytový dům s více než 72 jednotkami.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
+      <p style="color:#666">První fotka je tvoje (vložena přímo do kódu). Ostatní jsou dočasné ilustrační.</p>
+
+      <div class="gallery">
+        <div class="gimg"><img alt="R-Club – vizualizace" src="{{RCLUB_IMAGE_DATA_URL}}"></div>
+        <div class="gimg"><img alt="R-Club – ilustrace 2" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="R-Club – ilustrace 3" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="R-Club – ilustrace 4" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
+      </div>
+
+      <div class="locations">
+        <div class="location"><h4>Typ projektu</h4><p>Luxusní bytový dům.</p></div>
+        <div class="location"><h4>Počet jednotek</h4><p>Více než 72 jednotek.</p></div>
+        <div class="location"><h4>Standard</h4><p>Vyšší standard – doplníme dle zadání.</p></div>
+        <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HERVÍTKOVICE -->
+<div class="view" id="view-hervitkovice">
+  <section class="detail-hero" style="--bg:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23fff7ef%22/%3E%3Crect%20y%3D%22485%22%20width%3D%221200%22%20height%3D%22190%22%20fill%3D%22%23e6efe8%22/%3E%3Crect%20x%3D%22210%22%20y%3D%22305%22%20width%3D%22780%22%20height%3D%22245%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23e2e2e2%22%20stroke-width%3D%224%22/%3E%3Cpolygon%20points%3D%22190,310%20600,215%201010,310%201010,335%20190,335%22%20fill%3D%22%231f1f22%22/%3E%3C/svg%3E')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Residenční čtvrť Hervítkovice</h2>
+      <p>Rezidenční čtvrť – doplníme detailní parametry.</p>
     </div>
   </section>
 
@@ -476,142 +547,82 @@
       <p style="color:#666">Dočasné obrázky – později nahradíme reálnými fotografiemi.</p>
 
       <div class="gallery">
-        <div class="gimg"><img alt="Pura Vida – vizualizace 1" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Pura Vida – vizualizace 2" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Pura Vida – vizualizace 3" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Pura Vida – vizualizace 4" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Hervítkovice – ilustrace 1" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Hervítkovice – ilustrace 2" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Hervítkovice – ilustrace 3" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Hervítkovice – ilustrace 4" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
       </div>
 
       <div class="locations">
-        <div class="location"><h4>Typ projektu</h4><p>Servisované apartmány.</p></div>
-        <div class="location"><h4>Kapacita</h4><p>120 jednotek.</p></div>
-        <div class="location"><h4>Standard</h4><p>Upřesníme dle zadání.</p></div>
-        <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- NOVÝ MALEŠOV -->
-<div class="view" id="view-malesov">
-  <section class="detail-hero" style="--bg:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22675%22%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22%23eef7ff%22/%3E%3Crect%20y%3D%22480%22%20width%3D%221200%22%20height%3D%22195%22%20fill%3D%22%23dfe7ea%22/%3E%3Crect%20x%3D%22160%22%20y%3D%22340%22%20width%3D%22410%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Crect%20x%3D%22630%22%20y%3D%22340%22%20width%3D%22410%22%20height%3D%22210%22%20rx%3D%2212%22%20fill%3D%22%23ffffff%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22/%3E%3Cpolygon%20points%3D%22140,345%20365,260%20590,345%20590,370%20140,370%22%20fill%3D%22%231f1f22%22/%3E%3Cpolygon%20points%3D%22610,345%20835,260%201060,345%201060,370%20610,370%22%20fill%3D%22%231f1f22%22/%3E%3C/svg%3E')">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Nový Malešov</h2>
-      <p>Pozemky na prodej pro individuální výstavbu a 33 bytových jednotek.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
-      <p style="color:#666">Dočasné obrázky – později nahradíme reálnými fotografiemi.</p>
-
-      <div class="gallery">
-        <div class="gimg"><img alt="Nový Malešov – vizualizace 1" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Nový Malešov – vizualizace 2" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Nový Malešov – vizualizace 3" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Nový Malešov – vizualizace 4" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
-      </div>
-
-      <div class="locations">
-        <div class="location"><h4>Typ projektu</h4><p>Pozemky + bytové jednotky.</p></div>
-        <div class="location"><h4>Rozsah</h4><p>33 bytových jednotek + individuální výstavba.</p></div>
-        <div class="location"><h4>Prodej</h4><p>Pozemky na prodej.</p></div>
-        <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- BD HERMANN -->
-<div class="view" id="view-hermann">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>BD Hermann</h2>
-      <p>Detail projektu doplníme (texty a fotky přidáme, až je pošleš).</p>
-    </div>
-  </section>
-  <section>
-    <div class="container">
-      <div class="locations">
-        <div class="location"><h4>Status</h4><p>V nabídce</p></div>
-        <div class="location"><h4>Popis</h4><p>Doplníme později.</p></div>
-        <div class="location"><h4>Fotky</h4><p>Dočasně používáme ilustrační.</p></div>
-        <div class="location"><h4>Poptávka</h4><p>Vyplňte nezávaznou poptávku.</p></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- NOVÁ TŘEŠŇOVKA III. ETAPA -->
-<div class="view" id="view-tresnovka">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=2200&q=70')">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Nová Třešňovka III. etapa</h2>
-      <p>Komplex bytových domů a rodinné výstavby.</p>
-    </div>
-  </section>
-  <section>
-    <div class="container">
-      <div class="gallery">
-        <div class="gimg"><img alt="Třešňovka – vizualizace 1" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Třešňovka – vizualizace 2" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Třešňovka – vizualizace 3" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Třešňovka – vizualizace 4" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
-      </div>
-      <div class="locations">
-        <div class="location"><h4>Typ projektu</h4><p>Bytové domy + rodinná výstavba.</p></div>
-        <div class="location"><h4>Status</h4><p>V nabídce</p></div>
+        <div class="location"><h4>Typ projektu</h4><p>Rezidenční čtvrť.</p></div>
         <div class="location"><h4>Standard</h4><p>Doplníme dle zadání.</p></div>
-        <div class="location"><h4>Poptávka</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+        <div class="location"><h4>Lokalita</h4><p>Doplníme dle zadání.</p></div>
+        <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- VOLEČ -->
-<div class="view" id="view-volec">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+<!-- RD TŘIBŘICHY -->
+<div class="view" id="view-tribrichy">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=70')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Projekt Voleč</h2>
-      <p>Detail projektu doplníme (texty a fotky přidáme, až je pošleš).</p>
+      <h2>RD Třibřichy</h2>
+      <p>Rodinné domy – doplníme detailní parametry.</p>
     </div>
   </section>
+
   <section>
     <div class="container">
+      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
+      <p style="color:#666">Dočasné obrázky – později nahradíme reálnými fotografiemi.</p>
+
+      <div class="gallery">
+        <div class="gimg"><img alt="Třibřichy – ilustrace 1" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Třibřichy – ilustrace 2" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Třibřichy – ilustrace 3" src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Třibřichy – ilustrace 4" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=70"></div>
+      </div>
+
       <div class="locations">
-        <div class="location"><h4>Status</h4><p>V nabídce</p></div>
-        <div class="location"><h4>Popis</h4><p>Doplníme později.</p></div>
-        <div class="location"><h4>Fotky</h4><p>Dočasně používáme ilustrační.</p></div>
-        <div class="location"><h4>Poptávka</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+        <div class="location"><h4>Typ projektu</h4><p>Rodinné domy.</p></div>
+        <div class="location"><h4>Standard</h4><p>Novostavba – doplníme dle zadání.</p></div>
+        <div class="location"><h4>Lokalita</h4><p>Doplníme dle zadání.</p></div>
+        <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- =========================
-     DETAIL VIEWS – PROJEKTY V PŘÍPRAVĚ (zatím placeholder)
-========================= -->
-<div class="view" id="view-prep1">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=2200&q=70')">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Projekt v přípravě – 1</h2>
-      <p>Doplníme název, popis i fotky.</p>
-    </div>
-  </section>
-</div>
-
-<div class="view" id="view-prep2">
+<!-- PROJEKT RUDNÍK -->
+<div class="view" id="view-rudnik">
   <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Projekt v přípravě – 2</h2>
-      <p>Doplníme název, popis i fotky.</p>
+      <h2>Projekt Rudník</h2>
+      <p>Projekt – doplníme detailní parametry.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
+      <p style="color:#666">Dočasné obrázky – později nahradíme reálnými fotografiemi.</p>
+
+      <div class="gallery">
+        <div class="gimg"><img alt="Rudník – ilustrace 1" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Rudník – ilustrace 2" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Rudník – ilustrace 3" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
+        <div class="gimg"><img alt="Rudník – ilustrace 4" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
+      </div>
+
+      <div class="locations">
+        <div class="location"><h4>Typ projektu</h4><p>Doplníme dle zadání.</p></div>
+        <div class="location"><h4>Standard</h4><p>Doplníme dle zadání.</p></div>
+        <div class="location"><h4>Lokalita</h4><p>Doplníme dle zadání.</p></div>
+        <div class="location"><h4>Poptávka</h4><p>Pro více informací vyplňte nezávaznou poptávku.</p></div>
+      </div>
     </div>
   </section>
 </div>
@@ -622,6 +633,20 @@
 
 <script>
   (function(){
+    // Sem vložím tvoji fotku (R-Club) přímo do kódu jako data URL:
+    const RCLUB_IMAGE_DATA_URL = "data:image/png;base64,{{RCLUB_BASE64}}";
+
+    // Doplň do HTML všechny výskyty placeholderu {{RCLUB_IMAGE_DATA_URL}}
+    function injectRClub(){
+      document.querySelectorAll('[style*="{{RCLUB_IMAGE_DATA_URL}}"]').forEach(el=>{
+        el.setAttribute('style', el.getAttribute('style').replaceAll('{{RCLUB_IMAGE_DATA_URL}}', RCLUB_IMAGE_DATA_URL));
+      });
+      document.querySelectorAll('img[src="{{RCLUB_IMAGE_DATA_URL}}"]').forEach(img=>{
+        img.src = RCLUB_IMAGE_DATA_URL;
+      });
+      document.body.innerHTML = document.body.innerHTML.replaceAll('{{RCLUB_IMAGE_DATA_URL}}', RCLUB_IMAGE_DATA_URL);
+    }
+
     const navLinks = document.getElementById('navLinks');
     const hamburger = document.getElementById('hamburger');
 
@@ -698,15 +723,11 @@
       closePrep();
       closeMenu();
 
-      if(key === 'zapadni')   showView('view-zapadni');
-      if(key === 'puravida')  showView('view-puravida');
-      if(key === 'malesov')   showView('view-malesov');
-      if(key === 'hermann')   showView('view-hermann');
-      if(key === 'tresnovka') showView('view-tresnovka');
-      if(key === 'volec')     showView('view-volec');
-
-      if(key === 'prep1')     showView('view-prep1');
-      if(key === 'prep2')     showView('view-prep2');
+      if(key === 'zapadni')       showView('view-zapadni');
+      if(key === 'rclub')         showView('view-rclub');
+      if(key === 'hervitkovice')  showView('view-hervitkovice');
+      if(key === 'tribrichy')     showView('view-tribrichy');
+      if(key === 'rudnik')        showView('view-rudnik');
     }
 
     // POPTÁVKA => mailto
@@ -727,6 +748,9 @@
         window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
       });
     }
+
+    // Vložíme fotku R-Clubu do všech míst v HTML
+    injectRClub();
   })();
 </script>
 
