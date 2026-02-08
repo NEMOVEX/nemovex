@@ -5,12 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>NEMOVEX GROUP – Developerské projekty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy, bytové domy a realizované projekty." />
+  <meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy a bytové projekty." />
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
     body{background:#f4f4f4;color:#222;line-height:1.6;scroll-behavior:smooth}
     a{color:inherit;text-decoration:none}
+    [id]{scroll-margin-top:90px}
 
     /* HEADER */
     header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e0e0e0}
@@ -18,15 +19,36 @@
     .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
     .logo span{color:#1f7a4f}
 
-    nav{display:flex;align-items:center;gap:22px;position:relative}
+    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
+    .hamburger div{width:25px;height:3px;background:#1f7a4f;border-radius:3px}
+
     .nav-links{display:flex;align-items:center;gap:22px}
-    .nav-links a{
-      font-size:13px;font-weight:700;color:#333;position:relative;padding:6px 0;
+    .nav-links > a,
+    .dropdown-btn{
+      font-size:13px;font-weight:800;color:#333;position:relative;padding:8px 0;cursor:pointer;
+      background:none;border:none
     }
-    .nav-links a::after{
+    .nav-links > a::after,
+    .dropdown-btn::after{
       content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.25s
     }
-    .nav-links a:hover::after{width:100%}
+    .nav-links > a:hover::after,
+    .dropdown-btn:hover::after{width:100%}
+
+    /* DROPDOWN (desktop) */
+    .dropdown{position:relative}
+    .dropdown-menu{
+      display:none;position:absolute;top:38px;left:0;min-width:220px;
+      background:#fff;border:1px solid #e8e8e8;border-radius:14px;
+      box-shadow:0 16px 40px rgba(0,0,0,.10);overflow:hidden
+    }
+    .dropdown-menu a{
+      display:block;padding:12px 14px;font-size:13px;font-weight:700;color:#333;
+      border-bottom:1px solid #f1f1f1
+    }
+    .dropdown-menu a:last-child{border-bottom:none}
+    .dropdown-menu a:hover{background:#f7faf8}
+    .dropdown:hover .dropdown-menu{display:block}
 
     .btn-primary{
       padding:9px 20px;border-radius:999px;border:none;
@@ -34,10 +56,6 @@
       cursor:pointer;display:inline-block;font-size:13px
     }
     .btn-primary:hover{background:#16603d}
-
-    /* HAMBURGER */
-    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
-    .hamburger div{width:25px;height:3px;background:#1f7a4f;border-radius:3px}
 
     /* HERO */
     .hero{
@@ -67,7 +85,20 @@
     .section-title{font-size:26px;margin-bottom:10px}
     .section-sub{font-size:14px;color:#666;margin-bottom:30px}
 
-    /* CARDS */
+    /* ABOUT */
+    .about{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch}
+    .about-card{
+      background:#fff;border-radius:18px;padding:26px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06)
+    }
+    .about-card h3{font-size:18px;margin-bottom:10px}
+    .about-card p{font-size:14px;color:#555}
+    .about-points{margin-top:14px;display:grid;gap:10px}
+    .point{display:flex;gap:10px;align-items:flex-start}
+    .dot{width:10px;height:10px;border-radius:99px;background:#1f7a4f;margin-top:6px;flex:0 0 10px}
+    .muted{font-size:13px;color:#666}
+
+    /* PROJECT CARDS */
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
     .card{
       background:#fff;border-radius:16px;overflow:hidden;
@@ -75,17 +106,14 @@
       transition:.25s
     }
     .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
-    .card-img{height:180px}
+    .card-img{height:180px;background:#ddd}
     .card-body{padding:18px}
     .card-body h3{font-size:18px;margin-bottom:6px}
     .card-body p{font-size:13px;color:#666}
     .price{margin:10px 0;font-weight:900}
 
     /* DETAIL HERO */
-    .detail-hero{
-      min-height:52vh;color:#fff;
-      display:flex;align-items:center
-    }
+    .detail-hero{min-height:52vh;color:#fff;display:flex;align-items:center}
     .detail-hero h2{font-size:42px;margin-bottom:12px}
     .detail-hero p{max-width:75ch}
 
@@ -142,9 +170,6 @@
 
     footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 
-    /* Anchor offset for sticky header */
-    [id]{scroll-margin-top:86px}
-
     /* RESPONSIVE */
     @media(max-width:900px){
       .hero-inner{grid-template-columns:1fr}
@@ -152,11 +177,23 @@
       .nav-links{
         display:none;flex-direction:column;width:100%;
         background:#fff;position:absolute;top:58px;left:0;
-        border-top:1px solid #e0e0e0;gap:0
+        border-top:1px solid #e0e0e0;gap:0;padding:6px 0
       }
       .nav-links.show{display:flex}
-      .nav-links a{padding:14px 20px;border-bottom:1px solid #e0e0e0}
-      .nav-links a::after{display:none}
+      .nav-links > a, .dropdown-btn{
+        width:100%;text-align:left;
+        padding:14px 20px;border-bottom:1px solid #e0e0e0
+      }
+      .nav-links > a::after,.dropdown-btn::after{display:none}
+
+      .dropdown{width:100%}
+      .dropdown-menu{
+        position:static;display:none;border:none;box-shadow:none;border-radius:0;min-width:unset
+      }
+      .dropdown.open .dropdown-menu{display:block}
+      .dropdown-menu a{padding:12px 26px}
+
+      .about{grid-template-columns:1fr}
       .form-wrap{grid-template-columns:1fr}
     }
   </style>
@@ -173,9 +210,18 @@
     </div>
 
     <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <a href="#aktualne">AKTUÁLNĚ K PRODEJI</a>
-      <a href="#realizovane">REALIZOVANÉ PROJEKTY</a>
-      <a href="#poptavka">POPTÁVKA</a>
+      <a href="#onas">O NÁS</a>
+
+      <div class="dropdown" id="projectsDropdown">
+        <button class="dropdown-btn" type="button">PROJEKTY</button>
+        <div class="dropdown-menu" aria-label="Projekty menu">
+          <a href="#detail-klenovka">Klenovka</a>
+          <a href="#detail-chrudim">Chrudim</a>
+          <a href="#detail-kutnahora">Kutná Hora</a>
+        </div>
+      </div>
+
+      <a href="#poptavka">NEZÁVAZNÁ POPTÁVKA</a>
       <a href="#kontakt">KONTAKT</a>
     </nav>
   </div>
@@ -187,7 +233,7 @@
     <div>
       <h1>NEMOVEX GROUP<br>Moderní developerské projekty</h1>
       <p>Stavíme kvalitní rodinné domy a bytové projekty v lokalitách s dlouhodobou hodnotou.</p>
-      <a href="#aktualne" class="btn-primary">Zobrazit nabídku</a>
+      <a href="#projekty" class="btn-primary">Zobrazit projekty</a>
     </div>
 
     <div class="offer-card">
@@ -203,22 +249,56 @@
   </div>
 </section>
 
-<!-- AKTUÁLNĚ K PRODEJI -->
-<section id="aktualne">
+<!-- O NÁS -->
+<section id="onas">
   <div class="container">
-    <h2 class="section-title">Aktuálně k prodeji</h2>
-    <p class="section-sub">Projekty v nabídce</p>
+    <h2 class="section-title">O nás</h2>
+    <p class="section-sub">Stavíme moderní bydlení s důrazem na kvalitu, lokalitu a dlouhodobou hodnotu.</p>
+
+    <div class="about">
+      <div class="about-card">
+        <h3>NEMOVEX GROUP</h3>
+        <p>
+          Jsme developerská společnost zaměřená na rodinné domy a bytové projekty.
+          Vybíráme lokality s dobrým zázemím a klademe důraz na kvalitní provedení a funkční dispozice.
+        </p>
+
+        <div class="about-points">
+          <div class="point"><div class="dot"></div><div><strong>Kvalita provedení</strong><div class="muted">Ověřené materiály, moderní standard.</div></div></div>
+          <div class="point"><div class="dot"></div><div><strong>Dobré lokality</strong><div class="muted">Zázemí pro rodiny i investici.</div></div></div>
+          <div class="point"><div class="dot"></div><div><strong>Férové jednání</strong><div class="muted">Rychlá komunikace, nezávazná poptávka.</div></div></div>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <h3>Máte zájem?</h3>
+        <p>
+          Napište nám nezávaznou poptávku a my se ozveme s dostupností, standardem a dalšími informacemi.
+        </p>
+        <div style="margin-top:16px">
+          <a href="#poptavka" class="btn-primary">Přejít na poptávku</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJEKTY -->
+<section id="projekty">
+  <div class="container">
+    <h2 class="section-title">Projekty</h2>
+    <p class="section-sub">Vyberte si lokalitu a zobrazte detail projektu.</p>
 
     <div class="cards">
 
-      <!-- KLENOVKA -->
+      <!-- KLENOVKA (vlastní obrázek jako SVG data URL) -->
       <div class="card">
-        <div class="card-img" style="background:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70') center/cover"></div>
+        <div class="card-img" style="background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238cc7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23eaf6ff%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22ground%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dfe7ea%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23cfd7db%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23sky)%22%2F%3E%3Ccircle%20cx%3D%22980%22%20cy%3D%22110%22%20r%3D%2238%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%221020%22%20cy%3D%22120%22%20r%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%22940%22%20cy%3D%22130%22%20r%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Crect%20y%3D%22470%22%20width%3D%221200%22%20height%3D%22205%22%20fill%3D%22url(%23ground)%22%2F%3E%3Crect%20y%3D%22520%22%20width%3D%221200%22%20height%3D%2212%22%20fill%3D%22%23b9c3c8%22%20opacity%3D%22.7%22%2F%3E%3Cellipse%20cx%3D%22600%22%20cy%3D%22520%22%20rx%3D%22430%22%20ry%3D%2240%22%20fill%3D%22%23000%22%20opacity%3D%22.12%22%2F%3E%3Cpolygon%20points%3D%22155%2C315%20600%2C230%201045%2C315%201045%2C340%20155%2C340%22%20fill%3D%22%231f1f22%22%2F%3E%3Cpolygon%20points%3D%22170%2C318%20600%2C245%201030%2C318%201030%2C332%20170%2C332%22%20fill%3D%22%232a2a2e%22%2F%3E%3Crect%20x%3D%22190%22%20y%3D%22340%22%20width%3D%22820%22%20height%3D%22180%22%20rx%3D%2210%22%20fill%3D%22%23f5f6f7%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%22592%22%20y%3D%22340%22%20width%3D%2216%22%20height%3D%22180%22%20fill%3D%22%23dfe3e6%22%2F%3E%3Crect%20x%3D%22230%22%20y%3D%22340%22%20width%3D%2246%22%20height%3D%22180%22%20fill%3D%22%232d2f33%22%2F%3E%3Crect%20x%3D%22924%22%20y%3D%22340%22%20width%3D%2246%22%20height%3D%22180%22%20fill%3D%22%232d2f33%22%2F%3E%3Crect%20x%3D%22330%22%20y%3D%22392%22%20width%3D%2270%22%20height%3D%22128%22%20rx%3D%226%22%20fill%3D%22%234b5563%22%2F%3E%3Crect%20x%3D%22800%22%20y%3D%22392%22%20width%3D%2270%22%20height%3D%22128%22%20rx%3D%226%22%20fill%3D%22%234b5563%22%2F%3E%3Crect%20x%3D%22338%22%20y%3D%22402%22%20width%3D%2254%22%20height%3D%22108%22%20rx%3D%224%22%20fill%3D%22%23cfe8ff%22%20opacity%3D%22.55%22%2F%3E%3Crect%20x%3D%22808%22%20y%3D%22402%22%20width%3D%2254%22%20height%3D%22108%22%20rx%3D%224%22%20fill%3D%22%23cfe8ff%22%20opacity%3D%22.55%22%2F%3E%3Cg%20fill%3D%22%23cfe8ff%22%20opacity%3D%22.75%22%20stroke%3D%22%232d2f33%22%20stroke-width%3D%226%22%3E%3Crect%20x%3D%22270%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22430%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22810%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3C%2Fg%3E%3Crect%20x%3D%22250%22%20y%3D%22520%22%20width%3D%22700%22%20height%3D%2270%22%20rx%3D%2210%22%20fill%3D%22%23c7d0d5%22%2F%3E%3Cg%20opacity%3D%22.35%22%3E%3Cpath%20d%3D%22M260%20555h680%22%20stroke%3D%22%237d8a92%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M260%20575h680%22%20stroke%3D%22%237d8a92%22%20stroke-width%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') center/cover;"></div>
         <div class="card-body">
-          <h3>Klenovka – moderní řadové dvojdomky</h3>
-          <p>Zástavba moderních řadových dvojdomků v klidné rezidenční lokalitě.</p>
+          <h3>Klenovka – moderní dvojdomky</h3>
+          <p>Moderní zástavba dvojdomků v klidné rezidenční lokalitě.</p>
           <div class="price">Ceny na vyžádání</div>
-          <a href="#detail-klenovka" class="btn-primary">Zobrazit fotky</a>
+          <a href="#detail-klenovka" class="btn-primary">Detail projektu</a>
         </div>
       </div>
 
@@ -229,7 +309,7 @@
           <h3>Chrudim – bytové domy</h3>
           <p>Dispozice 2kk, 3kk, 4kk, 5kk až střešní apartmány.</p>
           <div class="price">od 10 000 000 Kč</div>
-          <a href="#detail-chrudim" class="btn-primary">Zobrazit fotky</a>
+          <a href="#detail-chrudim" class="btn-primary">Detail projektu</a>
         </div>
       </div>
 
@@ -240,7 +320,7 @@
           <h3>Kutná Hora – rezidenční bydlení</h3>
           <p>Prémiové bydlení v historickém městě s výbornou dostupností.</p>
           <div class="price">Ceny na vyžádání</div>
-          <a href="#detail-kutnahora" class="btn-primary">Zobrazit fotky</a>
+          <a href="#detail-kutnahora" class="btn-primary">Detail projektu</a>
         </div>
       </div>
 
@@ -252,263 +332,15 @@
 <section id="detail-klenovka" class="detail-hero" style="
   background:
     linear-gradient(to right,rgba(0,0,0,.60),rgba(0,0,0,.20)),
-    url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=2200&q=70') center/cover">
+    url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238cc7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23eaf6ff%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22ground%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dfe7ea%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23cfd7db%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23sky)%22%2F%3E%3Ccircle%20cx%3D%22980%22%20cy%3D%22110%22%20r%3D%2238%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%221020%22%20cy%3D%22120%22%20r%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%22940%22%20cy%3D%22130%22%20r%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Crect%20y%3D%22470%22%20width%3D%221200%22%20height%3D%22205%22%20fill%3D%22url(%23ground)%22%2F%3E%3Crect%20y%3D%22520%22%20width%3D%221200%22%20height%3D%2212%22%20fill%3D%22%23b9c3c8%22%20opacity%3D%22.7%22%2F%3E%3Cellipse%20cx%3D%22600%22%20cy%3D%22520%22%20rx%3D%22430%22%20ry%3D%2240%22%20fill%3D%22%23000%22%20opacity%3D%22.12%22%2F%3E%3Cpolygon%20points%3D%22155%2C315%20600%2C230%201045%2C315%201045%2C340%20155%2C340%22%20fill%3D%22%231f1f22%22%2F%3E%3Cpolygon%20points%3D%22170%2C318%20600%2C245%201030%2C318%201030%2C332%20170%2C332%22%20fill%3D%22%232a2a2e%22%2F%3E%3Crect%20x%3D%22190%22%20y%3D%22340%22%20width%3D%22820%22%20height%3D%22180%22%20rx%3D%2210%22%20fill%3D%22%23f5f6f7%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%22592%22%20y%3D%22340%22%20width%3D%2216%22%20height%3D%22180%22%20fill%3D%22%23dfe3e6%22%2F%3E%3Crect%20x%3D%22230%22%20y%3D%22340%22%20width%3D%2246%22%20height%3D%22180%22%20fill%3D%22%232d2f33%22%2F%3E%3Crect%20x%3D%22924%22%20y%3D%22340%22%20width%3D%2246%22%20height%3D%22180%22%20fill%3D%22%232d2f33%22%2F%3E%3Crect%20x%3D%22330%22%20y%3D%22392%22%20width%3D%2270%22%20height%3D%22128%22%20rx%3D%226%22%20fill%3D%22%234b5563%22%2F%3E%3Crect%20x%3D%22800%22%20y%3D%22392%22%20width%3D%2270%22%20height%3D%22128%22%20rx%3D%226%22%20fill%3D%22%234b5563%22%2F%3E%3Crect%20x%3D%22338%22%20y%3D%22402%22%20width%3D%2254%22%20height%3D%22108%22%20rx%3D%224%22%20fill%3D%22%23cfe8ff%22%20opacity%3D%22.55%22%2F%3E%3Crect%20x%3D%22808%22%20y%3D%22402%22%20width%3D%2254%22%20height%3D%22108%22%20rx%3D%224%22%20fill%3D%22%23cfe8ff%22%20opacity%3D%22.55%22%2F%3E%3Cg%20fill%3D%22%23cfe8ff%22%20opacity%3D%22.75%22%20stroke%3D%22%232d2f33%22%20stroke-width%3D%226%22%3E%3Crect%20x%3D%22270%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22430%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22650%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22810%22%20y%3D%22370%22%20width%3D%22120%22%20height%3D%2270%22%20rx%3D%228%22%2F%3E%3C%2Fg%3E%3Crect%20x%3D%22250%22%20y%3D%22520%22%20width%3D%22700%22%20height%3D%2270%22%20rx%3D%2210%22%20fill%3D%22%23c7d0d5%22%2F%3E%3Cg%20opacity%3D%22.35%22%3E%3Cpath%20d%3D%22M260%20555h680%22%20stroke%3D%22%237d8a92%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M260%20575h680%22%20stroke%3D%22%237d8a92%22%20stroke-width%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') center/cover">
   <div class="container">
-    <h2>Klenovka – moderní řadové dvojdomky</h2>
-    <p>Moderní zástavba řadových dvojdomků v příjemné lokalitě. Promyšlené dispozice, soukromí a kvalitní standard.</p>
+    <h2>Klenovka – moderní dvojdomky</h2>
+    <p>Moderní zástavba dvojdomků v příjemné lokalitě. Promyšlené dispozice, soukromí a kvalitní standard.</p>
   </div>
 </section>
 
 <section>
   <div class="container">
     <div class="gallery">
-      <div class="gimg"><img alt="Klenovka – řadová zástavba" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Klenovka – moderní fasády" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Klenovka – interiér" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Klenovka – zahrada" src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=1400&q=70"></div>
-    </div>
-
-    <div class="locations">
-      <div class="location"><h4>Řadové dvojdomky</h4><p>Moderní rezidenční zástavba s důrazem na soukromí.</p></div>
-      <div class="location"><h4>Klidná lokalita</h4><p>Zeleň, klid a příjemné okolí.</p></div>
-      <div class="location"><h4>Standard</h4><p>Novostavba, kvalitní materiály, moderní řešení.</p></div>
-      <div class="location"><h4>Kontakt</h4><p>Pro aktuální dostupnost napište nezávaznou poptávku.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== DETAIL: CHRUDIM ===== -->
-<section id="detail-chrudim" class="detail-hero" style="
-  background:
-    linear-gradient(to right,rgba(0,0,0,.60),rgba(0,0,0,.20)),
-    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70') center/cover">
-  <div class="container">
-    <h2>Chrudim – bytové domy</h2>
-    <p>Bytové domy s dispozicemi 2kk, 3kk, 4kk, 5kk až střešní apartmány. Cena od 10 000 000 Kč.</p>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="gallery">
-      <div class="gimg"><img alt="Chrudim – bytový dům" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Chrudim – moderní architektura" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Chrudim – interiér bytu" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Chrudim – terasa / apartmán" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
-    </div>
-
-    <div class="locations">
-      <div class="location"><h4>Dispozice</h4><p>2kk, 3kk, 4kk, 5kk + střešní apartmány.</p></div>
-      <div class="location"><h4>Cena</h4><p>Od 10 000 000 Kč (dle dispozice a standardu).</p></div>
-      <div class="location"><h4>Moderní bydlení</h4><p>Vhodné pro rodiny i investory.</p></div>
-      <div class="location"><h4>Ověřte dostupnost</h4><p>Pošlete nezávaznou poptávku – ozveme se.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== DETAIL: KUTNÁ HORA ===== -->
-<section id="detail-kutnahora" class="detail-hero" style="
-  background:
-    linear-gradient(to right,rgba(0,0,0,.60),rgba(0,0,0,.20)),
-    url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70') center/cover">
-  <div class="container">
-    <h2>Kutná Hora – rezidenční bydlení</h2>
-    <p>Prémiové bydlení v historickém městě. Kvalitní standard a skvělá dostupnost.</p>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="gallery">
-      <div class="gimg"><img alt="Kutná Hora – exteriér" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Kutná Hora – interiér" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Kutná Hora – detail" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Kutná Hora – pokoj" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
-    </div>
-
-    <div class="locations">
-      <div class="location"><h4>Kompletní zázemí</h4><p>Školy, školky, služby a volný čas.</p></div>
-      <div class="location"><h4>Zdravotní péče</h4><p>Dostupná zdravotní péče v lokalitě.</p></div>
-      <div class="location"><h4>Kultura</h4><p>Památky, restaurace, služby.</p></div>
-      <div class="location"><h4>Dostupnost</h4><p>Dobré spojení do okolních měst.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- REALIZOVANÉ PROJEKTY -->
-<section id="realizovane">
-  <div class="container">
-    <h2 class="section-title">Realizované projekty</h2>
-    <p class="section-sub">Dokončené projekty</p>
-
-    <div class="cards">
-      <div class="card">
-        <div class="card-img" style="background:url('https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70') center/cover"></div>
-        <div class="card-body">
-          <h3>Bytový dům Teplice</h3>
-          <p>Úspěšně realizovaný bytový dům v Teplicích. Moderní architektura a kvalitní standard bydlení.</p>
-          <a href="#detail-teplice" class="btn-primary">Zobrazit fotky</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== DETAIL: TEPLICE (REALIZOVÁNO) ===== -->
-<section id="detail-teplice" class="detail-hero" style="
-  background:
-    linear-gradient(to right,rgba(0,0,0,.60),rgba(0,0,0,.20)),
-    url('https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=2200&q=70') center/cover">
-  <div class="container">
-    <h2>Bytový dům Teplice – realizováno</h2>
-    <p>Dokončený bytový dům. Ukázka realizace (bez nabídky k prodeji).</p>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="gallery">
-      <div class="gimg"><img alt="Teplice – bytový dům" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Teplice – exteriér" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Teplice – společné prostory" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
-      <div class="gimg"><img alt="Teplice – detail" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
-    </div>
-
-    <div class="locations">
-      <div class="location"><h4>Status</h4><p>Realizováno (dokončeno).</p></div>
-      <div class="location"><h4>Typ projektu</h4><p>Bytový dům.</p></div>
-      <div class="location"><h4>Standard</h4><p>Moderní architektura a kvalitní řešení.</p></div>
-      <div class="location"><h4>Reference</h4><p>Ukázka naší realizace.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- POPTÁVKA -->
-<section id="poptavka">
-  <div class="container">
-    <h2 class="section-title">Poptávka</h2>
-    <p class="section-sub">Jednoduše nám napište – ozveme se co nejdříve.</p>
-
-    <form class="form-wrap" id="leadForm">
-      <div class="field">
-        <label for="name">Jméno a příjmení</label>
-        <input id="name" name="name" type="text" placeholder="Např. Jana Nováková" required>
-      </div>
-
-      <div class="field">
-        <label for="phone">Telefon</label>
-        <input id="phone" name="phone" type="tel" placeholder="+420 777 000 000" required>
-      </div>
-
-      <div class="field">
-        <label for="email">E-mail</label>
-        <input id="email" name="email" type="email" placeholder="jana@email.cz" required>
-      </div>
-
-      <div class="field">
-        <label for="project">Vybraný projekt</label>
-        <select id="project" name="project">
-          <option value="">— vyberte —</option>
-          <option>Klenovka – moderní řadové dvojdomky</option>
-          <option>Chrudim – bytové domy</option>
-          <option>Kutná Hora – rezidenční bydlení</option>
-          <option>Teplice – realizováno (bytový dům)</option>
-        </select>
-      </div>
-
-      <div class="field" style="grid-column:1/-1">
-        <label for="msg">Zpráva</label>
-        <textarea id="msg" name="msg" placeholder="Napište nám, co hledáte (dispozice, termín, rozpočet…)"></textarea>
-      </div>
-
-      <div class="form-actions">
-        <button class="btn-primary" type="submit">Odeslat poptávku</button>
-        <span class="note">Po kliknutí se otevře váš e-mailový klient s připravenou zprávou.</span>
-      </div>
-    </form>
-  </div>
-</section>
-
-<!-- KONTAKT -->
-<section id="kontakt">
-  <div class="container">
-    <div class="contact">
-      <div>
-        <h3>Máte zájem o bydlení?</h3>
-        <p>
-          📞 <a href="tel:+420777000000">+420 777 000 000</a><br>
-          ✉️ <a href="mailto:info@nemovex.cz">info@nemovex.cz</a>
-        </p>
-      </div>
-      <a href="mailto:info@nemovex.cz" class="btn-primary">Kontaktovat NEMOVEX</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 NEMOVEX GROUP · Developerské projekty
-</footer>
-
-<script>
-  // Vše až po načtení DOM
-  (function(){
-    const navLinks = document.getElementById('navLinks');
-    const hamburger = document.getElementById('hamburger');
-    const leadForm = document.getElementById('leadForm');
-
-    function toggleMenu(){
-      if(!navLinks) return;
-      navLinks.classList.toggle('show');
-    }
-
-    function closeMenu(){
-      if(!navLinks) return;
-      navLinks.classList.remove('show');
-    }
-
-    // Hamburger
-    if(hamburger){
-      hamburger.addEventListener('click', toggleMenu);
-    }
-
-    // Zavření menu po kliknutí na odkaz (mobil)
-    if(navLinks){
-      navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => closeMenu());
-      });
-    }
-
-    // Zavření menu klikem mimo (mobil)
-    document.addEventListener('click', (e) => {
-      const isMobile = window.matchMedia('(max-width: 900px)').matches;
-      if(!isMobile) return;
-      if(!navLinks) return;
-      const clickedInsideHeader = e.target.closest('header');
-      if(!clickedInsideHeader && navLinks.classList.contains('show')){
-        closeMenu();
-      }
-    });
-
-    // Form -> mailto
-    if(leadForm){
-      leadForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = document.getElementById('name')?.value.trim() || '';
-        const phone = document.getElementById('phone')?.value.trim() || '';
-        const email = document.getElementById('email')?.value.trim() || '';
-        const project = document.getElementById('project')?.value.trim() || '';
-        const msg = document.getElementById('msg')?.value.trim() || '';
-
-        const subject = encodeURIComponent('Poptávka – NEMOVEX GROUP');
-        const body = encodeURIComponent(
-          `Jméno: ${name}\nTelefon: ${phone}\nE-mail: ${email}\nProjekt: ${project}\n\nZpráva:\n${msg}\n`
-        );
-
-        window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
-      });
-    }
-  })();
-</script>
-
-</body>
-</html>
+      <div class="gimg">
+        <img alt="Klenovka – vizualizace dvojdomku" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238cc7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23eaf6ff%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22ground%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dfe7ea%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23cfd7db%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23sky)%22%2F%3E%3Ccircle%20cx%3D%22980%22%20cy%3D%22110%22%20r%3D%2238%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%221020%22%20cy%3D%22120%22%20r%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Ccircle%20cx%3D%22940%22%20cy%3D%22130%22%20r%3D%2228%22%20fill%3D%22%23fff%22%20opacity%3D%22.9%22%2F%3E%3Crect%20y%3D%22470%22%20width%3D%221200%22%20height%3D%22205%22%20fill%3D%22url(%23ground)%22%2F%3E%3Crect%20y%3D%22520%22%20width%3D%221200%22%20height%3D%2212%22%20fill%3D%22%23b9c3c8%22%20opacity%3D%22.7%22%2F%3E%3Cellipse%20cx%3D%22600%22%20cy%3D%22520%22%20rx%3D%22430%22%20ry%3D%2240%22%20fill%3D%22%23000%22%20opacity%3D%22.12%22%2F%3E%3Cpolygon%20points%3D%22155%2C315%20600%2C230%201045%2C315%201045%2C340%20155%2C340%22%20fill%3D%22%231f1f22%22%2F%3E%3Cpolygon%20points%3D%22170%2C318%20600%2C245%201030%2C318%201030%2C332%20170%2C332%22%20fill%3D%22%232a2a2e%22%2F%3E%3Crect%20x%3D%22190%22%20y%3D%22340%22%20width%3D%22820%22%20height%3D%22180%22%20rx%3D%2210%22%20fill%3D%22
