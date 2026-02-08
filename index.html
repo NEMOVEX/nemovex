@@ -4,62 +4,48 @@
 <meta charset="UTF-8">
 <title>NEMOVEX GROUP – Developerské projekty</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy a rezidenční bydlení v kvalitních lokalitách.">
+<meta name="description" content="NEMOVEX GROUP – moderní developerské projekty a realizované bytové domy.">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
 body{background:#f4f4f4;color:#222;line-height:1.6;scroll-behavior:smooth}
+a{text-decoration:none;color:inherit}
 
 /* HEADER */
 header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e0e0e0}
 .nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .logo span{color:#1f7a4f}
-.nav-links{display:flex;gap:26px;position:relative}
-.nav-links a{text-decoration:none;color:#333;font-size:14px;font-weight:500;position:relative}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.3s}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-size:13px;font-weight:600;position:relative}
+.nav-links a::after{
+content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.3s}
 .nav-links a:hover::after{width:100%}
-
-/* DROPDOWN */
-.dropdown{position:relative}
-.dropdown > a{cursor:pointer}
-.dropdown-menu{
-  display:none;position:absolute;top:100%;left:0;
-  background:#fff;border:1px solid #e0e0e0;border-radius:6px;
-  box-shadow:0 6px 16px rgba(0,0,0,.08);
-  padding:10px 0;min-width:160px;z-index:20}
-.dropdown-menu a{
-  display:block;padding:8px 16px;color:#333;
-  text-decoration:none;font-size:14px}
-.dropdown-menu a:hover{background:#f4f4f4}
-.dropdown:hover .dropdown-menu{display:block}
 
 .btn-primary{
 padding:9px 20px;border-radius:999px;border:none;
-background:#1f7a4f;color:#fff;font-weight:600;
-cursor:pointer;text-decoration:none;display:inline-block}
+background:#1f7a4f;color:#fff;font-weight:700;
+cursor:pointer;display:inline-block;font-size:13px}
 .btn-primary:hover{background:#16603d}
 
 /* HERO */
 .hero{
 min-height:75vh;
 background:
-linear-gradient(to right,rgba(0,0,0,.55),rgba(0,0,0,.15)),
-url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),
+url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=70') center/cover no-repeat;
 display:flex;align-items:center;color:#fff}
 .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
 .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:18px}
 .hero p{max-width:45ch;font-size:16px;margin-bottom:26px}
 
-/* OFFER CARD */
+/* OFFER */
 .offer-card{
 background:#fff;color:#111;border-radius:20px;
 padding:26px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
 .offer-label{text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:#888;margin-bottom:12px}
-.offer-title{font-size:24px;font-weight:700}
+.offer-title{font-size:24px;font-weight:800}
 .offer-sub{font-size:14px;color:#555;margin-bottom:16px}
-.offer-grid{display:grid;grid-template-columns:auto auto;gap:10px 20px;font-size:13px}
-.offer-grid span:nth-child(odd){color:#777}
 
 /* SECTIONS */
 section{padding:70px 20px}
@@ -67,32 +53,24 @@ section{padding:70px 20px}
 .section-title{font-size:26px;margin-bottom:10px}
 .section-sub{font-size:14px;color:#666;margin-bottom:30px}
 
-/* PROJECTS */
-.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.project-card{
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{
 background:#fff;border-radius:16px;overflow:hidden;
 box-shadow:0 8px 20px rgba(0,0,0,.08);
 transition:.3s}
-.project-card:hover{
-transform:translateY(-6px);
-box-shadow:0 20px 40px rgba(0,0,0,.12)}
-.project-img{height:180px}
-.project-body{padding:18px}
-.project-body h3{font-size:18px;margin-bottom:6px}
-.project-body p{font-size:13px;color:#666}
-.project-price{margin:10px 0;font-weight:600}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.card-img{height:180px}
+.card-body{padding:18px}
+.card-body h3{font-size:18px;margin-bottom:6px}
+.card-body p{font-size:13px;color:#666}
+.price{margin:10px 0;font-weight:800}
 
-/* DETAIL LOKALIT */
+/* DETAIL */
 .detail-hero{
-min-height:60vh;color:#fff;
+min-height:55vh;color:#fff;
 display:flex;align-items:center}
 .detail-hero h2{font-size:42px;margin-bottom:12px}
-
-.locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.location{
-background:#fff;border-radius:14px;padding:20px;
-box-shadow:0 6px 16px rgba(0,0,0,.06)}
-.location h4{margin-bottom:6px}
 
 /* CONTACT */
 .contact{
@@ -103,10 +81,10 @@ gap:20px;align-items:center;justify-content:space-between}
 /* FOOTER */
 footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 
+/* RESPONSIVE */
 @media(max-width:900px){
 .hero-inner{grid-template-columns:1fr}
-.nav-links{flex-direction:column;gap:10px}
-.dropdown-menu{position:static;box-shadow:none;border:none}
+.nav-links{display:none}
 }
 </style>
 </head>
@@ -114,28 +92,14 @@ footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo"><span>NEMOVEX</span> GROUP</div>
-    <nav class="nav-links">
-      <div class="dropdown">
-        <a>Projekty ▾</a>
-        <div class="dropdown-menu">
-          <a href="#teplice">Teplice</a>
-          <a href="#chrudim">Chrudim</a>
-          <a href="#klenovka">Klenovka</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <a>Aktuálně k prodeji ▾</a>
-        <div class="dropdown-menu">
-          <a href="#klenovka">Klenovka</a>
-          <a href="#kutnahora">Kutná Hora</a>
-          <a href="#chrudim">Chrudim</a>
-        </div>
-      </div>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-  </div>
+<div class="nav">
+<div class="logo"><span>NEMOVEX</span> GROUP</div>
+<nav class="nav-links">
+<a href="#aktualne">Aktuálně k prodeji</a>
+<a href="#realizovane">Realizované projekty</a>
+<a href="#kontakt">Kontakt</a>
+</nav>
+</div>
 </header>
 
 <!-- HERO -->
@@ -143,41 +107,26 @@ footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 <div class="hero-inner">
 <div>
 <h1>NEMOVEX GROUP<br>Moderní developerské projekty</h1>
-<p>Stavíme kvalitní rodinné domy a rezidenční bydlení
+<p>Stavíme kvalitní rodinné domy a bytové projekty
 v lokalitách s dlouhodobou hodnotou.</p>
-<a href="#projekty" class="btn-primary">Zobrazit projekty</a>
+<a href="#aktualne" class="btn-primary">Zobrazit nabídku</a>
 </div>
 
 <div class="offer-card">
 <div class="offer-label">Aktuálně v nabídce</div>
-<div class="offer-title">Rodinné domy 5+kk</div>
-<div class="offer-sub">Cena od 10 000 000 Kč</div>
-<div class="offer-grid">
-<span>Dispozice</span><span>5+kk</span>
-<span>Standard</span><span>Novostavba</span>
-<span>Developer</span><span>NEMOVEX GROUP</span>
-</div>
+<div class="offer-title">Rodinné domy</div>
+<div class="offer-sub">Vybrané lokality</div>
 </div>
 </div>
 </section>
 
-<!-- PROJEKTY -->
-<section id="projekty">
+<!-- AKTUÁLNĚ K PRODEJI -->
+<section id="aktualne">
 <div class="container">
-<h2 class="section-title">Naše projekty</h2>
-<p class="section-sub">Vyberte si lokalitu, která vám bude domovem</p>
+<h2 class="section-title">Aktuálně k prodeji</h2>
+<p class="section-sub">Rezidenční projekty v nabídce</p>
 
-<div class="projects">
+<div class="cards">
 
-<div class="project-card" id="teplice">
-<div class="project-img" style="background:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511') center/cover"></div>
-<div class="project-body">
-<h3>Rodinné domy Teplice</h3>
-<p>Moderní bydlení v lázeňském městě.</p>
-<div class="project-price">od 10 000 000 Kč</div>
-<a href="#teplice" class="btn-primary">Detail projektu</a>
-</div>
-</div>
-
-<div class="project-card" id="chrudim">
-<div class="project-img" style
+<div class="card">
+<div class="card-img" style="background:url('https://im
