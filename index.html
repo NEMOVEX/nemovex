@@ -1,535 +1,142 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>NEMOVEX GROUP – Developerské projekty</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy a bytové projekty." />
+<meta charset="UTF-8">
+<title>NEMOVEX GROUP – Developerské projekty</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
-    body{background:#f4f4f4;color:#222;line-height:1.6;scroll-behavior:smooth}
-    a{color:inherit;text-decoration:none}
-    button{font-family:inherit}
-    [id]{scroll-margin-top:90px}
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
+body{background:#f4f4f4;color:#222;line-height:1.6}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e0e0e0;z-index:50}
+.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;letter-spacing:.12em}
+.logo span{color:#1f7a4f}
+.nav-links{display:flex;gap:20px}
+.nav-links button{background:none;border:none;font-weight:800;cursor:pointer}
 
-    /* HEADER */
-    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e0e0e0}
-    .nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative}
-    .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
-    .logo span{color:#1f7a4f}
+.hero{min-height:60vh;background:linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.2)),url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;color:#fff;display:flex;align-items:center}
+.hero-inner{max-width:1200px;margin:auto;padding:20px}
 
-    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
-    .hamburger div{width:25px;height:3px;background:#1f7a4f;border-radius:3px}
+section{padding:70px 20px}
+.container{max-width:1200px;margin:auto}
+.btn-primary{background:#1f7a4f;color:#fff;border:none;padding:10px 20px;border-radius:999px;cursor:pointer;font-weight:700}
 
-    .nav-links{display:flex;align-items:center;gap:22px}
-    .nav-links > a, .nav-links > button{
-      font-size:13px;font-weight:800;color:#333;position:relative;padding:8px 0;cursor:pointer;
-      background:none;border:none
-    }
-    .nav-links > a::after, .nav-links > button::after{
-      content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.25s
-    }
-    .nav-links > a:hover::after, .nav-links > button:hover::after{width:100%}
+.panel{background:#fff;border-radius:20px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+.proj-item{display:flex;justify-content:space-between;padding:14px;border-radius:12px;background:#f6f7f8;margin:10px 0;cursor:pointer}
+.view{display:none}
+.view.active{display:block}
 
-    .btn-primary{
-      padding:9px 20px;border-radius:999px;border:none;
-      background:#1f7a4f;color:#fff;font-weight:800;
-      cursor:pointer;display:inline-block;font-size:13px
-    }
-    .btn-primary:hover{background:#16603d}
-
-    /* HERO */
-    .hero{
-      min-height:72vh;
-      background:
-        linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),
-        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
-      display:flex;align-items:center;color:#fff
-    }
-    .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:18px}
-    .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:18px}
-    .hero p{max-width:60ch;font-size:16px;margin-bottom:26px}
-
-    section{padding:70px 20px}
-    .container{max-width:1200px;margin:auto}
-    .section-title{font-size:26px;margin-bottom:10px}
-    .section-sub{font-size:14px;color:#666;margin-bottom:24px}
-
-    /* LIST PANEL */
-    .panel{
-      background:#fff;border-radius:20px;
-      box-shadow:0 10px 28px rgba(0,0,0,.06);
-      overflow:hidden;border:1px solid #eef0f2;
-    }
-    .proj-panel{max-height:0;transition:max-height .35s ease}
-    .proj-panel.open{max-height:900px}
-    .panel-inner{padding:18px}
-
-    .proj-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-    .proj-item{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:14px 14px;border-radius:14px;
-      background:#f7f8f9;border:1px solid #eceff2;
-      transition:.2s
-    }
-    .proj-item:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
-    .proj-left{display:flex;flex-direction:column;gap:2px}
-    .proj-title{font-weight:900;font-size:14px}
-    .proj-sub{font-size:12px;color:#666}
-    .chip{font-size:12px;font-weight:800;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px;white-space:nowrap}
-
-    /* VIEW SWITCH (jedna stránka, více pohledů) */
-    .view{display:none}
-    .view.active{display:block}
-
-    /* PROJECT DETAIL HERO */
-    .detail-hero{
-      min-height:52vh;color:#fff;display:flex;align-items:center;
-      background:
-        linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
-        var(--bg) center/cover no-repeat;
-    }
-    .detail-hero .container{padding:0 20px}
-    .detail-hero h2{font-size:clamp(30px,4.5vw,48px);margin-bottom:10px}
-    .detail-hero p{max-width:80ch}
-
-    /* GALLERY */
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:14px;
-      margin-top:16px
-    }
-    .gimg{border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.10);background:#ddd;height:220px}
-    .gimg img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* INFO BOXES */
-    .locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
-    .location{background:#fff;border-radius:14px;padding:16px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
-    .location h4{margin-bottom:4px}
-    .location p{color:#555;font-size:13px}
-
-    /* FORM */
-    .form-wrap{
-      background:#fff;border-radius:20px;padding:34px;
-      box-shadow:0 10px 28px rgba(0,0,0,.06);
-      display:grid;grid-template-columns:1fr 1fr;gap:18px
-    }
-    .field{display:flex;flex-direction:column;gap:6px}
-    label{font-size:12px;color:#555;font-weight:800}
-    input,select,textarea{
-      border:1px solid #e1e1e1;border-radius:14px;
-      padding:12px 12px;font-size:14px;outline:none;background:#fff
-    }
-    input:focus,select:focus,textarea:focus{
-      border-color:#1f7a4f;box-shadow:0 0 0 3px rgba(31,122,79,.12)
-    }
-    textarea{min-height:140px;resize:vertical}
-    .form-actions{grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
-    .note{font-size:12px;color:#666}
-
-    /* CONTACT */
-    .contact{
-      background:#1f7a4f;color:#fff;border-radius:20px;
-      padding:40px;display:flex;flex-wrap:wrap;
-      gap:20px;align-items:center;justify-content:space-between
-    }
-    .contact h3{font-size:22px;margin-bottom:6px}
-    .contact a{color:#fff}
-    .contact a:hover{text-decoration:underline}
-
-    footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
-
-    @media(max-width:900px){
-      .hamburger{display:flex}
-      .nav-links{
-        display:none;flex-direction:column;width:100%;
-        background:#fff;position:absolute;top:58px;left:0;
-        border-top:1px solid #e0e0e0;gap:0;padding:6px 0
-      }
-      .nav-links.show{display:flex}
-      .nav-links > a, .nav-links > button{
-        width:100%;text-align:left;
-        padding:14px 20px;border-bottom:1px solid #e0e0e0
-      }
-      .nav-links > a::after, .nav-links > button::after{display:none}
-      .form-wrap{grid-template-columns:1fr}
-    }
-  </style>
+.detail-hero{min-height:50vh;color:#fff;display:flex;align-items:center;background:linear-gradient(to right,rgba(0,0,0,.6),rgba(0,0,0,.2)),var(--bg) center/cover}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:30px}
+.gimg{height:220px;border-radius:14px;overflow:hidden}
+.gimg img{width:100%;height:100%;object-fit:cover}
+footer{text-align:center;padding:30px;color:#777}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="nav">
-    <a class="logo" href="#top" onclick="goHome(); return false;"><span>NEMOVEX</span> GROUP</a>
-
-    <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
-      <div></div><div></div><div></div>
-    </div>
-
-    <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <button type="button" id="btnProjects">PROJEKTY V NABÍDCE</button>
-      <a href="#priprava" onclick="goHome();closeMenu();">PROJEKTY V PŘÍPRAVĚ</a>
-      <a href="#poptavka" onclick="goHome();closeMenu();">NEZÁVAZNÁ POPTÁVKA</a>
-      <a href="#kontakt" onclick="goHome();closeMenu();">KONTAKT</a>
-    </nav>
-  </div>
+<div class="nav">
+<div class="logo"><span>NEMOVEX</span> GROUP</div>
+<div class="nav-links">
+<button onclick="showProjects()">PROJEKTY V NABÍDCE</button>
+</div>
+</div>
 </header>
 
-<!-- =========================
-     HOME VIEW (hlavní stránka)
-========================= -->
-<div class="view active" id="view-home">
+<div class="view active" id="home">
 
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="hero-inner">
-      <div>
-        <h1>NEMOVEX GROUP<br>Moderní developerské projekty</h1>
-        <p>Na hlavní stránce nezobrazujeme konkrétní nabídky. Projekty otevřete přes „PROJEKTY V NABÍDCE“ v horním menu.</p>
-        <button class="btn-primary" type="button" id="btnProjectsHero">Zobrazit projekty v nabídce</button>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+<div class="hero-inner">
+<h1>Moderní developerské projekty</h1>
+<p>Klikněte na „Projekty v nabídce“ a vyberte projekt.</p>
+</div>
+</section>
 
-  <!-- PROJEKTY V NABÍDCE (jen rozbalovací seznam) -->
-  <section id="nabidka">
-    <div class="container">
-      <h2 class="section-title">Projekty v nabídce</h2>
-      <p class="section-sub">Klikněte na tlačítko v menu – zobrazí se seznam projektů pod sebou.</p>
+<section>
+<div class="container">
+<div class="panel" id="projectList" style="display:none">
 
-      <div class="panel proj-panel" id="projectsPanel" aria-hidden="true">
-        <div class="panel-inner">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-            <div>
-              <div style="font-weight:900;font-size:16px">Vyberte projekt</div>
-              <div style="color:#666;font-size:12px">Po kliknutí se otevře projekt (jako nová stránka) – ale vše je v jednom souboru.</div>
-            </div>
-            <button class="btn-primary" type="button" id="btnCloseProjects">Zavřít</button>
-          </div>
-
-          <div class="proj-list" style="margin-top:14px">
-            <button class="proj-item" type="button" onclick="openProject('klenovka')">
-              <div class="proj-left">
-                <div class="proj-title">Klenovka – moderní dvojdomky</div>
-                <div class="proj-sub">Rodinné bydlení · novostavba</div>
-              </div>
-              <div class="chip">Otevřít</div>
-            </button>
-
-            <button class="proj-item" type="button" onclick="openProject('chrudim')">
-              <div class="proj-left">
-                <div class="proj-title">Chrudim – bytové domy</div>
-                <div class="proj-sub">2kk–5kk + střešní apartmány · od 10 000 000 Kč</div>
-              </div>
-              <div class="chip">Otevřít</div>
-            </button>
-
-            <button class="proj-item" type="button" onclick="openProject('kutnahora')">
-              <div class="proj-left">
-                <div class="proj-title">Kutná Hora – rezidenční bydlení</div>
-                <div class="proj-sub">Prémiové bydlení · skvělá dostupnost</div>
-              </div>
-              <div class="chip">Otevřít</div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROJEKTY V PŘÍPRAVĚ -->
-  <section id="priprava">
-    <div class="container">
-      <h2 class="section-title">Projekty v přípravě</h2>
-      <p class="section-sub">Zde můžeme doplnit připravované lokality (zatím informačně).</p>
-
-      <div class="panel">
-        <div class="panel-inner">
-          <div style="font-weight:900;margin-bottom:6px">Připravujeme</div>
-          <div style="color:#666;font-size:13px;max-width:90ch">
-            Pokud chcete být mezi prvními, kdo dostane informace o připravovaných projektech, pošlete nezávaznou poptávku.
-          </div>
-          <div style="margin-top:14px">
-            <a class="btn-primary" href="#poptavka">Chci informace</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- POPTÁVKA -->
-  <section id="poptavka">
-    <div class="container">
-      <h2 class="section-title">Nezávazná poptávka</h2>
-      <p class="section-sub">Jednoduše nám napište – ozveme se co nejdříve.</p>
-
-      <form class="form-wrap" id="leadForm">
-        <div class="field">
-          <label for="name">Jméno a příjmení</label>
-          <input id="name" name="name" type="text" placeholder="Např. Jana Nováková" required>
-        </div>
-
-        <div class="field">
-          <label for="phone">Telefon</label>
-          <input id="phone" name="phone" type="tel" placeholder="+420 777 000 000" required>
-        </div>
-
-        <div class="field">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" placeholder="jana@email.cz" required>
-        </div>
-
-        <div class="field">
-          <label for="project">Vybraný projekt</label>
-          <select id="project" name="project">
-            <option value="">— vyberte —</option>
-            <option>Klenovka – moderní dvojdomky</option>
-            <option>Chrudim – bytové domy</option>
-            <option>Kutná Hora – rezidenční bydlení</option>
-            <option>Projekty v přípravě</option>
-          </select>
-        </div>
-
-        <div class="field" style="grid-column:1/-1">
-          <label for="msg">Zpráva</label>
-          <textarea id="msg" name="msg" placeholder="Napište nám, co hledáte (dispozice, termín, rozpočet…)"></textarea>
-        </div>
-
-        <div class="form-actions">
-          <button class="btn-primary" type="submit">Odeslat poptávku</button>
-          <span class="note">Po kliknutí se otevře váš e-mailový klient s připravenou zprávou.</span>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- KONTAKT -->
-  <section id="kontakt">
-    <div class="container">
-      <div class="contact">
-        <div>
-          <h3>Kontakt</h3>
-          <p>
-            📞 <a href="tel:+420777000000">+420 777 000 000</a><br>
-            ✉️ <a href="mailto:info@nemovex.cz">info@nemovex.cz</a>
-          </p>
-        </div>
-        <a href="mailto:info@nemovex.cz" class="btn-primary">Kontaktovat NEMOVEX</a>
-      </div>
-    </div>
-  </section>
+<div class="proj-item" onclick="openProject('zapadni')">Západní terasy</div>
+<div class="proj-item" onclick="openProject('puravida')">Residenční komplex Pura Vida</div>
+<div class="proj-item" onclick="openProject('malesov')">Nový Malešov</div>
+<div class="proj-item" onclick="openProject('hermann')">BD Hermann</div>
+<div class="proj-item" onclick="openProject('tresnovka')">Nová Třešňovka III. etapa</div>
+<div class="proj-item" onclick="openProject('volec')">Projekt Voleč</div>
 
 </div>
-
-<!-- =========================
-     PROJECT VIEW: KLENOVKA
-========================= -->
-<div class="view" id="view-klenovka">
-  <section class="detail-hero" style="--bg:
-    url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238cc7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23eaf6ff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23sky)%22%2F%3E%3Crect%20y%3D%22470%22%20width%3D%221200%22%20height%3D%22205%22%20fill%3D%22%23dfe7ea%22%2F%3E%3Cellipse%20cx%3D%22600%22%20cy%3D%22520%22%20rx%3D%22430%22%20ry%3D%2240%22%20fill%3D%22%23000%22%20opacity%3D%22.12%22%2F%3E%3Cpolygon%20points%3D%22155%2C315%20600%2C230%201045%2C315%201045%2C340%20155%2C340%22%20fill%3D%22%231f1f22%22%2F%3E%3Crect%20x%3D%22190%22%20y%3D%22340%22%20width%3D%22820%22%20height%3D%22180%22%20rx%3D%2210%22%20fill%3D%22%23f5f6f7%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22%2F%3E%3Crect%20x%3D%22592%22%20y%3D%22340%22%20width%3D%2216%22%20height%3D%22180%22%20fill%3D%22%23dfe3e6%22%2F%3E%3C%2Fsvg%3E')
-  ">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět na hlavní stránku</button>
-      <h2 style="margin-top:16px">Klenovka – moderní dvojdomky</h2>
-      <p>Moderní zástavba dvojdomků v klidné rezidenční lokalitě. Promyšlené dispozice, soukromí a kvalitní standard.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
-      <p style="color:#666">Ukázkové fotografie / vizualizace.</p>
-
-      <div class="gallery">
-        <div class="gimg">
-          <img alt="Klenovka – vizualizace (SVG)" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22675%22%20viewBox%3D%220%200%201200%20675%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%238cc7ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23eaf6ff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221200%22%20height%3D%22675%22%20fill%3D%22url(%23sky)%22%2F%3E%3Crect%20y%3D%22470%22%20width%3D%221200%22%20height%3D%22205%22%20fill%3D%22%23dfe7ea%22%2F%3E%3Cpolygon%20points%3D%22155%2C315%20600%2C230%201045%2C315%201045%2C340%20155%2C340%22%20fill%3D%22%231f1f22%22%2F%3E%3Crect%20x%3D%22190%22%20y%3D%22340%22%20width%3D%22820%22%20height%3D%22180%22%20rx%3D%2210%22%20fill%3D%22%23f5f6f7%22%20stroke%3D%22%23d9dee2%22%20stroke-width%3D%224%22%2F%3E%3C%2Fsvg%3E">
-        </div>
-        <div class="gimg"><img alt="Klenovka – detail" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Klenovka – interiér" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Klenovka – zahrada" src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=1400&q=70"></div>
-      </div>
-
-      <div class="locations">
-        <div class="location"><h4>Typ</h4><p>Rodinné bydlení – dvojdomky.</p></div>
-        <div class="location"><h4>Standard</h4><p>Novostavba, moderní řešení.</p></div>
-        <div class="location"><h4>Lokalita</h4><p>Klidné okolí a zeleň.</p></div>
-        <div class="location"><h4>Kontakt</h4><p>Pro dostupnost pošlete nezávaznou poptávku.</p></div>
-      </div>
-    </div>
-  </section>
+</div>
+</section>
 </div>
 
-<!-- =========================
-     PROJECT VIEW: CHRUDIM
-========================= -->
-<div class="view" id="view-chrudim">
-  <section class="detail-hero" style="--bg:
-    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')
-  ">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět na hlavní stránku</button>
-      <h2 style="margin-top:16px">Chrudim – bytové domy</h2>
-      <p>Dispozice 2kk, 3kk, 4kk, 5kk až střešní apartmány. Cena od 10 000 000 Kč.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
-      <p style="color:#666">Ukázkové fotografie.</p>
-
-      <div class="gallery">
-        <div class="gimg"><img alt="Chrudim – bytový dům" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Chrudim – moderní architektura" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Chrudim – interiér" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Chrudim – terasa / apartmán" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
-      </div>
-
-      <div class="locations">
-        <div class="location"><h4>Dispozice</h4><p>2kk, 3kk, 4kk, 5kk + střešní apartmány.</p></div>
-        <div class="location"><h4>Cena</h4><p>Od 10 000 000 Kč (dle dispozice a standardu).</p></div>
-        <div class="location"><h4>Využití</h4><p>Pro rodiny i investory.</p></div>
-        <div class="location"><h4>Kontakt</h4><p>Pro dostupnost pošlete nezávaznou poptávku.</p></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- =========================
-     PROJECT VIEW: KUTNÁ HORA
-========================= -->
-<div class="view" id="view-kutnahora">
-  <section class="detail-hero" style="--bg:
-    url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')
-  ">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět na hlavní stránku</button>
-      <h2 style="margin-top:16px">Kutná Hora – rezidenční bydlení</h2>
-      <p>Prémiové bydlení v historickém městě. Kvalitní standard a skvělá dostupnost.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h3 style="font-size:22px;margin-bottom:6px">Fotogalerie</h3>
-      <p style="color:#666">Ukázkové fotografie.</p>
-
-      <div class="gallery">
-        <div class="gimg"><img alt="Kutná Hora – exteriér" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Kutná Hora – interiér" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Kutná Hora – detail" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
-        <div class="gimg"><img alt="Kutná Hora – pokoj" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
-      </div>
-
-      <div class="locations">
-        <div class="location"><h4>Kompletní zázemí</h4><p>Školy, školky, služby a volný čas.</p></div>
-        <div class="location"><h4>Zdravotní péče</h4><p>Dostupná zdravotní péče v lokalitě.</p></div>
-        <div class="location"><h4>Kultura</h4><p>Památky, restaurace, služby.</p></div>
-        <div class="location"><h4>Dostupnost</h4><p>Dobré spojení do okolních měst.</p></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<footer>
-  © 2026 NEMOVEX GROUP · Developerské projekty
-</footer>
-
+<!-- TEMPLATE PROJECT -->
 <script>
-  (function(){
-    const navLinks = document.getElementById('navLinks');
-    const hamburger = document.getElementById('hamburger');
-
-    const btnProjects = document.getElementById('btnProjects');
-    const btnProjectsHero = document.getElementById('btnProjectsHero');
-    const panel = document.getElementById('projectsPanel');
-    const btnCloseProjects = document.getElementById('btnCloseProjects');
-
-    const leadForm = document.getElementById('leadForm');
-
-    function toggleMenu(){
-      if(!navLinks) return;
-      navLinks.classList.toggle('show');
-    }
-    window.closeMenu = function(){
-      if(!navLinks) return;
-      navLinks.classList.remove('show');
-    }
-
-    if(hamburger){
-      hamburger.addEventListener('click', toggleMenu);
-    }
-
-    function openProjects(){
-      if(!panel) return;
-      panel.classList.add('open');
-      panel.setAttribute('aria-hidden','false');
-      document.getElementById('nabidka')?.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-    function closeProjects(){
-      if(!panel) return;
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden','true');
-    }
-
-    if(btnProjects) btnProjects.addEventListener('click', () => { window.goHome(); openProjects(); window.closeMenu(); });
-    if(btnProjectsHero) btnProjectsHero.addEventListener('click', () => { window.goHome(); openProjects(); });
-    if(btnCloseProjects) btnCloseProjects.addEventListener('click', closeProjects);
-
-    // Klik mimo panel => zavře seznam projektů
-    document.addEventListener('click', (e) => {
-      if(!panel || !panel.classList.contains('open')) return;
-      const insidePanel = e.target.closest('#projectsPanel');
-      const insideBtn = e.target.closest('#btnProjects') || e.target.closest('#btnProjectsHero');
-      if(!insidePanel && !insideBtn){
-        closeProjects();
-      }
-    });
-
-    function showView(viewId){
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      const el = document.getElementById(viewId);
-      if(el) el.classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    window.goHome = function(){
-      showView('view-home');
-    }
-
-    window.openProject = function(key){
-      closeProjects();
-      if(key === 'klenovka') showView('view-klenovka');
-      if(key === 'chrudim') showView('view-chrudim');
-      if(key === 'kutnahora') showView('view-kutnahora');
-    }
-
-    // POPTÁVKA => mailto
-    if(leadForm){
-      leadForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = document.getElementById('name')?.value.trim() || '';
-        const phone = document.getElementById('phone')?.value.trim() || '';
-        const email = document.getElementById('email')?.value.trim() || '';
-        const project = document.getElementById('project')?.value.trim() || '';
-        const msg = document.getElementById('msg')?.value.trim() || '';
-
-        const subject = encodeURIComponent('Nezávazná poptávka – NEMOVEX GROUP');
-        const body = encodeURIComponent(
-          `Jméno: ${name}\nTelefon: ${phone}\nE-mail: ${email}\nProjekt: ${project}\n\nZpráva:\n${msg}\n`
-        );
-
-        window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
-      });
-    }
-  })();
+function showProjects(){
+document.getElementById("projectList").style.display="block";
+}
+function openProject(id){
+document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+function goHome(){
+document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+document.getElementById('home').classList.add('active');
+}
 </script>
+
+<!-- PROJECT VIEWS -->
+
+<div class="view" id="zapadni">
+<section class="detail-hero" style="--bg:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23eaeaea%22/><rect x=%22150%22 y=%22350%22 width=%22900%22 height=%22200%22 fill=%22%23ffffff%22 stroke=%22%23ccc%22/></svg>')">
+<div class="container">
+<button class="btn-primary" onclick="goHome()">Zpět</button>
+<h2>Západní terasy</h2>
+<p>Komplex 5 bytových domů a rodinné výstavby.</p>
+</div>
+</section>
+</div>
+
+<div class="view" id="puravida">
+<section class="detail-hero" style="--bg:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23dfe7ea%22/></svg>')">
+<div class="container"><button class="btn-primary" onclick="goHome()">Zpět</button>
+<h2>Residenční komplex Pura Vida</h2>
+<p>120 servisovaných apartmánů.</p></div>
+</section>
+</div>
+
+<div class="view" id="malesov">
+<section class="detail-hero" style="--bg:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23f1f1f1%22/></svg>')">
+<div class="container"><button class="btn-primary" onclick="goHome()">Zpět</button>
+<h2>Nový Malešov</h2>
+<p>Pozemky pro individuální výstavbu a 33 bytových jednotek.</p></div>
+</section>
+</div>
+
+<div class="view" id="hermann">
+<section class="detail-hero" style="--bg:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23ececec%22/></svg>')">
+<div class="container"><button class="btn-primary" onclick="goHome()">Zpět</button>
+<h2>BD Hermann</h2></div>
+</section>
+</div>
+
+<div class="view" id="tresnovka">
+<section class="detail-hero" style="--bg:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23e8e8e8%22/></svg>')">
+<div class="container"><button class="btn-primary" onclick="goHome()">Zpět</button>
+<h2>Nová Třešňovka III. etapa</h2>
+<p>Komplex bytových domů a rodinné výstavby.</p></div>
+</section>
+</div>
+
+<div class="view" id="volec">
+<section class="detail-hero" style="--bg:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22675%22><rect width=%221200%22 height=%22675%22 fill=%22%23ededed%22/></svg>')">
+<div class="container"><button class="btn-primary" onclick="goHome()">Zpět</button>
+<h2>Projekt Voleč</h2></div>
+</section>
+</div>
+
+<footer>© 2026 NEMOVEX GROUP</footer>
 
 </body>
 </html>
