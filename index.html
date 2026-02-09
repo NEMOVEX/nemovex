@@ -50,25 +50,25 @@
     }
     .hero-inner{max-width:1200px;margin:auto;padding:0 10px;display:grid;grid-template-columns:1fr;gap:18px}
 
-   .hero h1{
-  font-size:clamp(44px,6vw,68px);
-  margin-bottom:0;
-  max-width:22ch;
-  opacity:0;
-  transform:translateY(14px);
-  animation:heroIn .9s ease-out .12s forwards;
-}
-.hero h1 .sub{
-  display:block;
-  font-size:.62em;
-  font-weight:600;
-  margin-top:12px;
+    /* větší text v hero */
+    .hero h1{
+      font-size:clamp(44px,6vw,68px);
+      margin-bottom:0;
+      max-width:22ch;
 
-  opacity:0;
-  transform:translateY(10px);
-  animation:heroIn .9s ease-out .32s forwards;
-}
+      opacity:0;
+      transform:translateY(14px);
+      animation:heroIn .9s ease-out .12s forwards;
+    }
+    .hero h1 .sub{
+      display:block;
+      font-size:.62em;
+      font-weight:600;
+      margin-top:12px;
 
+      opacity:0;
+      transform:translateY(10px);
+      animation:heroIn .9s ease-out .32s forwards;
     }
     @keyframes heroIn{
       to{opacity:1;transform:translateY(0)}
@@ -79,10 +79,10 @@
     .section-title{font-size:26px;margin-bottom:10px}
     .section-sub{font-size:14px;color:#666;margin-bottom:24px}
 
-    /* INTRO TEXT (pod hero) – bez rámečku, větší text */
+    /* INTRO TEXT (pod hero) – bez rámečku, větší */
     .intro-section{
       background:#f4f4f4;
-      padding:40px 20px;
+      padding:48px 20px;
     }
     .intro{
       background:transparent;
@@ -101,18 +101,24 @@
       color:#444;
       font-size:18px;
       line-height:1.75;
-      max-width:90ch;
+      max-width:95ch;
     }
 
     /* CARDS (náhledy projektů) */
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+      align-items:stretch;
+    }
     .card{
       background:#fff;border-radius:16px;overflow:hidden;
       box-shadow:0 8px 20px rgba(0,0,0,.08);
-      transition:.25s;cursor:pointer
+      transition:.25s;cursor:pointer;
+      display:flex;flex-direction:column;
     }
     .card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
-    .card-img{height:180px;background:#ddd}
+    .card-img{height:180px;background:#ddd;background-position:center;background-size:cover;background-repeat:no-repeat}
     .card-body{padding:16px}
     .card-body h3{font-size:16px;margin-bottom:6px}
     .card-body p{font-size:13px;color:#666}
@@ -150,7 +156,7 @@
     .view{display:none}
     .view.active{display:block}
 
-    /* PROJECT/ABOUT DETAIL HERO */
+    /* PROJECT DETAIL HERO */
     .detail-hero{
       min-height:52vh;color:#fff;display:flex;align-items:center;
       background:
@@ -225,49 +231,6 @@
       .overlay{padding-top:86px}
       .hero-inner{padding:0 14px}
     }
-    /* === FIX: Projekty (karty) – když se něco rozbije, tohle to srovná === */
-.cards{
-  display:grid !important;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)) !important;
-  gap:20px !important;
-  align-items:stretch !important;
-}
-
-.card{
-  background:#fff !important;
-  border-radius:16px !important;
-  overflow:hidden !important;
-  box-shadow:0 8px 20px rgba(0,0,0,.08) !important;
-  transition:.25s !important;
-  cursor:pointer !important;
-
-  /* důležité: držíme kartu jako sloupec (obrázek nahoře, text dole) */
-  display:flex !important;
-  flex-direction:column !important;
-}
-
-.card-img{
-  height:180px !important;
-  background-position:center !important;
-  background-size:cover !important;
-  background-repeat:no-repeat !important;
-  flex:0 0 auto !important;
-}
-
-.card-body{
-  padding:16px !important;
-}
-
-.card-body h3{
-  font-size:16px !important;
-  margin-bottom:6px !important;
-}
-
-.card-body p{
-  font-size:13px !important;
-  color:#666 !important;
-}
-
   </style>
 </head>
 
@@ -403,13 +366,14 @@
     </div>
   </section>
 
-  <!-- Text pod hero -->
   <section class="intro-section">
     <div class="container">
       <div class="intro">
         <div class="intro-quote">Domovy, které dávají smysl.</div>
         <p>
-          NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí. Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu. Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
+          NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu,
+          funkční řešení a příjemné prostředí. Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu.
+          Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
         </p>
       </div>
     </div>
@@ -422,7 +386,8 @@
       <p class="section-sub">Náhled 3 projektů (kliknutím otevřete detail).</p>
 
       <div class="cards">
-       <div class="card-img" style="background:url('kost.png') center/cover;"></div>
+        <div class="card" onclick="openProject('offer-puravida')">
+          <div class="card-img" style="background-image:url('kost.png');"></div>
           <div class="card-body">
             <h3>Residenční komplex Pura Vida</h3>
             <p>120 servisovaných apartmánů.</p>
@@ -431,7 +396,7 @@
         </div>
 
         <div class="card" onclick="openProject('offer-malesov')">
-          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70');"></div>
           <div class="card-body">
             <h3>Nový Malešov</h3>
             <p>Pozemky + 33 bytových jednotek.</p>
@@ -440,7 +405,7 @@
         </div>
 
         <div class="card" onclick="openProject('offer-tresnovka')">
-          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70');"></div>
           <div class="card-body">
             <h3>Nová Třešňovka III. etapa</h3>
             <p>Komplex bytových domů a rodinné výstavby.</p>
@@ -459,7 +424,7 @@
 
       <div class="cards">
         <div class="card" onclick="openProject('prep-zapadni')">
-          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70');"></div>
           <div class="card-body">
             <h3>Západní terasy</h3>
             <p>Komplex 5 bytových domů a rodinné výstavby.</p>
@@ -468,7 +433,7 @@
         </div>
 
         <div class="card" onclick="openProject('prep-rclub')">
-          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70');"></div>
           <div class="card-body">
             <h3>R – Club</h3>
             <p>Luxusní bytový dům s více než 72 jednotkami.</p>
@@ -477,7 +442,7 @@
         </div>
 
         <div class="card" onclick="openProject('prep-hervitkovice')">
-          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70');"></div>
           <div class="card-body">
             <h3>Hervítkovice</h3>
             <p>Residenční čtvrť (projekt v přípravě).</p>
@@ -566,14 +531,15 @@
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>O nás</h2>
       <p>
-        NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí.
+        NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu,
+        funkční řešení a příjemné prostředí.
       </p>
     </div>
   </section>
 
   <section>
     <div class="container">
-      <p style="font-size:18px;max-width:900px;line-height:1.75;color:#444">
+      <p style="font-size:18px;max-width:900px;line-height:1.7;color:#444">
         Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu.
         Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
       </p>
@@ -585,7 +551,8 @@
      DETAIL VIEWS (v nabídce)
 ========================= -->
 
-<section class="detail-hero" style="--bg:url('kost.png')">
+<div class="view" id="view-offer-puravida">
+  <section class="detail-hero" style="--bg:url('kost.png')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>Residenční komplex Pura Vida</h2>
@@ -594,7 +561,7 @@
   </section>
   <section><div class="container">
     <div class="gallery">
-      <div class="gimg"><img alt="Pura Vida 1" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Pura Vida 1" src="kost.png"></div>
       <div class="gimg"><img alt="Pura Vida 2" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
       <div class="gimg"><img alt="Pura Vida 3" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
       <div class="gimg"><img alt="Pura Vida 4" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
@@ -855,7 +822,7 @@
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       const el = document.getElementById(viewId);
       if(el) el.classList.add('active');
-      window.scrollTo({top:0, behavior:'auto'});
+      window.scrollTo({top:0, behavior:'smooth'});
     }
 
     window.goHome = function(){
