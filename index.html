@@ -1,85 +1,835 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<title>NEMOVEX GROUP – Developerské projekty</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>NEMOVEX GROUP – Developerské projekty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy a bytové projekty." />
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
-body{background:#f4f4f4;color:#222;line-height:1.6}
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
+    body{background:#f4f4f4;color:#222;line-height:1.6;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+    [id]{scroll-margin-top:90px}
 
-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e0e0e0;z-index:50}
-.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;letter-spacing:.12em}
-.logo span{color:#1f7a4f}
+    /* HEADER */
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e0e0e0}
+    .nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative}
+    .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+    .logo span{color:#1f7a4f}
 
-.hero{
-min-height:70vh;
-background:linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),
-url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
-display:flex;
-align-items:flex-start;
-color:#fff;
-}
+    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
+    .hamburger div{width:25px;height:3px;background:#1f7a4f;border-radius:3px}
 
-.hero-inner{
-max-width:1200px;
-margin:auto;
-padding:100px 20px 20px 20px;
-}
+    .nav-links{display:flex;align-items:center;gap:22px}
+    .nav-links > a, .nav-links > button{
+      font-size:13px;font-weight:800;color:#333;position:relative;padding:8px 0;cursor:pointer;
+      background:none;border:none
+    }
+    .nav-links > a::after, .nav-links > button::after{
+      content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.25s
+    }
+    .nav-links > a:hover::after, .nav-links > button:hover::after{width:100%}
 
-.hero h1{
-font-size:52px;
-font-weight:900;
-margin-bottom:14px;
-}
+    .btn-primary{
+      padding:9px 20px;border-radius:999px;border:none;
+      background:#1f7a4f;color:#fff;font-weight:800;
+      cursor:pointer;display:inline-block;font-size:13px
+    }
+    .btn-primary:hover{background:#16603d}
 
-.hero p{
-font-size:22px;
-max-width:520px;
-line-height:1.4;
-}
+    /* HERO */
+    .hero{
+      min-height:72vh;
+      background:
+        linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),
+        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
+      display:flex;align-items:center;color:#fff
+    }
+    .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:18px}
+    .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:0;max-width:18ch}
 
-/* text pod fotkou */
-.intro{
-max-width:900px;
-margin:60px auto;
-font-size:24px;
-line-height:1.5;
-padding:0 20px;
-}
+    section{padding:70px 20px}
+    .container{max-width:1200px;margin:auto}
+    .section-title{font-size:26px;margin-bottom:10px}
+    .section-sub{font-size:14px;color:#666;margin-bottom:24px}
 
-section{padding:70px 20px}
-.container{max-width:1200px;margin:auto}
-footer{text-align:center;padding:30px;color:#777}
-</style>
+    /* INTRO TEXT (pod hero) */
+    .intro{
+      background:#fff;border-radius:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      border:1px solid #eef0f2;
+      padding:28px;
+    }
+    .intro-quote{
+      font-size:20px;font-weight:900;margin-bottom:10px;
+    }
+    .intro p{color:#555;font-size:14px;max-width:95ch}
+
+    /* ABOUT (samostatná sekce pro záložku O nás) */
+    .about{
+      background:#fff;border-radius:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      border:1px solid #eef0f2;
+      padding:28px;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start
+    }
+    .about h3{font-size:20px;margin-bottom:8px}
+    .about p{color:#555;font-size:14px;max-width:85ch}
+    .about-cards{display:grid;gap:10px}
+    .mini{
+      background:#f7f8f9;border:1px solid #eceff2;border-radius:14px;padding:14px
+    }
+    .mini strong{display:block;font-size:13px;margin-bottom:4px}
+    .mini span{color:#666;font-size:12px}
+
+    /* CARDS (náhledy projektů) */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{
+      background:#fff;border-radius:16px;overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      transition:.25s;cursor:pointer
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
+    .card-img{height:180px;background:#ddd}
+    .card-body{padding:16px}
+    .card-body h3{font-size:16px;margin-bottom:6px}
+    .card-body p{font-size:13px;color:#666}
+    .pill{display:inline-block;margin-top:10px;font-size:12px;font-weight:900;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px}
+
+    /* OVERLAY PANELS (seznamy v menu) */
+    .overlay{
+      position:fixed;inset:0;z-index:80;
+      background:rgba(0,0,0,.45);
+      display:none;align-items:flex-start;justify-content:center;
+      padding:96px 16px 24px;
+    }
+    .overlay.show{display:flex}
+    .panel{
+      width:min(980px, 100%);
+      background:#fff;border-radius:20px;
+      box-shadow:0 18px 60px rgba(0,0,0,.22);
+      overflow:hidden;border:1px solid #eef0f2;
+    }
+    .panel-inner{padding:18px}
+    .proj-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .proj-item{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:14px 14px;border-radius:14px;
+      background:#f7f8f9;border:1px solid #eceff2;
+      transition:.2s;cursor:pointer
+    }
+    .proj-item:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
+    .proj-left{display:flex;flex-direction:column;gap:2px}
+    .proj-title{font-weight:900;font-size:14px}
+    .proj-sub{font-size:12px;color:#666}
+    .chip{font-size:12px;font-weight:900;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px;white-space:nowrap}
+
+    /* VIEW SWITCH */
+    .view{display:none}
+    .view.active{display:block}
+
+    /* PROJECT DETAIL HERO */
+    .detail-hero{
+      min-height:52vh;color:#fff;display:flex;align-items:center;
+      background:
+        linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
+        var(--bg) center/cover no-repeat;
+    }
+    .detail-hero .container{padding:0 20px}
+    .detail-hero h2{font-size:clamp(30px,4.5vw,48px);margin:14px 0 10px}
+    .detail-hero p{max-width:85ch}
+
+    /* GALLERY */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
+      margin-top:16px
+    }
+    .gimg{border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.10);background:#ddd;height:220px}
+    .gimg img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* INFO BOXES */
+    .locations{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+    .location{background:#fff;border-radius:14px;padding:16px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+    .location h4{margin-bottom:4px}
+    .location p{color:#555;font-size:13px}
+
+    /* FORM */
+    .form-wrap{
+      background:#fff;border-radius:20px;padding:34px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      display:grid;grid-template-columns:1fr 1fr;gap:18px
+    }
+    .field{display:flex;flex-direction:column;gap:6px}
+    label{font-size:12px;color:#555;font-weight:900}
+    input,select,textarea{
+      border:1px solid #e1e1e1;border-radius:14px;
+      padding:12px 12px;font-size:14px;outline:none;background:#fff
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color:#1f7a4f;box-shadow:0 0 0 3px rgba(31,122,79,.12)
+    }
+    textarea{min-height:140px;resize:vertical}
+    .form-actions{grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
+    .note{font-size:12px;color:#666}
+
+    /* CONTACT */
+    .contact{
+      background:#1f7a4f;color:#fff;border-radius:20px;
+      padding:40px;display:flex;flex-wrap:wrap;
+      gap:20px;align-items:center;justify-content:space-between
+    }
+    .contact h3{font-size:22px;margin-bottom:6px}
+    .contact a{color:#fff}
+    .contact a:hover{text-decoration:underline}
+
+    footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
+
+    @media(max-width:900px){
+      .hamburger{display:flex}
+      .nav-links{
+        display:none;flex-direction:column;width:100%;
+        background:#fff;position:absolute;top:58px;left:0;
+        border-top:1px solid #e0e0e0;gap:0;padding:6px 0
+      }
+      .nav-links.show{display:flex}
+      .nav-links > a, .nav-links > button{
+        width:100%;text-align:left;
+        padding:14px 20px;border-bottom:1px solid #e0e0e0
+      }
+      .nav-links > a::after, .nav-links > button::after{display:none}
+      .form-wrap{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr}
+      .overlay{padding-top:86px}
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-<div class="nav">
-<div class="logo"><span>NEMOVEX</span> GROUP</div>
-</div>
+  <div class="nav">
+    <a class="logo" href="#top" onclick="goHome(); return false;"><span>NEMOVEX</span> GROUP</a>
+
+    <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+
+    <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
+      <a href="#onas" onclick="goHome();closeMenu();">O NÁS</a>
+      <button type="button" id="btnOffer">PROJEKTY V NABÍDCE</button>
+      <button type="button" id="btnPrep">PROJEKTY V PŘÍPRAVĚ</button>
+      <a href="#poptavka" onclick="goHome();closeMenu();">NEZÁVAZNÁ POPTÁVKA</a>
+      <a href="#kontakt" onclick="goHome();closeMenu();">KONTAKT</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
-<div class="hero-inner">
-<h1>NEMOVEX GROUP</h1>
-<p>Stavíme rodinné a bytové domy  
-v lukrativních oblastech pro život.</p>
-</div>
-</section>
+<!-- ===== Overlay seznam: NABÍDKA ===== -->
+<div class="overlay" id="offerOverlay" aria-hidden="true">
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Projekty v nabídce">
+    <div class="panel-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:900;font-size:16px">Projekty v nabídce</div>
+          <div style="color:#666;font-size:12px">Kliknutím otevřete detail projektu.</div>
+        </div>
+        <button class="btn-primary" type="button" id="btnCloseOffer">Zavřít</button>
+      </div>
 
-<div class="intro">
-<strong>„Vytváříme domovy, které inspirují.“</strong><br><br>
-Naše developerská společnost staví moderní rodinné domy a rezidenční projekty s důrazem na kvalitu, estetiku a pohodlí. Každý projekt je navržen tak, aby nabízel nejen prostor k bydlení, ale i místo, kde vznikají životní příběhy.
+      <div class="proj-list" style="margin-top:14px">
+        <div class="proj-item" onclick="openProject('offer-puravida')">
+          <div class="proj-left">
+            <div class="proj-title">Residenční komplex Pura Vida</div>
+            <div class="proj-sub">120 servisovaných apartmánů</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('offer-malesov')">
+          <div class="proj-left">
+            <div class="proj-title">Nový Malešov</div>
+            <div class="proj-sub">Pozemky + 33 bytových jednotek</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('offer-hermann')">
+          <div class="proj-left">
+            <div class="proj-title">BD Hermann</div>
+            <div class="proj-sub">Projekt v nabídce</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('offer-tresnovka')">
+          <div class="proj-left">
+            <div class="proj-title">Nová Třešňovka III. etapa</div>
+            <div class="proj-sub">Komplex bytových domů a rodinné výstavby</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Overlay seznam: PŘÍPRAVA ===== -->
+<div class="overlay" id="prepOverlay" aria-hidden="true">
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Projekty v přípravě">
+    <div class="panel-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:900;font-size:16px">Projekty v přípravě</div>
+          <div style="color:#666;font-size:12px">Kliknutím otevřete detail projektu (zatím informačně).</div>
+        </div>
+        <button class="btn-primary" type="button" id="btnClosePrep">Zavřít</button>
+      </div>
+
+      <div class="proj-list" style="margin-top:14px">
+        <div class="proj-item" onclick="openProject('prep-zapadni')">
+          <div class="proj-left"><div class="proj-title">Západní terasy</div><div class="proj-sub">Komplex 5 bytových domů a rodinné výstavby</div></div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('prep-rclub')">
+          <div class="proj-left"><div class="proj-title">R – Club</div><div class="proj-sub">Luxusní bytový dům s více než 72 jednotkami</div></div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('prep-hervitkovice')">
+          <div class="proj-left"><div class="proj-title">Residenční čtvrť Hervítkovice</div><div class="proj-sub">Projekt v přípravě</div></div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('prep-tribrichy')">
+          <div class="proj-left"><div class="proj-title">RD Třibřichy</div><div class="proj-sub">Rodinné domy (příprava)</div></div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('prep-rudnik')">
+          <div class="proj-left"><div class="proj-title">Projekt Rudník</div><div class="proj-sub">Projekt v přípravě</div></div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <div class="proj-item" onclick="openProject('prep-volec')">
+          <div class="proj-left"><div class="proj-title">Projekt Voleč</div><div class="proj-sub">Projekt v přípravě</div></div>
+          <div class="chip">Otevřít</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================
+     HOME VIEW
+========================= -->
+<div class="view active" id="view-home">
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <h1>NEMOVEX GROUP<br>Stavíme rodinné a bytové domy v lukrativních oblastech pro život.</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Text pod hero -->
+  <section>
+    <div class="container">
+      <div class="intro">
+        <div class="intro-quote">„Vytváříme domovy, které inspirují.“</div>
+        <p>
+          Naše developerská společnost staví moderní rodinné domy a rezidenční projekty s důrazem na kvalitu,
+          estetiku a pohodlí. Každý projekt je navržen tak, aby nabízel nejen prostor k bydlení, ale i místo,
+          kde vznikají životní příběhy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 náhledy: NABÍDKA -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Projekty v nabídce</h2>
+      <p class="section-sub">Náhled 3 projektů (kliknutím otevřete detail).</p>
+
+      <div class="cards">
+        <div class="card" onclick="openProject('offer-puravida')">
+          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-body">
+            <h3>Residenční komplex Pura Vida</h3>
+            <p>120 servisovaných apartmánů.</p>
+            <span class="pill">Otevřít detail</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openProject('offer-malesov')">
+          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-body">
+            <h3>Nový Malešov</h3>
+            <p>Pozemky + 33 bytových jednotek.</p>
+            <span class="pill">Otevřít detail</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openProject('offer-tresnovka')">
+          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-body">
+            <h3>Nová Třešňovka III. etapa</h3>
+            <p>Komplex bytových domů a rodinné výstavby.</p>
+            <span class="pill">Otevřít detail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 náhledy: PŘÍPRAVA -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Projekty v přípravě</h2>
+      <p class="section-sub">Náhled 3 projektů (kliknutím otevřete detail).</p>
+
+      <div class="cards">
+        <div class="card" onclick="openProject('prep-zapadni')">
+          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-body">
+            <h3>Západní terasy</h3>
+            <p>Komplex 5 bytových domů a rodinné výstavby.</p>
+            <span class="pill">Otevřít detail</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openProject('prep-rclub')">
+          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-body">
+            <h3>R – Club</h3>
+            <p>Luxusní bytový dům s více než 72 jednotkami.</p>
+            <span class="pill">Otevřít detail</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openProject('prep-hervitkovice')">
+          <div class="card-img" style="background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70') center/cover;"></div>
+          <div class="card-body">
+            <h3>Hervítkovice</h3>
+            <p>Residenční čtvrť (projekt v přípravě).</p>
+            <span class="pill">Otevřít detail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O NÁS (jen pod záložkou v liště) -->
+  <section id="onas">
+    <div class="container">
+      <div class="about">
+        <div>
+          <h3>NEMOVEX GROUP</h3>
+          <p>
+            Připravujeme a realizujeme rezidenční projekty – od bytových domů po rodinnou výstavbu.
+            Zaměřujeme se na kvalitní architekturu, funkční dispozice a lokality s dlouhodobou hodnotou.
+          </p>
+          <p style="margin-top:10px">
+            Máte zájem o konkrétní projekt? Vyplňte nezávaznou poptávku a ozveme se s informacemi.
+          </p>
+          <div style="margin-top:14px">
+            <a class="btn-primary" href="#poptavka">Nezávazná poptávka</a>
+          </div>
+        </div>
+
+        <div class="about-cards">
+          <div class="mini"><strong>✅ Kvalita</strong><span>Prověřené standardy, důraz na detail.</span></div>
+          <div class="mini"><strong>✅ Lokality</strong><span>Lukrativní oblasti pro život i investici.</span></div>
+          <div class="mini"><strong>✅ Přístup</strong><span>Individuální komunikace a férové jednání.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Poptávka -->
+  <section id="poptavka">
+    <div class="container">
+      <h2 class="section-title">Nezávazná poptávka</h2>
+      <p class="section-sub">Jednoduše nám napište – ozveme se co nejdříve.</p>
+
+      <form class="form-wrap" id="leadForm">
+        <div class="field">
+          <label for="name">Jméno a příjmení</label>
+          <input id="name" name="name" type="text" placeholder="Např. Jana Nováková" required>
+        </div>
+        <div class="field">
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel" placeholder="+420 777 000 000" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="jana@email.cz" required>
+        </div>
+        <div class="field">
+          <label for="project">Vybraný projekt</label>
+          <select id="project" name="project">
+            <option value="">— vyberte —</option>
+            <optgroup label="Projekty v nabídce">
+              <option>Residenční komplex Pura Vida</option>
+              <option>Nový Malešov</option>
+              <option>BD Hermann</option>
+              <option>Nová Třešňovka III. etapa</option>
+            </optgroup>
+            <optgroup label="Projekty v přípravě">
+              <option>Západní terasy</option>
+              <option>R – Club</option>
+              <option>Residenční čtvrť Hervítkovice</option>
+              <option>RD Třibřichy</option>
+              <option>Projekt Rudník</option>
+              <option>Projekt Voleč</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field" style="grid-column:1/-1">
+          <label for="msg">Zpráva</label>
+          <textarea id="msg" name="msg" placeholder="Napište nám, co hledáte (dispozice, termín, rozpočet…)"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn-primary" type="submit">Odeslat poptávku</button>
+          <span class="note">Po kliknutí se otevře váš e-mailový klient s připravenou zprávou.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="contact">
+        <div>
+          <h3>Kontakt</h3>
+          <p>
+            📞 <a href="tel:+420777000000">+420 777 000 000</a><br>
+            ✉️ <a href="mailto:info@nemovex.cz">info@nemovex.cz</a>
+          </p>
+        </div>
+        <a href="mailto:info@nemovex.cz" class="btn-primary">Kontaktovat NEMOVEX</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- =========================
+     DETAIL VIEWS (v nabídce)
+========================= -->
+
+<div class="view" id="view-offer-puravida">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Residenční komplex Pura Vida</h2>
+      <p>120 servisovaných apartmánů.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="gallery">
+      <div class="gimg"><img alt="Pura Vida 1" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Pura Vida 2" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Pura Vida 3" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Pura Vida 4" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1400&q=70"></div>
+    </div>
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V nabídce.</p></div>
+      <div class="location"><h4>Rozsah</h4><p>120 servisovaných apartmánů.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-offer-malesov">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Nový Malešov</h2>
+      <p>Pozemky + 33 bytových jednotek.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="gallery">
+      <div class="gimg"><img alt="Malešov 1" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Malešov 2" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Malešov 3" src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Malešov 4" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=70"></div>
+    </div>
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V nabídce.</p></div>
+      <div class="location"><h4>Rozsah</h4><p>Pozemky + 33 bytových jednotek.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-offer-hermann">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>BD Hermann</h2>
+      <p>Projekt v nabídce.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="gallery">
+      <div class="gimg"><img alt="BD Hermann 1" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="BD Hermann 2" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="BD Hermann 3" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="BD Hermann 4" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a85?auto=format&fit=crop&w=1400&q=70"></div>
+    </div>
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V nabídce.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Fotky</h4><p>Dočasné obrázky – později nahradíme reálnými.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-offer-tresnovka">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Nová Třešňovka III. etapa</h2>
+      <p>Komplex bytových domů a rodinné výstavby.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="gallery">
+      <div class="gimg"><img alt="Třešňovka 1" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Třešňovka 2" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Třešňovka 3" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1400&q=70"></div>
+      <div class="gimg"><img alt="Třešňovka 4" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70"></div>
+    </div>
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V nabídce.</p></div>
+      <div class="location"><h4>Typ</h4><p>Bytové domy + rodinná výstavba.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- =========================
+     DETAIL VIEWS (v přípravě)
+========================= -->
+
+<div class="view" id="view-prep-zapadni">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Západní terasy</h2>
+      <p>Komplex 5 bytových domů a rodinné výstavby (v přípravě).</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-rclub">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>R – Club</h2>
+      <p>Luxusní bytový dům s více než 72 jednotkami (v přípravě).</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-hervitkovice">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Residenční čtvrť Hervítkovice</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-tribrichy">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>RD Třibřichy</h2>
+      <p>Rodinné domy (v přípravě).</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-rudnik">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Projekt Rudník</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<div class="view" id="view-prep-volec">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Projekt Voleč</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+  <section><div class="container">
+    <div class="locations">
+      <div class="location"><h4>Stav</h4><p>V přípravě.</p></div>
+      <div class="location"><h4>Info</h4><p>Detaily doplníme.</p></div>
+      <div class="location"><h4>Kontakt</h4><p>Vyplňte nezávaznou poptávku.</p></div>
+    </div>
+  </div></section>
 </div>
 
 <footer>
-© 2026 NEMOVEX GROUP
+  © 2026 NEMOVEX GROUP · Developerské projekty
 </footer>
+
+<script>
+  (function(){
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+
+    const offerOverlay = document.getElementById('offerOverlay');
+    const prepOverlay  = document.getElementById('prepOverlay');
+
+    const btnOffer = document.getElementById('btnOffer');
+    const btnPrep  = document.getElementById('btnPrep');
+
+    const btnCloseOffer = document.getElementById('btnCloseOffer');
+    const btnClosePrep  = document.getElementById('btnClosePrep');
+
+    const leadForm = document.getElementById('leadForm');
+
+    function toggleMenu(){
+      if(!navLinks) return;
+      navLinks.classList.toggle('show');
+    }
+    window.closeMenu = function(){
+      if(!navLinks) return;
+      navLinks.classList.remove('show');
+    }
+    if(hamburger){
+      hamburger.addEventListener('click', toggleMenu);
+    }
+
+    function closeOverlay(){
+      if(offerOverlay){ offerOverlay.classList.remove('show'); offerOverlay.setAttribute('aria-hidden','true'); }
+      if(prepOverlay){ prepOverlay.classList.remove('show');  prepOverlay.setAttribute('aria-hidden','true'); }
+      document.body.style.overflow = '';
+    }
+
+    function openOverlay(which){
+      closeOverlay();
+      if(which === 'offer' && offerOverlay){
+        offerOverlay.classList.add('show');
+        offerOverlay.setAttribute('aria-hidden','false');
+      }
+      if(which === 'prep' && prepOverlay){
+        prepOverlay.classList.add('show');
+        prepOverlay.setAttribute('aria-hidden','false');
+      }
+      document.body.style.overflow = 'hidden';
+    }
+
+    if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
+    if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
+
+    if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
+    if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
+
+    if(offerOverlay){
+      offerOverlay.addEventListener('click', (e) => { if(e.target === offerOverlay) closeOverlay(); });
+    }
+    if(prepOverlay){
+      prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
+    }
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeOverlay(); });
+
+    function showView(viewId){
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      const el = document.getElementById(viewId);
+      if(el) el.classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    window.goHome = function(){
+      showView('view-home');
+      closeOverlay();
+    }
+
+    window.openProject = function(key){
+      closeOverlay();
+      closeMenu();
+      showView('view-' + key);
+    }
+
+    if(leadForm){
+      leadForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('name')?.value.trim() || '';
+        const phone = document.getElementById('phone')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const project = document.getElementById('project')?.value.trim() || '';
+        const msg = document.getElementById('msg')?.value.trim() || '';
+
+        const subject = encodeURIComponent('Nezávazná poptávka – NEMOVEX GROUP');
+        const body = encodeURIComponent(
+          `Jméno: ${name}\nTelefon: ${phone}\nE-mail: ${email}\nProjekt: ${project}\n\nZpráva:\n${msg}\n`
+        );
+
+        window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
+      });
+    }
+  })();
+</script>
 
 </body>
 </html>
