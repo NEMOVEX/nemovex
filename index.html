@@ -117,10 +117,29 @@
     .panel-inner{padding:18px}
     .proj-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
     .proj-item{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:14px 14px;border-radius:14px;
-      background:#f7f8f9;border:1px solid #eceff2;
-      transition:.2s;cursor:pointer
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 14px;
+  border-radius:14px;
+  background:#f7f8f9;
+  border:1px solid #eceff2;
+  transition:.2s;
+  cursor:pointer;
+
+}
+
+.proj-img{
+  width:84px;
+  height:56px;
+  border-radius:10px;
+  background-size:cover;
+  background-position:center;
+  flex:0 0 auto;
+  border:1px solid #e6eaee;
+
+}
     }
     .proj-item:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
     .proj-left{display:flex;flex-direction:column;gap:2px}
@@ -235,14 +254,14 @@
           <div class="chip">Otevřít</div>
         </div>
 
-        <div class="proj-item" onclick="openProject('offer-malesov')">
-          <div class="proj-img" style="background-image:url('malesov.jpg')"></div>
-          <div class="proj-left">
-            <div class="proj-title">Nový Malešov</div>
-            <div class="proj-sub">Pozemky + 33 bytových jednotek</div>
-          </div>
-          <div class="chip">Otevřít</div>
-        </div>
+    <div class="proj-item" onclick="openProject('offer-malesov')">
+      <div class="proj-img" style="background-image:url('malesov.jpg')"></div>
+      <div class="proj-left">
+        <div class="proj-title">Nový Malešov</div>
+        <div class="proj-sub">Pozemky + 33 bytových jednotek</div>
+      </div>
+    <div class="chip">Otevřít</div>
+  </div>
 
         <div class="proj-item" onclick="openProject('offer-hermann')">
           <div class="proj-left">
@@ -357,7 +376,7 @@
 
         <div class="card" onclick="openProject('offer-malesov')">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70" alt="Nový Malešov">
+           <img src="malesov.jpg" alt="Nový Malešov">
           </div>
           <div class="card-body">
             <h3>Nový Malešov</h3>
