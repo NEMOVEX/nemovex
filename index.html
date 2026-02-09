@@ -9,9 +9,11 @@
 body{margin:0;font-family:Segoe UI,Arial;background:#f4f4f4;color:#222}
 header{background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:50}
 .nav{max-width:1200px;margin:auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;letter-spacing:2px}
+.logo{font-weight:900;letter-spacing:2px;cursor:pointer}
 .nav a{margin-left:20px;font-weight:700;text-decoration:none;color:#333}
 .nav a:hover{color:#1f7a4f}
+
+.container{max-width:1200px;margin:auto;padding:0 20px}
 
 .hero{
 min-height:70vh;
@@ -21,24 +23,17 @@ display:flex;
 align-items:center;
 color:white;
 }
-.container{max-width:1200px;margin:auto;padding:0 20px}
 .hero h1{font-size:56px;margin:0}
 
 .view{display:none}
 .view.active{display:block}
 
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:30px}
-.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.1);cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:30px 0}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.1)}
 .card-img{height:200px;background-size:cover;background-position:center}
 .card-body{padding:15px}
 
-.btn-primary{background:#1f7a4f;color:white;border:none;padding:10px 18px;border-radius:30px;cursor:pointer;font-weight:700}
-
-.about-text{max-width:900px;margin:auto;padding:60px 20px}
-.about-text p{font-size:18px;line-height:1.85;margin-bottom:18px;color:#444}
-
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:20px}
-.gallery img{width:100%;border-radius:12px}
+.btn{background:#1f7a4f;color:white;border:none;padding:10px 18px;border-radius:30px;cursor:pointer;font-weight:700}
 
 footer{text-align:center;padding:30px;color:#777}
 </style>
@@ -48,16 +43,21 @@ footer{text-align:center;padding:30px;color:#777}
 
 <header>
 <div class="nav">
-<div class="logo">NEMOVEX GROUP</div>
+<div class="logo" onclick="goHome()">NEMOVEX GROUP</div>
 <div>
 <a href="#" onclick="goHome()">DOMŮ</a>
 <a href="#" onclick="openAbout()">O NÁS</a>
+<a href="#offer">PROJEKTY V NABÍDCE</a>
+<a href="#future">PROJEKTY V PŘÍPRAVĚ</a>
+<a href="#contact">NEZÁVAZNÁ POPTÁVKA</a>
+<a href="#contact">KONTAKT</a>
 </div>
 </div>
 </header>
 
 <!-- HOME -->
 <div class="view active" id="view-home">
+
 <section class="hero">
 <div class="container">
 <h1>NEMOVEX GROUP</h1>
@@ -65,72 +65,75 @@ footer{text-align:center;padding:30px;color:#777}
 </div>
 </section>
 
-<div class="container">
+<div class="container" id="offer">
 <h2>Projekty v nabídce</h2>
 
 <div class="cards">
-
-<div class="card" onclick="openProject()">
+<div class="card">
 <div class="card-img" style="background-image:url('puravida.jpg')"></div>
 <div class="card-body">
-<h3>Residenční komplex Pura Vida</h3>
+<h3>Rezidenční komplex Pura Vida</h3>
 <p>120 servisovaných apartmánů</p>
 </div>
 </div>
+</div>
+</div>
 
+<div class="container" id="future">
+<h2>Projekty v přípravě</h2>
+
+<div class="cards">
+<div class="card">
+<div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858')"></div>
+<div class="card-body">
+<h3>Nový projekt</h3>
+<p>Připravujeme</p>
 </div>
 </div>
+</div>
+</div>
+
+<div class="container" id="contact">
+<h2>Kontakt</h2>
+<p>Email: info@nemovex.cz</p>
+<p>Telefon: +420 000 000 000</p>
+</div>
+
 </div>
 
 <!-- ABOUT -->
 <div class="view" id="view-about">
 <section class="hero">
 <div class="container">
-<button class="btn-primary" onclick="goHome()">← Zpět</button>
+<button class="btn" onclick="goHome()">← Zpět</button>
 <h1>O nás</h1>
 <p>NEMOVEX GROUP – Stavíme domovy, které dávají smysl.</p>
 </div>
 </section>
 
-<div class="about-text">
+<div class="container" style="max-width:900px;padding:60px 20px">
 <p>
 Jsme developerská společnost zaměřená na výstavbu rodinných domů a rezidenčních projektů,
 které spojují kvalitní architekturu, funkční řešení a estetiku.
 </p>
-
 <p>
 Každý projekt vnímáme jako jedinečnou příležitost nabídnout klientům více než jen čtyři stěny –
 chceme jim poskytnout prostor, který je inspiruje, chrání a roste spolu s nimi.
 </p>
-
-<p>
-Klademe důraz na kvalitu použitých materiálů, funkční dispozice odpovídající potřebám současného života,
-harmonii architektury a dlouhodobou hodnotu každého projektu.
-</p>
-
-<p>
-NEMOVEX GROUP je partnerem, který vás provede celým procesem – od prvního návrhu až po předání klíčů.
-</p>
 </div>
 </div>
 
-<footer>
-© 2026 NEMOVEX GROUP
-</footer>
+<footer>© 2026 NEMOVEX GROUP</footer>
 
 <script>
 function goHome(){
 document.getElementById('view-home').classList.add('active');
 document.getElementById('view-about').classList.remove('active');
-window.scrollTo(0,0);
 }
 function openAbout(){
 document.getElementById('view-home').classList.remove('active');
 document.getElementById('view-about').classList.add('active');
 window.scrollTo(0,0);
-}
-function openProject(){
-alert('detail projektu');
 }
 </script>
 
