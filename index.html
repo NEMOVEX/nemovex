@@ -371,6 +371,27 @@
      HOME VIEW
 ========================= -->
 <div class="view active" id="view-home">
+<!-- =========================
+     O NÁS VIEW
+========================= -->
+<div class="view" id="view-about">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>O nás</h2>
+      <p>NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p style="font-size:18px;max-width:900px;line-height:1.7">
+        Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu.
+        Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
+      </p>
+    </div>
+  </section>
+</div>
 
   <section class="hero" id="top">
     <div class="hero-inner">
@@ -819,6 +840,11 @@
     window.goHome = function(){
       showView('view-home');
       closeOverlay();
+      window.openAbout = function(){
+  closeOverlay();
+  closeMenu();
+  showView('view-about');
+}
     }
 
     window.openProject = function(key){
