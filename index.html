@@ -80,17 +80,33 @@
     .section-title{font-size:26px;margin-bottom:10px}
     .section-sub{font-size:14px;color:#666;margin-bottom:24px}
 
-    /* INTRO TEXT (pod hero) */
-    .intro{
-      background:#fff;border-radius:20px;
-      box-shadow:0 10px 28px rgba(0,0,0,.06);
-      border:1px solid #eef0f2;
-      padding:28px;
-    }
-    .intro-quote{
-      font-size:20px;font-weight:900;margin-bottom:10px;
-    }
-    .intro p{color:#555;font-size:14px;max-width:95ch}
+    /* INTRO TEXT (pod hero) – bez rámečku, větší text */
+.intro-section{
+  background:#f4f4f4; /* stejné jako pozadí stránky */
+  padding:40px 20px;
+}
+
+.intro{
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  border-radius:0;
+  padding:0;
+}
+
+.intro-quote{
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:12px;
+  color:#222;
+}
+
+.intro p{
+  color:#444;
+  font-size:18px;
+  line-height:1.75;
+  max-width:90ch;
+}
 
     /* ABOUT (samostatná sekce pro záložku O nás) */
     .about{
@@ -367,19 +383,17 @@
     </div>
   </section>
 
-  <!-- Text pod hero -->
-  <section>
-    <div class="container">
-      <div class="intro">
-        <div class="intro-quote">„Vytváříme domovy, které inspirují.“</div>
-        <p>
-          Naše developerská společnost staví moderní rodinné domy a rezidenční projekty s důrazem na kvalitu,
-          estetiku a pohodlí. Každý projekt je navržen tak, aby nabízel nejen prostor k bydlení, ale i místo,
-          kde vznikají životní příběhy.
-        </p>
-      </div>
+ <!-- Text pod hero -->
+<section class="intro-section">
+  <div class="container">
+    <div class="intro">
+      <div class="intro-quote">Domovy, které dávají smysl.</div>
+      <p>
+        NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí. Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu. Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- 3 náhledy: NABÍDKA -->
   <section>
