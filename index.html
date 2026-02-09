@@ -48,15 +48,12 @@
         url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
       display:flex;align-items:center;color:#fff
     }
-    /* posun víc k levé straně */
     .hero-inner{max-width:1200px;margin:auto;padding:0 10px;display:grid;grid-template-columns:1fr;gap:18px}
 
     .hero h1{
       font-size:clamp(36px,5vw,54px);
       margin-bottom:0;
       max-width:22ch;
-
-      /* ANIMACE (fade + jemný posun) */
       opacity:0;
       transform:translateY(14px);
       animation:heroIn .9s ease-out .12s forwards;
@@ -66,7 +63,6 @@
       font-size:.55em;
       font-weight:600;
       margin-top:10px;
-
       opacity:0;
       transform:translateY(10px);
       animation:heroIn .9s ease-out .32s forwards;
@@ -81,49 +77,29 @@
     .section-sub{font-size:14px;color:#666;margin-bottom:24px}
 
     /* INTRO TEXT (pod hero) – bez rámečku, větší text */
-.intro-section{
-  background:#f4f4f4; /* stejné jako pozadí stránky */
-  padding:40px 20px;
-}
-
-.intro{
-  background:transparent;
-  border:none;
-  box-shadow:none;
-  border-radius:0;
-  padding:0;
-}
-
-.intro-quote{
-  font-size:28px;
-  font-weight:900;
-  margin-bottom:12px;
-  color:#222;
-}
-
-.intro p{
-  color:#444;
-  font-size:18px;
-  line-height:1.75;
-  max-width:90ch;
-}
-
-    /* ABOUT (samostatná sekce pro záložku O nás) */
-    .about{
-      background:#fff;border-radius:20px;
-      box-shadow:0 10px 28px rgba(0,0,0,.06);
-      border:1px solid #eef0f2;
-      padding:28px;
-      display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start
+    .intro-section{
+      background:#f4f4f4;
+      padding:40px 20px;
     }
-    .about h3{font-size:20px;margin-bottom:8px}
-    .about p{color:#555;font-size:14px;max-width:85ch}
-    .about-cards{display:grid;gap:10px}
-    .mini{
-      background:#f7f8f9;border:1px solid #eceff2;border-radius:14px;padding:14px
+    .intro{
+      background:transparent;
+      border:none;
+      box-shadow:none;
+      border-radius:0;
+      padding:0;
     }
-    .mini strong{display:block;font-size:13px;margin-bottom:4px}
-    .mini span{color:#666;font-size:12px}
+    .intro-quote{
+      font-size:28px;
+      font-weight:900;
+      margin-bottom:12px;
+      color:#222;
+    }
+    .intro p{
+      color:#444;
+      font-size:18px;
+      line-height:1.75;
+      max-width:90ch;
+    }
 
     /* CARDS (náhledy projektů) */
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
@@ -171,7 +147,7 @@
     .view{display:none}
     .view.active{display:block}
 
-    /* PROJECT DETAIL HERO */
+    /* PROJECT/ABOUT DETAIL HERO */
     .detail-hero{
       min-height:52vh;color:#fff;display:flex;align-items:center;
       background:
@@ -243,9 +219,7 @@
       }
       .nav-links > a::after, .nav-links > button::after{display:none}
       .form-wrap{grid-template-columns:1fr}
-      .about{grid-template-columns:1fr}
       .overlay{padding-top:86px}
-      /* na mobilu necháme trochu víc okraje, aby to nebylo úplně nalepené */
       .hero-inner{padding:0 14px}
     }
   </style>
@@ -262,7 +236,7 @@
     </div>
 
     <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <a href="#" onclick="closeMenu(); return false;">O NÁS</a>
+      <a href="#" onclick="openAbout(); closeMenu(); return false;">O NÁS</a>
       <button type="button" id="btnOffer">PROJEKTY V NABÍDCE</button>
       <button type="button" id="btnPrep">PROJEKTY V PŘÍPRAVĚ</button>
       <a href="#poptavka" onclick="goHome();closeMenu();">NEZÁVAZNÁ POPTÁVKA</a>
@@ -371,27 +345,6 @@
      HOME VIEW
 ========================= -->
 <div class="view active" id="view-home">
-<!-- =========================
-     O NÁS VIEW
-========================= -->
-<div class="view" id="view-about">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>O nás</h2>
-      <p>NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <p style="font-size:18px;max-width:900px;line-height:1.7">
-        Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu.
-        Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
-      </p>
-    </div>
-  </section>
-</div>
 
   <section class="hero" id="top">
     <div class="hero-inner">
@@ -404,17 +357,17 @@
     </div>
   </section>
 
- <!-- Text pod hero -->
-<section class="intro-section">
-  <div class="container">
-    <div class="intro">
-      <div class="intro-quote">Domovy, které dávají smysl.</div>
-      <p>
-        NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí. Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu. Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
-      </p>
+  <!-- Text pod hero -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro">
+        <div class="intro-quote">Domovy, které dávají smysl.</div>
+        <p>
+          NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí. Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu. Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- 3 náhledy: NABÍDKA -->
   <section>
@@ -557,6 +510,30 @@
     </div>
   </section>
 
+</div>
+
+<!-- =========================
+     O NÁS VIEW
+========================= -->
+<div class="view" id="view-about">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>O nás</h2>
+      <p>
+        NEMOVEX GROUP se zaměřuje na výstavbu moderních rodinných domů a rezidenčních projektů, které spojují kvalitní architekturu, funkční řešení a příjemné prostředí.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p style="font-size:18px;max-width:900px;line-height:1.75;color:#444">
+        Naším cílem je vytvářet bydlení, které nabízí pohodlí, estetiku a dlouhodobou hodnotu.
+        Každý projekt je navržen tak, aby se stal místem, kde se dobře žije a kde vznikají nové životní příběhy.
+      </p>
+    </div>
+  </section>
 </div>
 
 <!-- =========================
@@ -834,17 +811,18 @@
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       const el = document.getElementById(viewId);
       if(el) el.classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
+      window.scrollTo({top:0, behavior:'auto'});
     }
 
     window.goHome = function(){
       showView('view-home');
       closeOverlay();
-      window.openAbout = function(){
-  closeOverlay();
-  closeMenu();
-  showView('view-about');
-}
+    }
+
+    window.openAbout = function(){
+      closeOverlay();
+      closeMenu();
+      showView('view-about');
     }
 
     window.openProject = function(key){
