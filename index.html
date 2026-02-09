@@ -48,8 +48,32 @@
         url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
       display:flex;align-items:center;color:#fff
     }
-    .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:18px}
-    .hero h1{font-size:clamp(36px,5vw,54px);margin-bottom:0;max-width:18ch}
+    /* posun víc k levé straně */
+    .hero-inner{max-width:1200px;margin:auto;padding:0 10px;display:grid;grid-template-columns:1fr;gap:18px}
+
+    .hero h1{
+      font-size:clamp(36px,5vw,54px);
+      margin-bottom:0;
+      max-width:22ch;
+
+      /* ANIMACE (fade + jemný posun) */
+      opacity:0;
+      transform:translateY(14px);
+      animation:heroIn .9s ease-out .12s forwards;
+    }
+    .hero h1 .sub{
+      display:block;
+      font-size:.55em;
+      font-weight:600;
+      margin-top:10px;
+
+      opacity:0;
+      transform:translateY(10px);
+      animation:heroIn .9s ease-out .32s forwards;
+    }
+    @keyframes heroIn{
+      to{opacity:1;transform:translateY(0)}
+    }
 
     section{padding:70px 20px}
     .container{max-width:1200px;margin:auto}
@@ -205,6 +229,8 @@
       .form-wrap{grid-template-columns:1fr}
       .about{grid-template-columns:1fr}
       .overlay{padding-top:86px}
+      /* na mobilu necháme trochu víc okraje, aby to nebylo úplně nalepené */
+      .hero-inner{padding:0 14px}
     }
   </style>
 </head>
@@ -333,7 +359,10 @@
   <section class="hero" id="top">
     <div class="hero-inner">
       <div>
-        <h1>NEMOVEX GROUP<br>Stavíme rodinné a bytové domy v lukrativních oblastech pro život.</h1>
+        <h1>
+          NEMOVEX GROUP
+          <span class="sub">Exkluzivní bydlení pro výjimečné životy.</span>
+        </h1>
       </div>
     </div>
   </section>
