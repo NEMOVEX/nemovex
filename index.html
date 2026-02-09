@@ -225,6 +225,49 @@
       .overlay{padding-top:86px}
       .hero-inner{padding:0 14px}
     }
+    /* === FIX: Projekty (karty) – když se něco rozbije, tohle to srovná === */
+.cards{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap:20px !important;
+  align-items:stretch !important;
+}
+
+.card{
+  background:#fff !important;
+  border-radius:16px !important;
+  overflow:hidden !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.08) !important;
+  transition:.25s !important;
+  cursor:pointer !important;
+
+  /* důležité: držíme kartu jako sloupec (obrázek nahoře, text dole) */
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+.card-img{
+  height:180px !important;
+  background-position:center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+  flex:0 0 auto !important;
+}
+
+.card-body{
+  padding:16px !important;
+}
+
+.card-body h3{
+  font-size:16px !important;
+  margin-bottom:6px !important;
+}
+
+.card-body p{
+  font-size:13px !important;
+  color:#666 !important;
+}
+
   </style>
 </head>
 
