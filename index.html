@@ -865,6 +865,23 @@
 </footer>
 
 <script>
+  // ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get('project');
+
+  if (!project) {
+    // zavři všechny detaily projektů
+    document.querySelectorAll('.project-detail').forEach(el => {
+      el.style.display = 'none';
+    });
+
+    // zobraz úvodní stránku
+    const homepage = document.getElementById('homepage');
+    if (homepage) homepage.style.display = 'block';
+  }
+});
+
 (function(){
   const navLinks = document.getElementById('navLinks');
   const hamburger = document.getElementById('hamburger');
