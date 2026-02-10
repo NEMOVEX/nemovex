@@ -70,6 +70,7 @@
       to{opacity:1;transform:translateY(0)}
     }
 
+
     section{padding:70px 20px}
     .container{max-width:1200px;margin:auto}
     .section-title{font-size:26px;margin-bottom:10px}
@@ -140,7 +141,7 @@
   border:1px solid #e6eaee;
 
 }
-    }
+
     .proj-item:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
     .proj-left{display:flex;flex-direction:column;gap:2px}
     .proj-title{font-weight:900;font-size:14px}
@@ -193,7 +194,12 @@
 
     footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
 
-    @media(max-width:900px){
+    
+    /* GALLERY */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .gallery-img{width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:zoom-in;display:block}
+
+@media(max-width:900px){
       .hamburger{display:flex}
       .nav-links{
         display:none;flex-direction:column;width:100%;
@@ -210,6 +216,7 @@
       .overlay{padding-top:86px}
       .hero-inner{padding:0 14px}
     }
+
   </style>
 </head>
 
@@ -274,21 +281,14 @@
 </div>
 
         <div class="proj-item" onclick="openProject('offer-hermann')">
+          <div class=\"proj-img\" style=\"background-image:url('hermann.jpg')\"></div>
           <div class="proj-left">
             <div class="proj-title">BD Hermann</div>
             <div class="proj-sub">Projekt v nabídce</div>
           </div>
           <div class="chip">Otevřít</div>
         </div>
-
-        <div class="proj-item" onclick="openProject('offer-tresnovka')">
-          <div class="proj-left">
-            <div class="proj-title">Nová Třešňovka III. etapa</div>
-            <div class="proj-sub">Komplex bytových domů a rodinné výstavby</div>
-          </div>
-          <div class="chip">Otevřít</div>
-        </div>
-      </div>
+</div>
     </div>
   </div>
 </div>
@@ -574,24 +574,15 @@
     <div class="container">
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
         <p style="color:#555;font-size:15px;max-width:90ch">
-          Projekt 4 bytových domů a 2 rodinných domů, momentálně ve fázy přípravy.
-          <section>
-  <div class="container">
-    <h3 style="margin-bottom:16px">Fotogalerie projektu</h3>
+  Projekt 4 bytových domů a 2 rodinných domů, momentálně ve fázi přípravy.
+</p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
-
-      <img src="images/zterasy.jpg" style="width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12)">
-
-      <img src="images/zterasy.jpg" style="width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12)">
-
-      <img src="images/zterasy.jpg" style="width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12)">
-
-    </div>
-  </div>
-</section>
-
-        </p>
+<h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+<div class="gallery-grid">
+  <img class="gallery-img" src="images/zterasy.jpg" alt="Západní terasy – vizualizace 1" loading="lazy">
+  <img class="gallery-img" src="images/zterasy.jpg" alt="Západní terasy – vizualizace 2" loading="lazy">
+  <img class="gallery-img" src="images/zterasy.jpg" alt="Západní terasy – vizualizace 3" loading="lazy">
+</div>
         <div style="margin-top:14px">
           <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
@@ -618,6 +609,14 @@
         <p style="color:#555;font-size:15px;max-width:90ch">
           Detail projektu doplníme. Pro více informací využijte nezávaznou poptávku.
         </p>
+
+        <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+        <div class="gallery-grid">
+          <img class="gallery-img" src="puravida.jpg" alt="Pura Vida – vizualizace 1" loading="lazy">
+          <img class="gallery-img" src="puravida.jpg" alt="Pura Vida – vizualizace 2" loading="lazy">
+          <img class="gallery-img" src="puravida.jpg" alt="Pura Vida – vizualizace 3" loading="lazy">
+        </div>
+
         <div style="margin-top:14px">
           <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
@@ -645,6 +644,15 @@
           Detail projektu doplníme. Pro více informací využijte nezávaznou poptávku.
         </p>
         <div style="margin-top:14px">
+
+        <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+        <div class="gallery-grid">
+          <img class="gallery-img" src="malesov.jpg" alt="Nový Malešov – vizualizace 1" loading="lazy">
+          <img class="gallery-img" src="malesov.jpg" alt="Nový Malešov – vizualizace 2" loading="lazy">
+          <img class="gallery-img" src="malesov.jpg" alt="Nový Malešov – vizualizace 3" loading="lazy">
+        </div>
+
+        <div style="margin-top:14px">
           <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
@@ -652,6 +660,7 @@
   </section>
 </div>
   
+
 <div class="view" id="view-offer-tresnovka">
   <section class="detail-hero" style="--bg:url('tresnovka.jpg')">
     <div class="container">
@@ -660,9 +669,198 @@
       <p>Komplex bytových domů a rodinné výstavby.</p>
     </div>
   </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Detail projektu doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+
+        <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+        <div class="gallery-grid">
+          <img class="gallery-img" src="tresnovka.jpg" alt="Nová Třešňovka – vizualizace 1" loading="lazy">
+          <img class="gallery-img" src="tresnovka.jpg" alt="Nová Třešňovka – vizualizace 2" loading="lazy">
+          <img class="gallery-img" src="tresnovka.jpg" alt="Nová Třešňovka – vizualizace 3" loading="lazy">
+        </div>
+
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- =========================
+     DETAIL: BD Hermann
+========================= -->
+<div class="view" id="view-offer-hermann">
+  <section class="detail-hero" style="--bg:url('hermann.jpg')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>BD Hermann</h2>
+      <p>Projekt v nabídce.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Detail projektu doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+
+        <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+        <div class="gallery-grid">
+          <img class="gallery-img" src="hermann.jpg" alt="BD Hermann – vizualizace 1" loading="lazy">
+          <img class="gallery-img" src="hermann.jpg" alt="BD Hermann – vizualizace 2" loading="lazy">
+          <img class="gallery-img" src="hermann.jpg" alt="BD Hermann – vizualizace 3" loading="lazy">
+        </div>
+
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================
+     DETAIL: R – Club
+========================= -->
+<div class="view" id="view-prep-rclub">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>R – Club</h2>
+      <p>Luxusní bytový dům s více než 72 jednotkami (projekt v přípravě).</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================
+     DETAIL: Rezidenční čtvrť Hervítkovice
+========================= -->
+<div class="view" id="view-prep-hervitkovice">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Rezidenční čtvrť Hervítkovice</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================
+     DETAIL: RD Třibřichy
+========================= -->
+<div class="view" id="view-prep-tribrichy">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>RD Třibřichy</h2>
+      <p>Rodinné domy (projekt v přípravě).</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================
+     DETAIL: Projekt Rudník
+========================= -->
+<div class="view" id="view-prep-rudnik">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Projekt Rudník</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================
+     DETAIL: Projekt Voleč
+========================= -->
+<div class="view" id="view-prep-volec">
+  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2200&q=70')">
+    <div class="container">
+      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
+      <h2>Projekt Voleč</h2>
+      <p>Projekt v přípravě.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+        <p style="color:#555;font-size:15px;max-width:90ch">
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
+        </p>
+        <div style="margin-top:14px">
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <footer>
+  © 2026 NEMOVEX GROUP · Developerské projekty
+</footer>
+
   © 2026 NEMOVEX GROUP · Developerské projekty
 </footer>
 
@@ -806,7 +1004,28 @@ document.addEventListener('keydown', (e) => {
     document.body.style.overflow = '';
   }
 
+
+  // Klik na fotku v galerii otevře lightbox (bez inline onclicků)
+  document.addEventListener('click', (e) => {
+    const t = e.target;
+    if(t && t.classList && t.classList.contains('gallery-img')){
+      window.openImage(t.currentSrc || t.src, t.alt || '');
+    }
+  });
+
+  // Zavření lightboxu klikem mimo obrázek
+  const imgOverlay = document.getElementById('imgOverlay');
+  if(imgOverlay){
+    imgOverlay.addEventListener('click', (e) => {
+      if(e.target === imgOverlay) window.closeImage();
+    });
+  }
+
 })();
+</script>
+
+
+
 <!-- ===== Lightbox (zvětšení fotek) ===== -->
 <div class="overlay" id="imgOverlay" aria-hidden="true" style="padding:40px 16px;align-items:center">
   <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
@@ -816,8 +1035,6 @@ document.addEventListener('keydown', (e) => {
     <img id="imgOverlayEl" src="" alt="" style="width:100%;max-height:80vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);background:#000">
   </div>
 </div>
-  
-</script>
 
 </body>
 </html>
