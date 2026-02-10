@@ -725,7 +725,12 @@
   if(prepOverlay){
     prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
   }
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeOverlay(); });
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    closeOverlay();
+    if(window.closeImage) window.closeImage();
+  }
+});
 
   function showView(viewId){
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -777,7 +782,41 @@
       window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
     });
   }
+    // ===== Lightbox =====
+  window.openImage = function(src, altText){
+    const ov = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(!ov || !img) return;
+
+    img.src = src;
+    img.alt = altText || '';
+    ov.classList.add('show');
+    ov.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  window.closeImage = function(){
+    const ov = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(img) img.src = '';
+    if(ov){
+      ov.classList.remove('show');
+      ov.setAttribute('aria-hidden','true');
+    }
+    document.body.style.overflow = '';
+  }
+
 })();
+<!-- ===== Lightbox (zvětšení fotek) ===== -->
+<div class="overlay" id="imgOverlay" aria-hidden="true" style="padding:40px 16px;align-items:center">
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:10px">
+      <button class="btn-primary" type="button" onclick="closeImage()">Zavřít</button>
+    </div>
+    <img id="imgOverlayEl" src="" alt="" style="width:100%;max-height:80vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);background:#000">
+  </div>
+</div>
+  
 </script>
 
 </body>
