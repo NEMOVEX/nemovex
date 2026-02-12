@@ -84,6 +84,21 @@
     .container{max-width:1200px;margin:auto}
     .section-title{font-size:26px;margin-bottom:10px}
     .section-sub{font-size:14px;color:#666;margin-bottom:24px}
+    
+    /* CONTACT FULL WIDTH */
+.contact-section{
+  background:#2b2b2b;
+  padding:80px 0;
+}
+
+.contact{
+  color:#fff;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  align-items:center;
+  justify-content:space-between;
+}
 
     /* INTRO TEXT (pod hero) – bez rámečku, větší text */
     .intro-section{padding:40px 20px}
@@ -529,20 +544,25 @@
   </section>
 
   <!-- Kontakt -->
-  <section id="kontakt">
-    <div class="container">
-      <div class="contact">
-        <div>
-          <h3>Kontakt</h3>
-          <p>
-            📞 <a href="tel:+420739073333">+420 739073333</a><br>
-            ✉️ <a href="mailto:info@nemovex.cz">info@nemovex.cz</a>
-          </p>
-        </div>
-        <a href="mailto:info@nemovex.cz" class="btn-primary">Kontaktovat NEMOVEX</a>
+ <!-- Kontakt -->
+<section id="kontakt" class="contact-section">
+  <div class="container">
+    <div class="contact">
+      <div>
+        <h3>Kontakt</h3>
+        <p>
+          <a href="tel:+420739073333">+420 739 073 333</a><br>
+          <a href="mailto:info@nemovex.cz">info@nemovex.cz</a>
+        </p>
       </div>
+
+      <a href="mailto:info@nemovex.cz" class="btn-primary">
+        Kontaktovat NEMOVEX
+      </a>
     </div>
-  </section>
+  </div>
+</section>
+
 </div>
 
 <!-- =========================
