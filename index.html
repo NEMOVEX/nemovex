@@ -87,11 +87,20 @@
     /* CARDS */
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
     .card{
-      background:#fff;border-radius:16px;overflow:hidden;
-      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      background:#fff;border-radius:18px;;overflow:hidden;
+      box-shadow: 
+      0 4px 12px rgba(0,0,0,0.05),
+      0 2px 4px rgba(0,0,0,0.04);
+
       transition:.25s;cursor:pointer
     }
-    .card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
+    .card:hover{  
+      transform:translateY(-4px);
+      box-shadow:
+      0 10px 24px rgba(0,0,0,0.08),
+      0 4px 8px rgba(0,0,0,0.05);
+}
+
     .card-img{
       height:190px;background:#ddd;overflow:hidden
     }
