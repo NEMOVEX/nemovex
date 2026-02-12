@@ -219,13 +219,15 @@
     /* --- Reveal animace při scrollu --- */
 .reveal{
   opacity:0;
-  transform: translateY(14px);
-  transition: opacity .6s ease, transform .6s ease;
-  will-change: opacity, transform;
+  transform:translateY(30px);
+  transition:opacity .6s ease, transform .6s ease;
+  will-change:opacity, transform;
 }
+
 .reveal.is-visible{
   opacity:1;
-  transform: none;
+  transform:none;
+
 }
 
   </style>
