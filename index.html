@@ -1202,10 +1202,14 @@ document.addEventListener('keydown', (e) => {
     openLightbox(window.__gallery.list[window.__gallery.index]);
   }
 
-  window.lbShow = function(){
-    if(!window.__gallery.list.length) return;
-    openLightbox(window.__gallery.list[window.__gallery.index]);
-  }
+ window.lbShow = function(){
+  if(!window.__gallery.list.length) return;
+
+  const img = document.getElementById('imgOverlayEl');
+  if(!img) return;
+
+  img.src = window.__gallery.list[window.__gallery.index];
+}
 
   window.lbPrev = function(e){
     if(e) e.stopPropagation();
