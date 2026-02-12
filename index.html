@@ -1153,9 +1153,10 @@ document.addEventListener('keydown', (e) => {
 <!-- ===== Lightbox (zvětšení fotek) ===== -->
 <div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
 
-  <!-- Šipka vlevo -->
-  <button type="button"onclick="event.stopPropagation(); lbPrev(event)"
-   style="
+<!-- Šipka vlevo -->
+<button type="button"
+onclick="event.stopPropagation(); lbPrev(event)"
+style="
 position:fixed;
 left:24px;
 top:50%;
@@ -1163,11 +1164,10 @@ transform:translateY(-50%);
 width:60px;
 height:60px;
 border-radius:50%;
-border:1px solid rgba(255,255,255,0.4);
-background:rgba(0,0,0,0.55);
-border:1px solid rgba(255,255,255,0.6);
+background:rgba(0,0,0,0.75);
+border:2px solid rgba(255,255,255,0.9);
 color:#ffffff;
-box-shadow:0 8px 25px rgba(0,0,0,0.4);
+box-shadow:0 12px 35px rgba(0,0,0,0.6);
 font-size:32px;
 display:flex;
 align-items:center;
@@ -1176,12 +1176,16 @@ cursor:pointer;
 z-index:9999;
 transition:all .25s ease;
 "
-onmouseover="this.style.background='rgba(0,0,0,0.8)'"
-onmouseout="this.style.background='rgba(0,0,0,0.55)'"
-    ‹
-  </button>
+onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
+onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
+>
+❮
+</button>
 
- <!-- Šipka vpravo -->
+
+
+
+<!-- Šipka vpravo -->
 <button type="button"
 onclick="event.stopPropagation(); lbNext(event)"
 style="
@@ -1192,11 +1196,10 @@ transform:translateY(-50%);
 width:60px;
 height:60px;
 border-radius:50%;
-border:1px solid rgba(255,255,255,0.4);
-background:rgba(0,0,0,0.55);
-border:1px solid rgba(255,255,255,0.6);
+background:rgba(0,0,0,0.75);
+border:2px solid rgba(255,255,255,0.9);
 color:#ffffff;
-box-shadow:0 8px 25px rgba(0,0,0,0.4);
+box-shadow:0 12px 35px rgba(0,0,0,0.6);
 font-size:32px;
 display:flex;
 align-items:center;
@@ -1205,16 +1208,15 @@ cursor:pointer;
 z-index:9999;
 transition:all .25s ease;
 "
-onmouseover="this.style.background='rgba(0,0,0,0.8)'"
-onmouseout="this.style.background='rgba(0,0,0,0.55)'"
-  >
+onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
+onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
+>
+  ❯
 </button>
 
-    ›
-  </button>
 
-  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
-    
+
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none"> 
 
     <img id="imgOverlayEl" src="" alt=""
       onclick="event.stopPropagation()"
