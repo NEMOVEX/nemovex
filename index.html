@@ -216,19 +216,6 @@
       .overlay{padding-top:86px}
       .hero-inner{padding:0 14px}
     }
-    /* --- Reveal animace při scrollu --- */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity .6s ease, transform .6s ease;
-  will-change:opacity, transform;
-}
-
-.reveal.is-visible{
-  opacity:1;
-  transform:none;
-
-}
 
   </style>
 </head>
@@ -685,7 +672,7 @@
 
   <section>
     <div class="container">
-      <div class="reveal" style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;color:#444;font-size:15px;line-height:1.7;margin-bottom:10px">
 
 
@@ -1092,55 +1079,8 @@ document.addEventListener('keydown', (e) => {
   }
 
 })();
-/* --- Reveal animace při scrollu --- */
-(function(){
-  let io = null;
-
-  function initReveal(){
-    const items = document.querySelectorAll('.reveal');
-    if(!items.length) return;
-
-    // fallback pro staré prohlížeče
-    if(!('IntersectionObserver' in window)){
-      items.forEach(el => el.classList.add('is-visible'));
-      return;
-    }
-
-    // vytvoříme observer jen jednou
-    if(!io){
-      io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-    }
-
-    // pozorujeme jen prvky, které ještě nejsou viditelné
-    items.forEach(el => {
-      if(!el.classList.contains('is-visible')){
-        io.observe(el);
-      }
-    });
-  }
-
-  // spustit po načtení stránky
-  document.addEventListener('DOMContentLoaded', initReveal);
-
-  // spustit i po otevření detailu projektu (protože view se přepíná až po načtení)
-  const prevOpenProject = window.openProject;
-  window.openProject = function(key){
-    if(typeof prevOpenProject === 'function') prevOpenProject(key);
-
-    // malý odklad, aby se view stihlo zobrazit
-    setTimeout(initReveal, 60);
-  };
-})();
-
-});
 </script>
+
 
 
 <!-- ===== Lightbox (zvětšení fotek) ===== -->
