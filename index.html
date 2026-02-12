@@ -1151,7 +1151,7 @@ document.addEventListener('keydown', (e) => {
 
 
 <!-- ===== Lightbox (zvětšení fotek) ===== -->
-<div class="overlay" id="imgOverlay" aria-hidden="true" style="padding:0;align-items:center;justify-content:center;">
+<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
 
   <!-- Šipka vlevo -->
   <button type="button"
@@ -1176,11 +1176,10 @@ document.addEventListener('keydown', (e) => {
   </button>
 
   <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
-    <div style="display:flex;justify-content:flex-end;margin-bottom:10px">
-      <button class="btn-primary" type="button" onclick="closeImage()">Zavřít</button>
-    </div>
+    
 
     <img id="imgOverlayEl" src="" alt=""
+      onclick="event.stopPropagation()"
       style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);">
   </div>
 </div>
