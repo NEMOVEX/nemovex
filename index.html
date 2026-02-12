@@ -730,12 +730,30 @@
 
 </div>
         <div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
-        <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
-        <div class="gallery-grid">
-         <img class="gallery-img" src="images/Klenovka1.jpg" alt="Nová Třešnovka – vizualizace 1" loading="lazy">
-          <img class="gallery-img" src="images/Klenovka2.jpg" alt="Nová Třešnovka – vizualizace 2" loading="lazy">
-           <img class="gallery-img" src="images/Klenovka3.jpg" alt="Nová Třešnovka – vizualizace 3" loading="lazy">
-        </div>
+       <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+
+<div class="gallery-grid">
+
+  <img class="gallery-img"
+       src="images/tresnovka1.jpg"
+       alt="Třešnovka – vizualizace 1"
+       loading="lazy"
+       onclick="openGallery(this, 0)">
+
+  <img class="gallery-img"
+       src="images/tresnovka2.jpg"
+       alt="Třešnovka – vizualizace 2"
+       loading="lazy"
+       onclick="openGallery(this, 1)">
+
+  <img class="gallery-img"
+       src="images/tresnovka3.jpg"
+       alt="Třešnovka – vizualizace 3"
+       loading="lazy"
+       onclick="openGallery(this, 2)">
+
+</div>
+
 
         <div style="margin-top:14px">
           <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
@@ -1312,6 +1330,46 @@ onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='tran
 </script>
 
 </div>
+<script>
+let lbImages = [];
+let lbIndex = 0;
+
+function openGallery(imgEl, index) {
+  const grid = imgEl.closest('.gallery-grid');
+  if (!grid) return;
+
+  const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+  if (!imgs.length) return;
+
+  lbImages = imgs.map(img => img.src);
+  lbIndex = imgs.indexOf(imgEl);
+
+  const overlay = document.getElementById('imgOverlay');
+  const overlayImg = document.getElementById('imgOverlayEl');
+
+  overlayImg.src = lbImages[lbIndex];
+  overlay.style.display = 'flex';
+  overlay.setAttribute('aria-hidden', 'false');
+}
+
+function lbPrev(e) {
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+  document.getElementById('imgOverlayEl').src = lbImages[lbIndex];
+}
+
+function lbNext(e) {
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % lbImages.length;
+  document.getElementById('imgOverlayEl').src = lbImages[lbIndex];
+}
+
+function closeImage() {
+  const overlay = document.getElementById('imgOverlay');
+  overlay.style.display = 'none';
+  overlay.setAttribute('aria-hidden', 'true');
+}
+</script>
 
 </body>
 </html>
