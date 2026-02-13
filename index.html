@@ -275,58 +275,59 @@
     </nav>
   </div>
 </header>
-
-<!-- ===== Overlay seznam: NABÍDKA ===== -->
-<div class="overlay" id="offerOverlay" aria-hidden="true">
-  <div class="panel" role="dialog" aria-modal="true" aria-label="Projekty v nabídce">
+<!-- =========================
+     Overlay seznam: NABÍDKA
+========================== -->
+<div class="overlay" id="offerOverlay" aria-hidden="true" onclick="closeOffer()">
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Projekty v nabídce" onclick="event.stopPropagation()">
     <div class="panel-inner">
+
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
         <div>
           <div style="font-weight:900;font-size:16px">Projekty v nabídce</div>
           <div style="color:#666;font-size:12px">Kliknutím otevřete detail projektu.</div>
         </div>
-        <button class="btn-primary" type="button" id="btnCloseOffer">Zavřít</button>
+        <button class="btn-primary" type="button" id="btnCloseOffer" onclick="closeOffer()">Zavřít</button>
       </div>
 
       <div class="proj-list" style="margin-top:14px">
+
+        <!-- Třešňovka -->
+        <div class="proj-item" onclick="openProject('offer-tresnovka')">
+          <div class="proj-img" style="background-image:url('tresnovka.jpg')"></div>
+          <div class="proj-left">
+            <div class="proj-title">Nová Třešňovka III. etapa</div>
+            <div class="proj-sub">Komplex bytových domů a rodinné výstavby.</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
+
+        <!-- Pura Vida -->
         <div class="proj-item" onclick="openProject('offer-puravida')">
           <div class="proj-img" style="background-image:url('puravida.jpg')"></div>
           <div class="proj-left">
             <div class="proj-title">Rezidenční komplex Pura Vida</div>
-            <div class="proj-sub">120 servisovaných apartmánů</div>
+            <div class="proj-sub">120 servisovaných apartmánů.</div>
           </div>
           <div class="chip">Otevřít</div>
         </div>
 
-    <div class="proj-item" onclick="openProject('offer-malesov')">
-      <div class="proj-img" style="background-image:url('malesov.jpg')"></div>
-      <div class="proj-left">
-        <div class="proj-title">Nový Malešov</div>
-        <div class="proj-sub">Pozemky + 33 bytových jednotek</div>
-      </div>
-    <div class="chip">Otevřít</div>
-  </div>
-        
-<div class="proj-item" onclick="openProject('offer-tresnovka')">
-  <div class="proj-img" style="background-image:url('tresnovka.jpg')"></div>
-  <div class="proj-left">
-    <div class="proj-title">Nová Třešňovka III. etapa</div>
-    <div class="proj-sub">Komplex bytových domů a rodinné výstavby</div>
-  </div>
-  <div class="chip">Otevřít</div>
-</div>
-        <div class="proj-item" onclick="openProject('offer-hermann')">
-         <div class="proj-img" style="background-image:url('hermann.jpg')"></div>
+        <!-- Malešov -->
+        <div class="proj-item" onclick="openProject('offer-malesov')">
+          <div class="proj-img" style="background-image:url('malesov.jpg')"></div>
           <div class="proj-left">
-            <div class="proj-title">BD Hermann</div>
-            <div class="proj-sub">Projekt v nabídce</div>
+            <div class="proj-title">Nový Malešov</div>
+            <div class="proj-sub">Pozemky + 33 bytových jednotek.</div>
           </div>
           <div class="chip">Otevřít</div>
         </div>
-</div>
-    </div>
-  </div>
-</div>
+
+      </div><!-- /.proj-list -->
+
+    </div><!-- /.panel-inner -->
+  </div><!-- /.panel -->
+</div><!-- /.overlay -->
+
 
 <!-- ===== Overlay seznam: PŘÍPRAVA ===== -->
 <div class="overlay" id="prepOverlay" aria-hidden="true">
