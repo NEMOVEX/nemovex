@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="NEMOVEX GROUP – moderní developerské projekty, rodinné domy a bytové projekty." />
 
+
   <style>
     *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
     body{background:#f9fafb;color:#222;line-height:1.6;scroll-behavior:smooth}
@@ -354,6 +355,87 @@
   border-color:#ffffff;
   transform:translateY(-3px);
   background:rgba(255,255,255,0.1);
+}
+/* ===== FOOTER ===== */
+.footer{
+  background:#1f1f1f;
+  color:#ffffff;
+  padding:60px 0 28px;
+}
+
+.footer-top{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+
+  display:flex;
+  gap:80px;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.footer-col{
+  min-width:260px;
+}
+
+.footer h3{
+  margin:0 0 18px;
+  font-size:24px;
+}
+
+.footer-link{
+  display:block;
+  color:#ffffff;
+  text-decoration:none;
+  margin-bottom:12px;
+}
+
+.footer-link:hover{
+  text-decoration:underline;
+}
+
+/* social ikony uprostřed */
+.social-links{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin:28px 0 18px;
+}
+
+.social-links a{
+  width:40px;
+  height:40px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:50%;
+  transition:0.2s ease;
+}
+
+.social-links a:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.08);
+}
+
+.social-links svg{
+  width:18px;
+  height:18px;
+  fill:#fff;
+}
+
+/* copyright dole uprostřed */
+.footer-bottom{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+
+  text-align:center;
+  font-size:13px;
+  color:#aaaaaa;
+  line-height:1.6;
 }
 
   </style>
@@ -1132,69 +1214,46 @@
 </section>
 
 </div>
-<footer style="background:#1f1f1f; color:#ffffff; padding:60px 60px 20px 60px;">
-
-    <!-- Horní část (Adresa + Kontakt) -->
-    <div style="display:flex; gap:120px; flex-wrap:wrap;">
-
-        <!-- Adresa -->
-        <div style="min-width:260px;">
-            <h3 style="margin-bottom:20px; font-size:24px;">
-                Adresa a sídlo společnosti
-            </h3>
-
-            <strong>Nemovex a.s.</strong><br>
-            IČO: 17682622<br>
-            Havlíčkova 7<br>
-            537 01 Chrudim
-        </div>
-
-        <!-- Kontakt -->
-        <div style="min-width:260px;">
-            <h3 style="margin-bottom:20px; font-size:24px;">
-                Kontakt
-            </h3>
-
-            <a href="mailto:info@nemovex.cz" style="color:#fff; text-decoration:none; display:block; margin-bottom:12px;">
-                info@nemovex.cz
-            </a>
-
-            <a href="tel:+420739073333" style="color:#fff; text-decoration:none; display:block; margin-bottom:12px;">
-                739 073 333
-            </a>
-
-            <a href="https://www.nemovex.cz" target="_blank" style="color:#fff; text-decoration:none; display:block;">
-                www.nemovex.cz
-            </a>
-        </div>
-
+<footer id="kontakt" class="footer">
+  <div class="footer-top">
+    <!-- Levá část -->
+    <div class="footer-col">
+      <h3>Adresa a sídlo společnosti</h3>
+      <strong>Nemovex a.s.</strong><br>
+      IČO: 17682622<br>
+      Havlíčkova 7<br>
+      537 01 Chrudim
     </div>
 
-    <!-- 👇 SEM PŘIJDOU IKONY -->
-    <div style="margin-top:30px; text-align:center;">
-  <div class="social-links">
+    <!-- Pravá část -->
+    <div class="footer-col">
+      <h3>Kontakt</h3>
+
+      <a href="mailto:info@nemovex.cz" class="footer-link">info@nemovex.cz</a>
+      <a href="tel:+420739073333" class="footer-link">739 073 333</a>
+      <a href="https://www.nemovex.cz" target="_blank" class="footer-link">www.nemovex.cz</a>
+    </div>
+  </div>
+
+  <!-- Sociální ikony (zatím klidně #) -->
+  <div class="social-links" aria-label="Sociální sítě">
     <a href="#" target="_blank" aria-label="Facebook">
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07C2 17.1 5.66 21.25 10.44 22v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.9h-2.3V22C18.34 21.25 22 17.1 22 12.07z"/>
+        <path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07C2 17.1 5.66 21.28 10.44 22v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22C18.34 21.28 22 17.1 22 12.07z"/>
       </svg>
     </a>
 
     <a href="#" target="_blank" aria-label="Instagram">
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/>
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.2-2.4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
       </svg>
     </a>
   </div>
-</div>
 
-    </div>
-
-    <!-- 👇 Copyright úplně dole -->
-    <div style="margin-top:30px; text-align:center; font-size:13px; color:#aaaaaa;">
-        © 2026 NEMOVEX GROUP – Developerské projekty<br>
-        Stránky jsou ve výstavbě, některé fotky mohou být pouze ilustrační.
-    </div>
-
+  <div class="footer-bottom">
+    © 2026 NEMOVEX GROUP – Developerské projekty<br>
+    Stránky jsou ve výstavbě, některé fotky mohou být pouze ilustracní.
+  </div>
 </footer>
 
 <script>
