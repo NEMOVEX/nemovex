@@ -129,10 +129,13 @@
 
 
     /* CARDS */
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+   .cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:28px;
+}
+
    .card{
-  display:flex;                 /* přidat */
-  flex-direction:column;        /* přidat */
   background:#fff;
   border-radius:18px;
   overflow:hidden;
@@ -158,20 +161,34 @@
     .card-img img{
       width:100%;height:100%;object-fit:cover;display:block
     }
-    ..card-body{
-  padding:16px;
-  display:flex;          /* přidat */
-  flex-direction:column; /* přidat */
-  flex:1;                /* přidat */
+   .card-body{
+    padding:22px 24px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
 }
 
     .card-body h3{font-size:16px;margin-bottom:6px}
-    .card-body p{font-size:13px;color:#666}
+   .card-body p{
+  font-size:13px;
+  color:#666;
+  margin-bottom:18px;
+}
     .pill{display:inline-block;margin-top:10px;font-size:12px;font-weight:900;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px}
     .card-body .btn-primary,
 .card-body .pill{
   margin-top:auto;
   align-self:flex-start;
+}
+.card-body .btn-primary,
+.card-body .pill{
+    margin-top:auto;
+    align-self:start;
+}
+
+/* přidej sem ↓ */
+.card{
+    min-height: 100%;
 }
 
 
