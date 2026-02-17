@@ -18,6 +18,12 @@
     header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e0e0e0}
     .nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative}
     .logo{font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;cursor:pointer}
+    .logo img{
+  height:80px;
+  width:auto;
+  display:block;
+}
+
     .logo span{color:#1f7a4f}
 
     .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
@@ -261,7 +267,8 @@
 <header>
   <div class="nav">
     <div class="logo" onclick="goHome()">
-    <img src="images/logo nemovex.jpg" alt="NEMOVEX GROUP" style="height:65px;">
+  <img src="images/logo nemovex.png" alt="NEMOVEX GROUP">
+
     </div>
 
     <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
