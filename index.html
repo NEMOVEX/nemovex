@@ -127,70 +127,86 @@
     .intro{max-width:1200px;margin:0 auto;}
     .intro p{color:#444;font-size:18px;line-height:1.75}
 
+/* ===================== */
+/*        CARDS          */
+/* ===================== */
 
-    /* CARDS */
-   .cards{
+.cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
   gap:28px;
 }
 
-   .card{
+/* samotná karta */
+.card{
+  display:flex;
+  flex-direction:column;
+
   background:#fff;
   border-radius:18px;
   overflow:hidden;
-  border:1px solid #f0f0f0;
+  border:1px solid #efefef;
+
   box-shadow:
-  0 4px 12px rgba(0,0,0,0.05),
-  0 2px 4px rgba(0,0,0,0.04);
-  transition:.25s;
+    0 6px 18px rgba(0,0,0,0.06),
+    0 2px 6px rgba(0,0,0,0.04);
+
+  transition:0.25s ease;
   cursor:pointer;
 }
 
-    }
-    .card:hover{  
-      transform:translateY(-4px);
-      box-shadow:
-      0 10px 24px rgba(0,0,0,0.08),
-      0 4px 8px rgba(0,0,0,0.05);
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,0.08),
+    0 6px 10px rgba(0,0,0,0.05);
 }
 
-    .card-img{
-      height:190px;background:#ddd;overflow:hidden
-    }
-    .card-img img{
-      width:100%;height:100%;object-fit:cover;display:block
-    }
-   .card-body{
-    padding:22px 24px;
-    display:flex;
-    flex-direction:column;
-    flex:1;
+/* obrázek */
+.card-img{
+  height:210px;
+  overflow:hidden;
 }
 
-    .card-body h3{font-size:16px;margin-bottom:6px}
-   .card-body p{
-  font-size:13px;
+.card-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* obsah */
+.card-body{
+  padding:24px 26px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+/* nadpis */
+.card-body h3{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+/* popis */
+.card-body p{
+  font-size:14px;
   color:#666;
-  margin-bottom:18px;
+  margin-bottom:22px;
+  line-height:1.5;
 }
-    .pill{display:inline-block;margin-top:10px;font-size:12px;font-weight:900;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px}
-    .card-body .btn-primary,
-.card-body .pill{
+
+/* tlačítko dole */
+.card-body .btn-primary{
   margin-top:auto;
   align-self:flex-start;
 }
-.card-body .btn-primary,
-.card-body .pill{
-    margin-top:auto;
-    align-self:start;
-}
 
-/* přidej sem ↓ */
+/* jistota stejné výšky */
 .card{
-    min-height: 100%;
+  min-height:100%;
 }
-
 
     /* OVERLAY PANELS */
     .overlay{
