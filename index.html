@@ -553,16 +553,18 @@
     </div>
 
         <!-- R-Club -->
+<!-- R-Club -->
 <div class="proj-item" onclick="openProject('prep-rclub')">
-    <div class="proj-img" style="background-image:url('images/rclub.jpg')"></div>
+  <div class="proj-img" style="background-image:url('images/rclub.jpg')"></div>
 
-    <div class="proj-left">
-        <div class="proj-title">R – Club</div>
-        <div class="proj-sub">Luxusní bytový dům s více než 72 jednotkami</div>
-    </div>
+  <div class="proj-left">
+    <div class="proj-title">R – Club</div>
+    <div class="proj-sub">Luxusní bytový dům s více než 72 jednotkami</div>
+  </div>
 
-    <div class="chip">Otevřít</div>
+  <div class="chip">Otevřít</div>
 </div>
+
 
 
  <!-- Hervítkovice -->
@@ -1077,28 +1079,65 @@
 <!-- =========================
      DETAIL: R – Club
 ========================= -->
+<!-- =========================
+     DETAIL: R – Club
+========================= -->
 <div class="view" id="view-prep-rclub">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2200&q=70')">
+  <section class="detail-hero" style="--bg:url('images/rclub.jpg')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>R – Club</h2>
-      <p>Luxusní bytový dům s více než 72 jednotkami (projekt v přípravě).</p>
+      <p>Luxusní bytový dům s více než 72 jednotkami ve městě Chrudim.</p>
     </div>
   </section>
 
   <section>
     <div class="container">
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
-        <p style="color:#555;font-size:15px;max-width:90ch">
-          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
-        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-bottom:18px;">
+
+          <div style="background:#f8f9f7;border-radius:16px;padding:18px;border:1px solid #eef1ee">
+            <div style="font-weight:800;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Dispozice</div>
+            <div style="color:#444;line-height:1.6;">Informaci doplníme.</div>
+          </div>
+
+          <div style="background:#f8f9f7;border-radius:16px;padding:18px;border:1px solid #eef1ee">
+            <div style="font-weight:800;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Stav projektu</div>
+            <div style="color:#444;line-height:1.6;">Momentálně ve fázi přípravy.</div>
+          </div>
+
+          <div style="background:#f8f9f7;border-radius:16px;padding:18px;border:1px solid #eef1ee">
+            <div style="font-weight:800;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Lokalita</div>
+            <div style="color:#444;line-height:1.6;">Chrudim.</div>
+          </div>
+
+          <div style="background:#f8f9f7;border-radius:16px;padding:18px;border:1px solid #eef1ee">
+            <div style="font-weight:800;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Informace</div>
+            <div style="color:#444;line-height:1.6;">Pro více informací využijte nezávaznou poptávku.</div>
+          </div>
+
+        </div>
+
+        <div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
+
+        <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+        <div class="gallery-grid">
+          <!-- zatím máš jen 1 fotku, tak ji klidně dej 3× – později vyměníme -->
+          <img class="gallery-img" src="images/rclub.jpg" alt="R – Club – vizualizace 1" loading="lazy" onclick="openGallery(this, 0)">
+          <img class="gallery-img" src="images/rclub.jpg" alt="R – Club – vizualizace 2" loading="lazy" onclick="openGallery(this, 1)">
+          <img class="gallery-img" src="images/rclub.jpg" alt="R – Club – vizualizace 3" loading="lazy" onclick="openGallery(this, 2)">
+        </div>
+
         <div style="margin-top:14px">
           <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
+
       </div>
     </div>
   </section>
 </div>
+
 
 <!-- =========================
      DETAIL: Rezidenční čtvrť Hervítkovice
