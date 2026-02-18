@@ -580,15 +580,18 @@
         </div>
       
  <!-- Rudník -->
-        <div class="proj-item" onclick="openProject('prep-rudnik')">
-          <div class="proj-left"><div class="proj-title">Projekt Rudník</div><div class="proj-sub">Výstavba dvou rodinných domů </div></div>
-          <div class="chip">Otevřít</div>
-        </div>
+        <!-- Projekt Rudník -->
+<div class="proj-item" onclick="openProject('prep-rudnik')">
+  <div class="proj-img" style="background-image:url('images/rudnik.jpg')"></div>
 
-      </div>
-    </div>
+  <div class="proj-left">
+    <div class="proj-title">Projekt Rudník</div>
+    <div class="proj-sub">Výstavba dvou rodinných domů</div>
   </div>
+
+  <div class="chip">Otevřít</div>
 </div>
+
 
 <!-- =========================
      HOME VIEW
@@ -1195,13 +1198,54 @@
      DETAIL: Projekt Rudník
 ========================= -->
 <div class="view" id="view-prep-rudnik">
-  <section class="detail-hero" style="--bg:url('https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=2200&q=70')">
-    <div class="container">
-      <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
-      <h2>Projekt Rudník</h2>
-      <p>Projekt v přípravě.</p>
+
+  <div class="hero" style="background-image:url('images/rudnik.jpg')">
+    <button class="back-btn" onclick="goBack()">← Zpět</button>
+    <h1>RD Rudník</h1>
+    <p>Výstavba dvou rodinných domů (projekt v přípravě).</p>
+  </div>
+
+  <div class="section">
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Dispozice</h3>
+        <p>2 samostatné rodinné domy.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Stav projektu</h3>
+        <p>Momentálně ve fázi přípravy.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Lokalita</h3>
+        <p>Rudník leží v okrese Trutnov, v Královéhradecký kraj, na úpatí Krkonoš.
+Obec má přibližně 2 000 obyvatel a nabízí klidné bydlení v podhůří hor s výbornou dostupností do Vrchlabí i Trutnova a přímým napojením na turistické a cyklistické trasy.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Informace</h3>
+        <p>Pro více informací využijte nezávaznou poptávku.</p>
+      </div>
     </div>
-  </section>
+
+    <h3 style="margin:28px 0 14px">Fotogalerie projektu</h3>
+
+    <div class="gallery-grid">
+      <img class="gallery-img" src="images/rudnik1.jpg" alt="RD Rudník 1" loading="lazy" onclick="openGallery(this, 0)">
+      <img class="gallery-img" src="images/rudnik2.jpg" alt="RD Rudník 2" loading="lazy" onclick="openGallery(this, 1)">
+      <img class="gallery-img" src="images/rudnik3.jpg" alt="RD Rudník 3" loading="lazy" onclick="openGallery(this, 2)">
+      <img class="gallery-img" src="images/rudnik4.jpg" alt="RD Rudník 4" loading="lazy" onclick="openGallery(this, 3)">
+    </div>
+
+    <div style="margin-top:24px;">
+      <a href="#poptavka" class="btn-primary">Nezávazná poptávka</a>
+    </div>
+
+  </div>
+</div>
+
 
   <section>
     <div class="container">
