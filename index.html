@@ -520,7 +520,7 @@
 
 <!-- ===== Overlay seznam: PŘÍPRAVA ===== -->
 <div class="overlay" id="prepOverlay" aria-hidden="true">
-  <div class="panel" role="dialog" aria-modal="true" aria-label="Projekty v přípravě">
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Projekty v přípravě" onclick="event.stopPropagation()">
     <div class="panel-inner">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
         <div>
@@ -529,68 +529,71 @@
         </div>
         <button class="btn-primary" type="button" id="btnClosePrep">Zavřít</button>
       </div>
-      
- <!-- Západní terasy -->     
-    <div class="proj-item" onclick="openProject('prep-zapadni')">
-    <div class="proj-img" style="background-image:url('images/zterasy.jpg')"></div>
-    <div class="proj-left">
-      <div class="proj-title">Západní terasy</div>
-      <div class="proj-sub">Komplex 5 bytových domů a rodinné výstavby</div>
-    </div>
-    <div class="chip">Otevřít</div>
-  </div>
 
-<!-- Projekt Voleč -->
-    <div class="proj-item" onclick="openProject('prep-volec')">
-      <div class="proj-img" style="background-image:url('images/volec-hl.jpg')"></div>
+      <div class="proj-list" style="margin-top:14px">
 
-        <div class="proj-left">
-    <div class="proj-title">Projekt Voleč</div>
-      <div class="proj-sub">Komplex 14 rodinných domů u Lázní Bohdaneč </div>
-    </div>
+        <!-- Západní terasy -->
+        <div class="proj-item" onclick="openProject('prep-zapadni')">
+          <div class="proj-img" style="background-image:url('images/zterasy.jpg')"></div>
+          <div class="proj-left">
+            <div class="proj-title">Západní terasy</div>
+            <div class="proj-sub">Komplex 5 bytových domů a rodinné výstavby</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
 
-      <div class="chip">Otevřít</div>
-    </div>
+        <!-- Projekt Voleč -->
+        <div class="proj-item" onclick="openProject('prep-volec')">
+          <div class="proj-img" style="background-image:url('images/volec-hl.jpg')"></div>
+          <div class="proj-left">
+            <div class="proj-title">Projekt Voleč</div>
+            <div class="proj-sub">Komplex 14 rodinných domů u Lázní Bohdaneč</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
 
-<!-- R-Club -->
-<div class="proj-item" onclick="openProject('prep-rclub')">
-  <div class="proj-img" style="background-image:url('images/rclub.jpg')"></div>
+        <!-- R-Club -->
+        <div class="proj-item" onclick="openProject('prep-rclub')">
+          <div class="proj-img" style="background-image:url('images/rclub.jpg')"></div>
+          <div class="proj-left">
+            <div class="proj-title">R – Club</div>
+            <div class="proj-sub">Luxusní bytový dům s více než 72 jednotkami</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
 
-  <div class="proj-left">
-    <div class="proj-title">R – Club</div>
-    <div class="proj-sub">Luxusní bytový dům s více než 72 jednotkami</div>
-  </div>
-
-  <div class="chip">Otevřít</div>
-</div>
-
-
-
- <!-- Hervítkovice -->
+        <!-- Hervítkovice -->
         <div class="proj-item" onclick="openProject('prep-hervitkovice')">
-          <div class="proj-left"><div class="proj-title">Rezidenční čtvrť Hervítkovice</div><div class="proj-sub">Projekt v přípravě</div></div>
+          <div class="proj-left">
+            <div class="proj-title">Rezidenční čtvrť Hervítkovice</div>
+            <div class="proj-sub">Projekt v přípravě</div>
+          </div>
           <div class="chip">Otevřít</div>
         </div>
-      
- <!-- RD Třibřichy -->
+
+        <!-- RD Třibřichy -->
         <div class="proj-item" onclick="openProject('prep-tribrichy')">
-          <div class="proj-left"><div class="proj-title">RD Třibřichy</div><div class="proj-sub">Rodinné domy (příprava)</div></div>
+          <div class="proj-left">
+            <div class="proj-title">RD Třibřichy</div>
+            <div class="proj-sub">Rodinné domy (příprava)</div>
+          </div>
           <div class="chip">Otevřít</div>
         </div>
-      
- <!-- Rudník -->
+
         <!-- Projekt Rudník -->
-<div class="proj-item" onclick="openProject('prep-rudnik')">
-  <div class="proj-img" style="background-image:url('images/rudnik.jpg')"></div>
+        <div class="proj-item" onclick="openProject('prep-rudnik')">
+          <div class="proj-img" style="background-image:url('images/rudnik.jpg')"></div>
+          <div class="proj-left">
+            <div class="proj-title">Projekt Rudník</div>
+            <div class="proj-sub">Výstavba dvou rodinných domů</div>
+          </div>
+          <div class="chip">Otevřít</div>
+        </div>
 
-  <div class="proj-left">
-    <div class="proj-title">Projekt Rudník</div>
-    <div class="proj-sub">Výstavba dvou rodinných domů</div>
-  </div>
-
-  <div class="chip">Otevřít</div>
-</div>
-
+      </div><!-- /.proj-list -->
+    </div><!-- /.panel-inner -->
+  </div><!-- /.panel -->
+</div><!-- /.overlay -->
 
 <!-- =========================
      HOME VIEW
