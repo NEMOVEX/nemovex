@@ -1813,6 +1813,24 @@ onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='tran
     // použije existující lightbox funkci
     openLightbox(window.__gallery.list[window.__gallery.index]);
   }
+ 
+// Automatické otevírání galerie pro obrázky bez inline onclick
+document.addEventListener('click', function(e){
+  const img = e.target.closest('img.gallery-img');
+  if(!img) return;
+
+  // pokud už má obrázek vlastní onclick, nech to na něm
+  if(img.hasAttribute('onclick')) return;
+
+  const grid = img.closest('.gallery-grid');
+  if(!grid) return;
+
+  const list = Array.from(grid.querySelectorAll('img.gallery-img'));
+  const idx = list.indexOf(img);
+  if(idx < 0) return;
+
+  openGallery(img, idx);
+});
 
  window.lbShow = function(){
   if(!window.__gallery.list.length) return;
