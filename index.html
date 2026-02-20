@@ -255,11 +255,10 @@
 }
 
 .overlay .proj-item .proj-img{
-  flex:0 0 120px;      /* pevná malá šířka */
-  width:120px;
-  height:80px;         /* malá výška */
-  border-radius:12px;
-}
+  flex:0 0 84px;
+  width:84px;
+  height:56px;
+  border-radius:10px;
 
 }
 
@@ -451,14 +450,6 @@
   line-height:1.6;
 }
 
-.proj-item .proj-img{
-  flex:0 0 260px;   /* pevná šířka náhledu */
-  width:260px;
-  height:160px;
-  background-size:cover;
-  background-position:center;
-  border-radius:14px;
-}
 .info-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -679,7 +670,8 @@
   <!-- Třešňovka -->
   <div class="card" onclick="openProject('offer-tresnovka')">
     <div class="card-img">
-      <img src="tresnovka.jpg" alt="Nová Třešňovka III. etapa">
+      <img src="images/
+        tresnovka.jpg" alt="Nová Třešňovka III. etapa">
     </div>
     <div class="card-body">
       <h3>Nová Třešňovka III. etapa</h3>
@@ -692,7 +684,7 @@
   <!-- Pura Vida -->
   <div class="card" onclick="openProject('offer-puravida')">
     <div class="card-img">
-      <img src="puravida.jpg" alt="Rezidenční komplex Pura Vida">
+      <img src="images/puravida.jpg" alt="Rezidenční komplex Pura Vida">
     </div>
     <div class="card-body">
       <h3>Rezidenční komplex Pura Vida</h3>
@@ -917,7 +909,7 @@
      DETAIL: Nová Třešnovka
 ========================= -->
 <div class="view" id="view-offer-tresnovka">
-  <section class="detail-hero" style="--bg:url('tresnovka.jpg')">
+  <section class="detail-hero" style="--bg:url('images/tresnovka.jpg')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>Nová Třešňovka III. etapa</h2>
@@ -1029,7 +1021,7 @@
      DETAIL: Pura Vida
 ========================= -->
 <div class="view" id="view-offer-puravida">
-  <section class="detail-hero" style="--bg:url('puravida.jpg')">
+  <section class="detail-hero" style="--bg:url('images/puravida.jpg')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>Rezidenční komplex Pura Vida</h2>
@@ -1046,9 +1038,9 @@
 
         <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
         <div class="gallery-grid">
-          <img class="gallery-img" src="puravida.jpg" alt="Pura Vida – vizualizace 1" loading="lazy">
-          <img class="gallery-img" src="puravida.jpg" alt="Pura Vida – vizualizace 2" loading="lazy">
-          <img class="gallery-img" src="puravida.jpg" alt="Pura Vida – vizualizace 3" loading="lazy">
+          <img class="gallery-img" src="images/puravida.jpg" alt="Pura Vida – vizualizace 1" loading="lazy" onclick="openGallery(this, 0)">
+          <img class="gallery-img" src="images/puravida.jpg" alt="Pura Vida – vizualizace 2" loading="lazy" onclick="openGallery(this, 1)">
+          <img class="gallery-img" src="images/puravida.jpg" alt="Pura Vida – vizualizace 3" loading="lazy" onclick="openGallery(this, 2)">
         </div>
 
         <div style="margin-top:14px">
@@ -1110,9 +1102,9 @@
         <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
 
         <div class="gallery-grid">
-        <img class="gallery-img" src="images/malesov.png" alt="Nový Malešov - vizualizace 0" loading="lazy">
-        <img class="gallery-img" src="images/malesov1.png" alt="Nový Malešov - vizualizace 2" loading="lazy">
-        <img class="gallery-img" src="images/malesov2.png" alt="Nový Malešov - vizualizace 3" loading="lazy">
+        <img class="gallery-img" src="images/malesov.png" alt="Nový Malešov - vizualizace 0"  loading="lazy" onclick="openGallery(this, 0)">
+        <img class="gallery-img" src="images/malesov1.png" alt="Nový Malešov - vizualizace 2" loading="lazy" onclick="openGallery(this, 0)">
+        <img class="gallery-img" src="images/malesov2.png" alt="Nový Malešov - vizualizace 3" loading="lazy">onclick="openGallery(this, 1)">
   
         </div>
 
@@ -1129,7 +1121,7 @@
      DETAIL: BD Hermann
 ========================= -->
 <div class="view" id="view-offer-hermann">
-  <section class="detail-hero" style="--bg:url('hermann.jpg')">
+  <section class="detail-hero" style="--bg:url('images/hermann.jpg')">
     <div class="container">
       <button class="btn-primary" type="button" onclick="goHome()">← Zpět</button>
       <h2>BD Hermann</h2>
@@ -1146,9 +1138,9 @@
 
         <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
         <div class="gallery-grid">
-          <img class="gallery-img" src="hermann.jpg" alt="BD Hermann – vizualizace 1" loading="lazy">
-          <img class="gallery-img" src="hermann.jpg" alt="BD Hermann – vizualizace 2" loading="lazy">
-          <img class="gallery-img" src="hermann.jpg" alt="BD Hermann – vizualizace 3" loading="lazy">
+          <img class="gallery-img" src="images/hermann1.jpg" alt="BD Hermann – vizualizace 0" loading="lazy" onclick="openGallery(this, 0)">
+          <img class="gallery-img" src="images/hermann2.jpg" alt="BD Hermann – vizualizace 1" loading="lazy" onclick="openGallery(this, 0)">
+          <img class="gallery-img" src="images/hermann3.jpg" alt="BD Hermann – vizualizace 2" loading="lazy" onclick="openGallery(this, 1)">
         </div>
 
         <div style="margin-top:14px">
