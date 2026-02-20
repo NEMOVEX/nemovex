@@ -239,14 +239,27 @@
 
 }
 
+/* ====== Náhled obrázku – hlavní karty ====== */
 .proj-img{
-  width:84px;
-  height:56px;
-  border-radius:10px;
+  height:200px;
   background-size:cover;
   background-position:center;
-  flex:0 0 auto;
-  border:1px solid #e6eaee;
+  border-radius:16px 16px 0 0;
+}
+
+/* ====== Náhled obrázku – MODAL (malé vlevo) ====== */
+.overlay .proj-item{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.overlay .proj-item .proj-img{
+  flex:0 0 120px;      /* pevná malá šířka */
+  width:120px;
+  height:80px;         /* malá výška */
+  border-radius:12px;
+}
 
 }
 
