@@ -475,7 +475,39 @@
   color:#444;
   line-height:1.6;
 }
+/* ===== Project info cards (lepší čitelnost dlouhých textů) ===== */
+.project-info-grid{
+  display:grid;
+  gap:24px;
+  margin-bottom:18px;
+  grid-template-columns: 1fr; /* mobil */
+}
 
+@media (min-width: 900px){
+  .project-info-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* PC: 2 sloupce */
+  }
+}
+
+.project-info-card{
+  background:#f8f9f7;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,0.06);
+}
+
+.project-info-card h4{
+  font-weight:600;
+  margin-bottom:8px;
+  color:#1f3d2b;
+  font-size:16px;
+}
+
+.project-info-card p{
+  color:#444;
+  line-height:1.6;
+  margin:0;
+}
 
   </style>
 </head>
@@ -873,34 +905,38 @@ Bydlení, kde vznikají nové životní příběhy.
     <div class="container">
      <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-bottom:18px;">
+<div class="project-info-grid">
 
-    <div style="background:#f8f9f7;padding:20px;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,0.06);">
-      <div style="font-weight:600;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Dispozice</div>
-      <div style="color:#444;line-height:1.6;">Třípodlažní bytové domy nabízejí byty od 1+kk až po 3+kk, vždy s balkonem nebo terasou. 
-        Přízemní byty disponují soukromými předzahrádkami.
-         Moderní dvoupodlažní domy o dispozici 3+k.k 
-         Dvojdům nabízí velkorysý obytný prostor s přímým vstupem na zahradu, tři ložnice a praktické technické zázemí. 
-        V podkroví se nacházejí další dva plnohodnotné pokoje. </div>
-    </div>
+  <div class="project-info-card">
+    <h4>Dispozice</h4>
+    <p>
+      Třípodlažní bytové domy nabízejí byty od 1+kk až po 3+kk, vždy s balkonem nebo terasou.
+      Přízemní byty disponují soukromými předzahrádkami. Moderní dvoupodlažní domy o dispozici 3+k.k.
+      Dvojdům nabízí velkorysý obytný prostor s přímým vstupem na zahradu, tři ložnice a praktické technické zázemí.
+      V podkroví se nacházejí další dva plnohodnotné pokoje.
+    </p>
+  </div>
 
-    <div style="background:#f8f9f7;padding:20px;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,0.06);">
-      <div style="font-weight:600;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Stav projektu</div>
-      <div style="color:#444;line-height:1.6;">Momentálně ve fázi přípravy.</div>
-    </div>
+  <div class="project-info-card">
+    <h4>Stav projektu</h4>
+    <p>Momentálně ve fázi přípravy.</p>
+  </div>
 
-    <div style="background:#f8f9f7;padding:20px;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,0.06);">
-      <div style="font-weight:600;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Lokalita</div>
-      <div style="color:#444;line-height:1.6;">Výstavba je plánována ve městě Přelouč. 
-     Město disponuje kompletní občanskou vybaveností – mateřskými a základními školami, gymnáziem, zdravotnickými službami, obchody, restauracemi i sportovišti.
-     Velkou výhodou je přímé železniční spojení na hlavním koridoru Praha–Pardubice–Olomouc. Okolí města nabízí množství zeleně, cyklostezek a rekreačních možností v blízkosti Labe,
-     což z Přelouče činí atraktivní místo pro rodiny i aktivní životní styl..</div>
-    </div>
+  <div class="project-info-card">
+    <h4>Lokalita</h4>
+    <p>
+      Výstavba je plánována ve městě Přelouč. Město disponuje kompletní občanskou vybaveností – mateřskými a
+      základními školami, gymnáziem, zdravotnickými službami, obchody, restauracemi i sportovišti.
+      Velkou výhodou je přímé železniční spojení na hlavní koridoru Praha–Pardubice–Olomouc.
+      Okolí města nabízí množství zeleně, cyklostezek a rekreačních možností v blízkosti Labe,
+      což z Přelouče činí atraktivní místo pro rodiny i aktivní životní styl.
+    </p>
+  </div>
 
-    <div style="background:#f8f9f7;padding:20px;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,0.06);">
-      <div style="font-weight:600;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Informace</div>
-      <div style="color:#444;line-height:1.6;">Pro více informací využijte nezávaznou poptávku.</div>
-    </div>
+  <div class="project-info-card">
+    <h4>Informace</h4>
+    <p>Pro více informací využijte nezávaznou poptávku.</p>
+  </div>
 
   </div>
 
