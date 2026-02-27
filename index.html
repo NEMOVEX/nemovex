@@ -1684,51 +1684,7 @@ document.addEventListener('keydown', (e) => {
       window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
     });
   }
-    // ===== Lightbox =====
-  window.openImage = function(src, altText){
-    const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(!ov || !img) return;
-
-    img.src = src;
-    img.alt = altText || '';
-    ov.classList.add('show');
-    ov.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  window.closeImage = function(){
-    const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(img) img.src = '';
-    if(ov){
-      ov.classList.remove('show');
-      ov.setAttribute('aria-hidden','true');
-    }
-    document.body.style.overflow = '';
-  }
-
-
-  // Klik na fotku v galerii otevře lightbox (bez inline onclicků)
-  document.addEventListener('click', (e) => {
-    const t = e.target;
-    if(t && t.classList && t.classList.contains('gallery-img')){
-      window.openImage(t.currentSrc || t.src, t.alt || '');
-    }
-  });
-
-  // Zavření lightboxu klikem mimo obrázek
-  const imgOverlay = document.getElementById('imgOverlay');
-  if(imgOverlay){
-    imgOverlay.addEventListener('click', (e) => {
-      if(e.target === imgOverlay) window.closeImage();
-    });
-  }
-
-})();
-</script>
-
-
+ 
 
 <!-- ===== Lightbox (zvětšení fotek) ===== -->
 <div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
@@ -1803,7 +1759,6 @@ onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='tran
   </div>
 </div>
 
-<script>
   // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
   window.__gallery = { list: [], index: 0 };
 
@@ -1873,7 +1828,6 @@ document.addEventListener('click', function(e){
     if(e.key === 'Escape') closeImage();
   });
 
-  <script>
   // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
   window.__gallery = { list: [], index: 0 };
 
