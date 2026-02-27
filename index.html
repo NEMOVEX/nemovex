@@ -1569,7 +1569,6 @@ Bydlení, kde vznikají nové životní příběhy.
       <h3 style="margin-bottom:20px; font-size:24px;">Kontakt</h3>
 
       <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
-
         <a href="mailto:info@nemovex.cz" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
             <path d="M4 4h16v16H4z"></path>
@@ -1594,7 +1593,6 @@ Bydlení, kde vznikají nové životní příběhy.
           </svg>
           www.nemovex.cz
         </a>
-
       </div>
     </div>
 
@@ -1608,23 +1606,55 @@ Bydlení, kde vznikají nové životní příběhy.
   </div>
 </footer>
 
+<!-- ===== Lightbox (zvětšení fotek + šipky) ===== -->
+<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
+
+  <button type="button"
+    onclick="event.stopPropagation(); lbPrev(event)"
+    style="position:fixed;left:24px;top:50%;transform:translateY(-50%);
+           width:60px;height:60px;border-radius:50%;
+           background:rgba(0,0,0,0.75);border:2px solid rgba(255,255,255,0.9);
+           color:#fff;box-shadow:0 12px 35px rgba(0,0,0,0.6);
+           font-size:32px;display:flex;align-items:center;justify-content:center;
+           cursor:pointer;z-index:9999;">
+    ❮
+  </button>
+
+  <button type="button"
+    onclick="event.stopPropagation(); lbNext(event)"
+    style="position:fixed;right:24px;top:50%;transform:translateY(-50%);
+           width:60px;height:60px;border-radius:50%;
+           background:rgba(0,0,0,0.75);border:2px solid rgba(255,255,255,0.9);
+           color:#fff;box-shadow:0 12px 35px rgba(0,0,0,0.6);
+           font-size:32px;display:flex;align-items:center;justify-content:center;
+           cursor:pointer;z-index:9999;">
+    ❯
+  </button>
+
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
+    <img id="imgOverlayEl" src="" alt=""
+      onclick="event.stopPropagation()"
+      style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;
+             border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);">
+  </div>
+</div>
+
 <script>
-/* ===== fix URL param + menu + overlay + views + formulář (ponecháno) ===== */
+/* Všechno spouštíme až po načtení DOM – tím se už NIKDY nerozbije menu/detaily */
 document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const project = params.get('project');
 
-  if (!project) {
-    document.querySelectorAll('.project-detail').forEach(el => {
-      el.style.display = 'none';
-    });
+  // ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const project = params.get('project');
+    if (!project) {
+      document.querySelectorAll('.project-detail').forEach(el => { el.style.display = 'none'; });
+      const homepage = document.getElementById('homepage');
+      if (homepage) homepage.style.display = 'block';
+    }
+  } catch (e) {}
 
-    const homepage = document.getElementById('homepage');
-    if (homepage) homepage.style.display = 'block';
-  }
-});
-
-(function(){
+  // ===== MENU + OVERLAY Nabídka/Příprava + VIEW přepínání =====
   const navLinks = document.getElementById('navLinks');
   const hamburger = document.getElementById('hamburger');
 
@@ -1670,8 +1700,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
   }
 
-  if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
-  if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
+  function showView(viewId){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const el = document.getElementById(viewId);
+    if(el) el.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goHome = function(){
+    closeOverlay();
+    window.closeMenu();
+    showView('view-home');
+  }
+
+  window.openAbout = function(){
+    closeOverlay();
+    window.closeMenu();
+    showView('view-about');
+  }
+
+  window.openProject = function(key){
+    closeOverlay();
+    window.closeMenu();
+    showView('view-' + key);
+  }
+
+  window.goHomeThenScroll = function(sectionId){
+    window.goHome();
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }, 80);
+  }
+
+  if(btnOffer) btnOffer.addEventListener('click', () => { window.goHome(); openOverlay('offer'); window.closeMenu(); });
+  if(btnPrep)  btnPrep.addEventListener('click',  () => { window.goHome(); openOverlay('prep');  window.closeMenu(); });
 
   if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
   if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
@@ -1683,46 +1746,7 @@ document.addEventListener('DOMContentLoaded', () => {
     prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
   }
 
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape'){
-      closeOverlay();
-      if(window.closeImage) window.closeImage();
-    }
-  });
-
-  function showView(viewId){
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    const el = document.getElementById(viewId);
-    if(el) el.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  window.goHome = function(){
-    closeOverlay();
-    closeMenu();
-    showView('view-home');
-  }
-
-  window.openAbout = function(){
-    closeOverlay();
-    closeMenu();
-    showView('view-about');
-  }
-
-  window.openProject = function(key){
-    closeOverlay();
-    closeMenu();
-    showView('view-' + key);
-  }
-
-  window.goHomeThenScroll = function(sectionId){
-    goHome();
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if(el) el.scrollIntoView({behavior:'smooth'});
-    }, 80);
-  }
-
+  // ===== FORM =====
   if(leadForm){
     leadForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -1740,117 +1764,81 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
     });
   }
-})();
-</script>
 
-<!-- ===== Lightbox (zvětšení fotek + šipky) ===== -->
-<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
+  // ===== GALERIE + ŠIPKY =====
+  window.__gallery = { list: [], index: 0 };
 
-  <!-- Šipka vlevo -->
-  <button type="button"
-    onclick="event.stopPropagation(); lbPrev(event)"
-    style="position:fixed;left:24px;top:50%;transform:translateY(-50%);width:60px;height:60px;border-radius:50%;background:rgba(0,0,0,0.75);border:2px solid rgba(255,255,255,0.9);color:#fff;box-shadow:0 12px 35px rgba(0,0,0,0.6);font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;">
-    ❮
-  </button>
+  window.openImage = function(src, altText){
+    const ov = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(!ov || !img) return;
 
-  <!-- Šipka vpravo -->
-  <button type="button"
-    onclick="event.stopPropagation(); lbNext(event)"
-    style="position:fixed;right:24px;top:50%;transform:translateY(-50%);width:60px;height:60px;border-radius:50%;background:rgba(0,0,0,0.75);border:2px solid rgba(255,255,255,0.9);color:#fff;box-shadow:0 12px 35px rgba(0,0,0,0.6);font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;">
-    ❯
-  </button>
+    img.src = src;
+    img.alt = altText || '';
+    ov.classList.add('show');
+    ov.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
 
-  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
-    <img id="imgOverlayEl" src="" alt=""
-      onclick="event.stopPropagation()"
-      style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);">
-  </div>
-</div>
+  window.closeImage = function(){
+    const ov = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(img) img.src = '';
+    if(ov){
+      ov.classList.remove('show');
+      ov.setAttribute('aria-hidden','true');
+    }
+    document.body.style.overflow = '';
+  };
 
-<script>
-/* ===== Jediná správná galerie logika (klik + šipky + klávesnice) ===== */
-window.__gallery = { list: [], index: 0 };
+  window.lbShow = function(){
+    if(!window.__gallery.list.length) return;
+    const img = document.getElementById('imgOverlayEl');
+    if(!img) return;
+    img.src = window.__gallery.list[window.__gallery.index];
+  };
 
-window.openImage = function(src, altText){
-  const ov = document.getElementById('imgOverlay');
-  const img = document.getElementById('imgOverlayEl');
-  if(!ov || !img) return;
+  window.lbPrev = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
+    window.lbShow();
+  };
 
-  img.src = src;
-  img.alt = altText || '';
-  ov.classList.add('show');
-  ov.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
-};
+  window.lbNext = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
+    window.lbShow();
+  };
 
-window.closeImage = function(){
-  const ov = document.getElementById('imgOverlay');
-  const img = document.getElementById('imgOverlayEl');
-  if(img) img.src = '';
-  if(ov){
-    ov.classList.remove('show');
-    ov.setAttribute('aria-hidden','true');
-  }
-  document.body.style.overflow = '';
-};
+  document.addEventListener('click', function(e){
+    const img = e.target.closest('img.gallery-img');
+    if(!img) return;
 
-window.lbShow = function(){
-  if(!window.__gallery.list.length) return;
-  const img = document.getElementById('imgOverlayEl');
-  if(!img) return;
-  img.src = window.__gallery.list[window.__gallery.index];
-};
+    const grid = img.closest('.gallery-grid');
+    if(!grid) return;
 
-window.lbPrev = function(e){
-  if(e) e.stopPropagation();
-  if(!window.__gallery.list.length) return;
-  window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
-  window.lbShow();
-};
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    const idx = imgs.indexOf(img);
+    if(idx < 0) return;
 
-window.lbNext = function(e){
-  if(e) e.stopPropagation();
-  if(!window.__gallery.list.length) return;
-  window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
-  window.lbShow();
-};
+    window.__gallery.list = imgs.map(i => i.currentSrc || i.src);
+    window.__gallery.index = idx;
 
-/* Klik na obrázek v jakékoliv .gallery-grid */
-document.addEventListener('click', function(e){
-  const img = e.target.closest('img.gallery-img');
-  if(!img) return;
-
-  const grid = img.closest('.gallery-grid');
-  if(!grid) return;
-
-  const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-  const idx = imgs.indexOf(img);
-  if(idx < 0) return;
-
-  window.__gallery.list = imgs.map(i => i.currentSrc || i.src);
-  window.__gallery.index = idx;
-
-  window.openImage(window.__gallery.list[window.__gallery.index], img.alt || '');
-});
-
-/* Klávesnice: šipky + ESC */
-document.addEventListener('keydown', function(e){
-  const overlay = document.getElementById('imgOverlay');
-  if(!overlay || !overlay.classList.contains('show')) return;
-
-  if(e.key === 'ArrowLeft') window.lbPrev();
-  if(e.key === 'ArrowRight') window.lbNext();
-  if(e.key === 'Escape') window.closeImage();
-});
-
-/* Zavření klikem mimo obrázek (na pozadí) */
-(function(){
-  const ov = document.getElementById('imgOverlay');
-  if(!ov) return;
-  ov.addEventListener('click', (e) => {
-    if(e.target === ov) window.closeImage();
+    window.openImage(window.__gallery.list[window.__gallery.index], img.alt || '');
   });
-})();
+
+  document.addEventListener('keydown', function(e){
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay || !overlay.classList.contains('show')) return;
+
+    if(e.key === 'ArrowLeft') window.lbPrev();
+    if(e.key === 'ArrowRight') window.lbNext();
+    if(e.key === 'Escape') window.closeImage();
+  });
+
+});
 </script>
 
 </body>
