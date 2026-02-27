@@ -1874,84 +1874,77 @@ document.addEventListener('click', function(e){
   });
 
   <script>
-  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
-  window.__gallery = { list: [], index: 0 };
+<script>
+// Globální stav galerie
+window.__gallery = { list: [], index: 0 };
 
-  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
-  window.openGallery = function(clickedImg, index){
-    const grid = clickedImg.closest('.gallery-grid');
-    if(!grid) return;
+// Otevření galerie
+function openLightbox(src, list, index){
+  const overlay = document.getElementById('imgOverlay');
+  const img = document.getElementById('imgOverlayImg');
+  if(!overlay || !img) return;
 
-    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    window.__gallery.list = imgs.map(i => i.src);
-    window.__gallery.index = index || 0;
+  window.__gallery.list = list;
+  window.__gallery.index = index;
 
-    openLightbox(window.__gallery.list[window.__gallery.index]);
-  }
+  img.src = src;
+  overlay.classList.add('active');
+}
 
-  // Automatické otevírání galerie pro obrázky bez inline onclick
-  document.addEventListener('click', function(e){
-    const img = e.target.closest('img.gallery-img');
-    if(!img) return;
+// Zavření
+function closeImage(){
+  const overlay = document.getElementById('imgOverlay');
+  if(!overlay) return;
+  overlay.classList.remove('active');
+}
 
-    // Pokud už má obrázek vlastní onclick, nech ho být
-    if(img.hasAttribute('onclick')) return;
+// Zobrazení aktuálního obrázku
+function showImage(){
+  const img = document.getElementById('imgOverlayImg');
+  if(!img) return;
+  img.src = window.__gallery.list[window.__gallery.index];
+}
 
-    const grid = img.closest('.gallery-grid');
-    if(!grid) return;
+// Další
+window.lbNext = function(e){
+  if(e) e.stopPropagation();
+  if(!window.__gallery.list.length) return;
+  window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
+  showImage();
+}
 
-    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    const idx = imgs.indexOf(img);
-    if(idx < 0) return;
+// Předchozí
+window.lbPrev = function(e){
+  if(e) e.stopPropagation();
+  if(!window.__gallery.list.length) return;
+  window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
+  showImage();
+}
 
-    window.openGallery(img, idx);
-  });
+// Klikání na obrázky
+document.addEventListener('click', function(e){
+  const img = e.target.closest('img.gallery-img');
+  if(!img) return;
 
-  window.lbShow = function(){
-    if(!window.__gallery.list.length) return;
-    const img = document.getElementById('imgOverlayEl');
-    if(!img) return;
-    img.src = window.__gallery.list[window.__gallery.index];
-  }
+  const grid = img.closest('.gallery-grid');
+  if(!grid) return;
 
-  window.lbPrev = function(e){
-    if(e) e.stopPropagation();
-    if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
-    window.lbShow();
-  }
+  const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+  const list = imgs.map(i => i.src);
+  const index = imgs.indexOf(img);
 
-  window.lbNext = function(e){
-    if(e) e.stopPropagation();
-    if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
-    window.lbShow();
-  }
+  openLightbox(img.src, list, index);
+});
 
-  function openLightbox(src){
-    const overlay = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(!overlay || !img) return;
-    img.src = src;
-    overlay.classList.add('active');
-  }
+// Klávesnice
+document.addEventListener('keydown', (e) => {
+  const overlay = document.getElementById('imgOverlay');
+  if(!overlay || !overlay.classList.contains('active')) return;
 
-  window.closeImage = function(){
-    const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    overlay.classList.remove('active');
-  }
-
-  // Klávesnice: šipky + ESC
-  document.addEventListener('keydown', (e) => {
-    const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    if(!overlay.classList.contains('active')) return;
-
-    if(e.key === 'ArrowLeft') window.lbPrev();
-    if(e.key === 'ArrowRight') window.lbNext();
-    if(e.key === 'Escape') window.closeImage();
-  });
+  if(e.key === 'ArrowLeft') window.lbPrev();
+  if(e.key === 'ArrowRight') window.lbNext();
+  if(e.key === 'Escape') closeImage();
+});
 </script>
 
 </body>
