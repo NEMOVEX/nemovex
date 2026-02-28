@@ -1552,183 +1552,406 @@ Bydlení, kde vznikají nové životní příběhy.
   
 <script>
   
-<script>
-(function () {
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  // ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get('project');
 
-  // =========================
-  //  VIEW SWITCHING (stránky)
-  // =========================
-  function showView(viewId) {
-    const views = $$('.view');
-    views.forEach(v => v.classList.remove('active'));
+  if (!project) {
+    // zavři všechny detaily projektů
+    document.querySelectorAll('.project-detail').forEach(el => {
+      el.style.display = 'none';
+    });
 
-    const target = document.getElementById(viewId);
-    if (target) target.classList.add('active');
+    // zobraz úvodní stránku
+    const homepage = document.getElementById('homepage');
+    if (homepage) homepage.style.display = 'block';
+  }
+});
 
-    // zavři hamburger menu po kliknutí
-    const nav = document.getElementById('navlinks');
-    if (nav) nav.classList.remove('show');
+(function(){
+  const navLinks = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const offerOverlay = document.getElementById('offerOverlay');
+  const prepOverlay  = document.getElementById('prepOverlay');
+
+  const btnOffer = document.getElementById('btnOffer');
+  const btnPrep  = document.getElementById('btnPrep');
+
+  const btnCloseOffer = document.getElementById('btnCloseOffer');
+  const btnClosePrep  = document.getElementById('btnClosePrep');
+
+  const leadForm = document.getElementById('leadForm');
+
+  function toggleMenu(){
+    if(!navLinks) return;
+    navLinks.classList.toggle('show');
+  }
+  window.closeMenu = function(){
+    if(!navLinks) return;
+    navLinks.classList.remove('show');
+  }
+  if(hamburger){
+    hamburger.addEventListener('click', toggleMenu);
   }
 
-  window.showView = showView;
+  function closeOverlay(){
+    if(offerOverlay){ offerOverlay.classList.remove('show'); offerOverlay.setAttribute('aria-hidden','true'); }
+    if(prepOverlay){  prepOverlay.classList.remove('show');  prepOverlay.setAttribute('aria-hidden','true'); }
+    document.body.style.overflow = '';
+  }
 
-  window.goHome = function () {
-    showView('homepage');
-  };
+  function openOverlay(which){
+    closeOverlay();
+    if(which === 'offer' && offerOverlay){
+      offerOverlay.classList.add('show');
+      offerOverlay.setAttribute('aria-hidden','false');
+    }
+    if(which === 'prep' && prepOverlay){
+      prepOverlay.classList.add('show');
+      prepOverlay.setAttribute('aria-hidden','false');
+    }
+    document.body.style.overflow = 'hidden';
+  }
 
-  window.openAbout = function () {
+  if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
+  if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
+
+  if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
+  if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
+
+  if(offerOverlay){
+    offerOverlay.addEventListener('click', (e) => { if(e.target === offerOverlay) closeOverlay(); });
+  }
+  if(prepOverlay){
+    prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
+  }
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    closeOverlay();
+    if(window.closeImage) window.closeImage();
+  }
+});
+
+  function showView(viewId){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const el = document.getElementById(viewId);
+    if(el) el.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goHome = function(){
+    closeOverlay();
+    closeMenu();
+    showView('view-home');
+  }
+
+  window.openAbout = function(){
+    closeOverlay();
+    closeMenu();
     showView('view-about');
-  };
+  }
 
-  // univerzální otevření detailu (předáváš ID view)
-  window.openProject = function (viewId) {
-    showView(viewId);
-  };
+  window.openProject = function(key){
+    closeOverlay();
+    closeMenu();
+    showView('view-' + key);
+  }
 
-  // návrat domů + scroll na sekci (poptávka/kontakt)
-  window.goHomeThenScroll = function (targetId) {
-    showView('homepage');
+  window.goHomeThenScroll = function(sectionId){
+    goHome();
     setTimeout(() => {
-      const el = document.getElementById(targetId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 50);
-  };
-
-  // =========================
-  //  HAMBURGER MENU
-  // =========================
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('hamburger');
-    const navlinks = document.getElementById('navlinks');
-
-    if (hamburger && navlinks) {
-      hamburger.addEventListener('click', () => {
-        navlinks.classList.toggle('show');
-      });
-    }
-  });
-
-  // =========================
-  //  OVERLAYS (poptávka / prep)
-  // =========================
-  window.openOffer = function () {
-    const ov = document.getElementById('offerOverlay');
-    if (!ov) return;
-    ov.classList.add('show');
-    ov.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closeOffer = function () {
-    const ov = document.getElementById('offerOverlay');
-    if (!ov) return;
-    ov.classList.remove('show');
-    ov.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-
-  window.openPrep = function () {
-    const ov = document.getElementById('prepOverlay');
-    if (!ov) return;
-    ov.classList.add('show');
-    ov.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closePrep = function () {
-    const ov = document.getElementById('prepOverlay');
-    if (!ov) return;
-    ov.classList.remove('show');
-    ov.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-
-  // =========================
-  //  LIGHTBOX / GALERIE
-  // =========================
-  const galleryState = { list: [], index: 0 };
-
-  function setGalleryFromClickedImage(imgEl) {
-    const grid = imgEl.closest('.gallery-grid');
-    if (!grid) {
-      galleryState.list = [imgEl.src];
-      galleryState.index = 0;
-      return;
-    }
-    const imgs = $$('img.gallery-img', grid);
-    galleryState.list = imgs.map(i => i.src);
-    galleryState.index = Math.max(0, imgs.indexOf(imgEl));
+      const el = document.getElementById(sectionId);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }, 80);
   }
 
-  function lbShow() {
-    const img = document.getElementById('imgOverlay1');
-    if (!img) return;
-    if (!galleryState.list.length) return;
-    img.src = galleryState.list[galleryState.index];
+  if(leadForm){
+    leadForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name')?.value.trim() || '';
+      const phone = document.getElementById('phone')?.value.trim() || '';
+      const email = document.getElementById('email')?.value.trim() || '';
+      const project = document.getElementById('project')?.value.trim() || '';
+      const msg = document.getElementById('msg')?.value.trim() || '';
+
+      const subject = encodeURIComponent('Nezávazná poptávka – NEMOVEX GROUP');
+      const body = encodeURIComponent(
+        `Jméno: ${name}\nTelefon: ${phone}\nE-mail: ${email}\nProjekt: ${project}\n\nZpráva:\n${msg}\n`
+      );
+
+      window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
+    });
   }
-
-  function openLightboxFromImage(imgEl) {
-    setGalleryFromClickedImage(imgEl);
-
+    // ===== Lightbox =====
+  window.openImage = function(src, altText){
     const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlay1');
-    if (!ov || !img) return;
+    const img = document.getElementById('imgOverlayEl');
+    if(!ov || !img) return;
 
-    img.src = galleryState.list[galleryState.index] || imgEl.src;
+    img.src = src;
+    img.alt = altText || '';
     ov.classList.add('show');
-    ov.setAttribute('aria-hidden', 'false');
+    ov.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
   }
 
-  window.closeImage = function () {
+  window.closeImage = function(){
     const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlay1');
-    if (img) img.src = '';
-    if (ov) {
+    const img = document.getElementById('imgOverlayEl');
+    if(img) img.src = '';
+    if(ov){
       ov.classList.remove('show');
-      ov.setAttribute('aria-hidden', 'true');
+      ov.setAttribute('aria-hidden','true');
     }
     document.body.style.overflow = '';
-  };
+  }
 
-  window.lbPrev = function (e) {
-    if (e) e.stopPropagation();
-    if (!galleryState.list.length) return;
-    galleryState.index = (galleryState.index - 1 + galleryState.list.length) % galleryState.list.length;
-    lbShow();
-  };
 
-  window.lbNext = function (e) {
-    if (e) e.stopPropagation();
-    if (!galleryState.list.length) return;
-    galleryState.index = (galleryState.index + 1) % galleryState.list.length;
-    lbShow();
-  };
-
-  // Kliknutí na fotku v galerii (bez inline onclick)
+  // Klik na fotku v galerii otevře lightbox (bez inline onclicků)
   document.addEventListener('click', (e) => {
-    const img = e.target.closest('img.gallery-img');
-    if (!img) return;
-
-    // Pokud by někde zůstalo inline onclick, tak to nespouštěj 2×
-    // (ale i kdyby bylo, tohle je bezpečné)
-    openLightboxFromImage(img);
+    const t = e.target;
+    if(t && t.classList && t.classList.contains('gallery-img')){
+      window.openImage(t.currentSrc || t.src, t.alt || '');
+    }
   });
+
+  // Zavření lightboxu klikem mimo obrázek
+  const imgOverlay = document.getElementById('imgOverlay');
+  if(imgOverlay){
+    imgOverlay.addEventListener('click', (e) => {
+      if(e.target === imgOverlay) window.closeImage();
+    });
+  }
+
+})();
+</script>
+
+
+
+<!-- ===== Lightbox (zvětšení fotek) ===== -->
+<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
+
+<!-- Šipka vlevo -->
+<button type="button"
+onclick="event.stopPropagation(); lbPrev(event)"
+style="
+position:fixed;
+left:24px;
+top:50%;
+transform:translateY(-50%);
+width:60px;
+height:60px;
+border-radius:50%;
+background:rgba(0,0,0,0.75);
+border:2px solid rgba(255,255,255,0.9);
+color:#ffffff;
+box-shadow:0 12px 35px rgba(0,0,0,0.6);
+font-size:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:9999;
+transition:all .25s ease;
+"
+onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
+onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
+>
+❮
+</button>
+
+
+
+<!-- Šipka vpravo -->
+<button type="button"
+onclick="event.stopPropagation(); lbNext(event)"
+style="
+position:fixed;
+right:24px;
+top:50%;
+transform:translateY(-50%);
+width:60px;
+height:60px;
+border-radius:50%;
+background:rgba(0,0,0,0.75);
+border:2px solid rgba(255,255,255,0.9);
+color:#ffffff;
+box-shadow:0 12px 35px rgba(0,0,0,0.6);
+font-size:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:9999;
+transition:all .25s ease;
+"
+onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
+onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
+>
+  ❯
+</button>
+
+
+
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none"> 
+
+    <img id="imgOverlayEl" src="" alt=""
+      onclick="event.stopPropagation()"
+   style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);"
+  </div>
+</div>
+
+<script>
+  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
+  window.__gallery = { list: [], index: 0 };
+
+  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
+  window.openGallery = function(clickedImg, index){
+    const grid = clickedImg.closest('.gallery-grid');
+    if(!grid) return;
+
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    window.__gallery.list = imgs.map(i => i.src);
+    window.__gallery.index = index || 0;
+
+    // použije existující lightbox funkci
+    openLightbox(window.__gallery.list[window.__gallery.index]);
+  }
+ 
+// Automatické otevírání galerie pro obrázky bez inline onclick
+document.addEventListener('click', function(e){
+  const img = e.target.closest('img.gallery-img');
+  if(!img) return;
+
+  // pokud už má obrázek vlastní onclick, nech to na něm
+  if(img.hasAttribute('onclick')) return;
+
+  const grid = img.closest('.gallery-grid');
+  if(!grid) return;
+
+  const list = Array.from(grid.querySelectorAll('img.gallery-img'));
+  const idx = list.indexOf(img);
+  if(idx < 0) return;
+
+  openGallery(img, idx);
+});
+
+ window.lbShow = function(){
+  if(!window.__gallery.list.length) return;
+
+  const img = document.getElementById('imgOverlayEl');
+  if(!img) return;
+
+  img.src = window.__gallery.list[window.__gallery.index];
+}
+
+  window.lbPrev = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
+    window.lbShow();
+  }
+
+  window.lbNext = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
+    window.lbShow();
+  }
 
   // Klávesnice: šipky + ESC
   document.addEventListener('keydown', (e) => {
-    const ov = document.getElementById('imgOverlay');
-    if (!ov || !ov.classList.contains('show')) return;
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay) return;
+    const isOpen = overlay.classList.contains('active');
+    if(!isOpen) return;
 
-    if (e.key === 'ArrowLeft') window.lbPrev();
-    if (e.key === 'ArrowRight') window.lbNext();
-    if (e.key === 'Escape') window.closeImage();
+    if(e.key === 'ArrowLeft') window.lbPrev();
+    if(e.key === 'ArrowRight') window.lbNext();
+    if(e.key === 'Escape') closeImage();
   });
-})();
+
+  <script>
+  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
+  window.__gallery = { list: [], index: 0 };
+
+  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
+  window.openGallery = function(clickedImg, index){
+    const grid = clickedImg.closest('.gallery-grid');
+    if(!grid) return;
+
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    window.__gallery.list = imgs.map(i => i.src);
+    window.__gallery.index = index || 0;
+
+    openLightbox(window.__gallery.list[window.__gallery.index]);
+  }
+
+  // Automatické otevírání galerie pro obrázky bez inline onclick
+  document.addEventListener('click', function(e){
+    const img = e.target.closest('img.gallery-img');
+    if(!img) return;
+
+    // Pokud už má obrázek vlastní onclick, nech ho být
+    if(img.hasAttribute('onclick')) return;
+
+    const grid = img.closest('.gallery-grid');
+    if(!grid) return;
+
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    const idx = imgs.indexOf(img);
+    if(idx < 0) return;
+
+    window.openGallery(img, idx);
+  });
+
+  window.lbShow = function(){
+    if(!window.__gallery.list.length) return;
+    const img = document.getElementById('imgOverlayEl');
+    if(!img) return;
+    img.src = window.__gallery.list[window.__gallery.index];
+  }
+
+  window.lbPrev = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
+    window.lbShow();
+  }
+
+  window.lbNext = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
+    window.lbShow();
+  }
+
+  function openLightbox(src){
+    const overlay = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(!overlay || !img) return;
+    img.src = src;
+    overlay.classList.add('active');
+  }
+
+  window.closeImage = function(){
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay) return;
+    overlay.classList.remove('active');
+  }
+
+  // Klávesnice: šipky + ESC
+  document.addEventListener('keydown', (e) => {
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay) return;
+    if(!overlay.classList.contains('active')) return;
+
+    if(e.key === 'ArrowLeft') window.lbPrev();
+    if(e.key === 'ArrowRight') window.lbNext();
+    if(e.key === 'Escape') window.closeImage();
+  });
 </script>
 
 </body>
