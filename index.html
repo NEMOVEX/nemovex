@@ -1690,27 +1690,33 @@ document.addEventListener('keydown', (e) => {
     });
   }
     // ===== Lightbox =====
-  window.openImage = function(src, altText){
-    const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(!ov || !img) return;
+window.openImage = function(src, altText, clickedImg){
 
-    img.src = src;
-    img.alt = altText || '';
-    ov.classList.add('show');
-    ov.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
+  const ov = document.getElementById('imgOverlay');
+  const img = document.getElementById('imgOverlayEl');
+  if(!ov || !img) return;
+
+  // Pokud máme kliknutý obrázek, sestav galerii
+  if(clickedImg){
+    const grid = clickedImg.closest('.gallery-grid');
+
+    if(grid){
+      const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+      window.__gallery.list = imgs.map(i => i.src);
+      window.__gallery.index = imgs.indexOf(clickedImg);
+    } else {
+      window.__gallery.list = [src];
+      window.__gallery.index = 0;
+    }
   }
 
-  window.closeImage = function(){
-    const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(img) img.src = '';
-    if(ov){
-      ov.classList.remove('show');
-      ov.setAttribute('aria-hidden','true');
-    }
-    document.body.style.overflow = '';
+  img.src = src;
+  img.alt = altText || '';
+
+  ov.classList.add('show');
+  ov.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
   }
 
 
@@ -1718,7 +1724,7 @@ document.addEventListener('keydown', (e) => {
   document.addEventListener('click', (e) => {
     const t = e.target;
     if(t && t.classList && t.classList.contains('gallery-img')){
-      window.openImage(t.currentSrc || t.src, t.alt || '');
+     window.openImage(img.src, img.alt || '', img);
     }
   });
 
