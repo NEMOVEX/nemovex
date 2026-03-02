@@ -551,8 +551,7 @@
       <a href="#" onclick="openAbout(); return false;">O NÁS</a>
       <button type="button" id="btnOffer">PROJEKTY V NABÍDCE</button>
       <button type="button" id="btnPrep">PROJEKTY V PŘÍPRAVĚ</button>
-      <a href="#poptavka" onclick="goHomeThenScroll('poptavka'); return false;">KONTAKTUJTE NÁS
-      </a>
+      <a href="#poptavka" onclick="goHomeThenScroll('poptavka'); return false;">NEZÁVAZNÁ POPTÁVKA</a>
       <a href="#kontakt" onclick="goHomeThenScroll('kontakt'); return false;">KONTAKT</a>
     </nav>
   </div>
@@ -828,7 +827,7 @@ Bydlení, kde vznikají nové životní příběhy.
   <!-- Poptávka -->
   <section id="poptavka">
     <div class="container">
-      <h2 class="section-title">Kontaktujte nás</h2>
+      <h2 class="section-title">Nezávazná poptávka</h2>
       <p class="section-sub">Jednoduše nám napište – ozveme se co nejdříve.</p>
 
       <form class="form-wrap" id="leadForm">
@@ -845,37 +844,32 @@ Bydlení, kde vznikají nové životní příběhy.
           <input id="email" name="email" type="email" placeholder="jana@email.cz" required>
         </div>
         <div class="field">
-          <label for="project">Typ dotazu</label>
-         <select id="project" name="project" required>
-  <option value="" selected>— vyberte —</option>
-
-  <optgroup label="Dotaz k projektu">
-    <option value="Dotaz k projektu: Nová Třešňovka III. etapa">Nová Třešňovka III. etapa</option>
-    <option value="Dotaz k projektu: Pura Vida">Pura Vida</option>
-    <option value="Dotaz k projektu: Nové Medlešice">Nové Medlešice</option>
-    <option value="Dotaz k projektu: Západní terasy">Západní terasy</option>
-    <option value="Dotaz k projektu: Projekt Voleč">Projekt Voleč</option>
-    <option value="Dotaz k projektu: R-Club">R-Club</option>
-    <option value="Dotaz k projektu: Rezidenční čtvrť Hervítkovice">Rezidenční čtvrť Hervítkovice</option>
-    <option value="Dotaz k projektu: RD Třibřichy">RD Třibřichy</option>
-    <option value="Dotaz k projektu: Projekt Rudník">Projekt Rudník</option>
-  </optgroup>
-
-  <optgroup label="Ostatní">
-    <option value="Investice">Investice</option>
-    <option value="Obecný dotaz">Obecný dotaz</option>
-    <option value="Schůzka / prohlídka">Schůzka / prohlídka</option>
-     <option value="Spolupráce">Spolupráce</option>
-  </optgroup>
-</select>
+          <label for="project">Vybraný projekt</label>
+          <select id="project" name="project">
+            <option value="">— vyberte —</option>
+            <optgroup label="Projekty v nabídce">
+              <option>Rezidenční komplex Pura Vida</option>
+              <option>Nový Malešov</option>
+              <option>BD Hermann</option>
+              <option>Nová Třešňovka III. etapa</option>
+            </optgroup>
+            <optgroup label="Projekty v přípravě">
+              <option>Západní terasy</option>
+              <option>R – Club</option>
+              <option>Rezidenční čtvrť Hervítkovice</option>
+              <option>RD Třibřichy</option>
+              <option>Projekt Rudník</option>
+              <option>Projekt Voleč</option>
+            </optgroup>
+          </select>
         </div>
         <div class="field" style="grid-column:1/-1">
           <label for="msg">Zpráva</label>
-          <textarea id="msg" name="msg" placeholder="Napište nám, co vás zajímá "></textarea>
+          <textarea id="msg" name="msg" placeholder="Napište nám, co hledáte (dispozice, termín, rozpočet…)"></textarea>
         </div>
         <div class="form-actions">
-          <button class="btn-primary" type="submit">Odeslat</button>
-          <span class="note"></span>
+          <button class="btn-primary" type="submit">Odeslat poptávku</button>
+          <span class="note">Po kliknutí se otevře váš e-mailový klient s připravenou zprávou.</span>
         </div>
       </form>
     </div>
@@ -963,7 +957,7 @@ Bydlení, kde vznikají nové životní příběhy.
 
   <div class="project-info-card">
     <h4>Informace</h4>
-    <p>Pro více informací nás kontaktujte.</p>
+    <p>Pro více informací využijte nezávaznou poptávku.</p>
   </div>
 
   </div>
@@ -990,7 +984,7 @@ Bydlení, kde vznikají nové životní příběhy.
   </div>
 
   <div style="margin-top:14px">
-    <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+    <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
   </div>
 </div>
 
@@ -1035,7 +1029,7 @@ Bydlení, kde vznikají nové životní příběhy.
 
   <div class="project-info-card">
     <h4>Lokalita</h4>
-    <p>Klidná část na okraji obce Klenovka s napojením na veškeré inženýrské sítě (vodovod, elektřina, kanalizace).</p>
+    <p>Klidná část na okraji obce s napojením na veškeré inženýrské sítě (vodovod, elektřina, kanalizace).</p>
   </div>
 
 </div>
@@ -1085,7 +1079,7 @@ Bydlení, kde vznikají nové životní příběhy.
 
 
         <div style="margin-top:14px">
-          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
     </div>
@@ -1143,11 +1137,12 @@ Bydlení, kde vznikají nové životní příběhy.
         <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
         <div class="gallery-grid">
           <img class="gallery-img" src="images/puravida.jpg" alt="Pura Vida – vizualizace 1" loading="lazy" onclick="openGallery(this, 0)">
-          
+          <img class="gallery-img" src="images/puravida.jpg" alt="Pura Vida – vizualizace 2" loading="lazy" onclick="openGallery(this, 1)">
+          <img class="gallery-img" src="images/puravida.jpg" alt="Pura Vida – vizualizace 3" loading="lazy" onclick="openGallery(this, 2)">
         </div>
 
         <div style="margin-top:14px">
-          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
     </div>
@@ -1178,7 +1173,7 @@ Bydlení, kde vznikají nové životní příběhy.
   <div class="project-info-card">
     <h4>Dispozice</h4>
     <p>
-     V nabídce pozemky + 33 bytových jednotek 4kk, 3kk. Výměry a typ pozemků v nejbližší době doplníme.
+     V nabídce pozemky + 33 bytových jednotek 4kk, 3kk.Výměry a typ pozemků v nejbližší době doplníme.
     </p>
   </div>
 
@@ -1198,7 +1193,7 @@ Bydlení, kde vznikají nové životní příběhy.
 
   <div class="project-info-card">
     <h4>Informace</h4>
-    <p>Pro více informací k projektu nás neváhejte konatkovat pomocí formuláře.</p>
+    <p>Pro více informací využijte nezávaznou poptávku.</p>
   </div>
 
 </div>
@@ -1211,7 +1206,7 @@ Bydlení, kde vznikají nové životní příběhy.
         </div>
 
         <div style="margin-top:14px">
-          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
     </div>
@@ -1235,7 +1230,7 @@ Bydlení, kde vznikají nové životní příběhy.
     <div class="container">
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
         <p style="color:#555;font-size:15px;max-width:90ch">
-          Detail projektu doplníme. Pro více informací k projektu nás neváhejte kontaktovat.
+          Detail projektu doplníme. Pro více informací využijte nezávaznou poptávku.
         </p>
 
         <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
@@ -1246,7 +1241,7 @@ Bydlení, kde vznikají nové životní příběhy.
         </div>
 
         <div style="margin-top:14px">
-          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
     </div>
@@ -1288,7 +1283,7 @@ Bydlení, kde vznikají nové životní příběhy.
 
           <div style="background:#f8f9f7;border-radius:16px;padding:18px;border:1px solid #eef1ee">
             <div style="font-weight:800;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Informace</div>
-            <div style="color:#444;line-height:1.6;">Pro více informací k projektu nás neváhejte kontaktovat.</div>
+            <div style="color:#444;line-height:1.6;">Pro více informací využijte nezávaznou poptávku.</div>
           </div>
 
         </div>
@@ -1330,10 +1325,10 @@ Bydlení, kde vznikají nové životní příběhy.
     <div class="container">
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
         <p style="color:#555;font-size:15px;max-width:90ch">
-          Pro více informací nás neváhejte kontaktovat.
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
         </p>
         <div style="margin-top:14px">
-          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
     </div>
@@ -1356,10 +1351,10 @@ Bydlení, kde vznikají nové životní příběhy.
     <div class="container">
       <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
         <p style="color:#555;font-size:15px;max-width:90ch">
-          Informační detail doplníme. Pro více informací k projektu nás neváhejte kontaktovat.
+          Informační detail doplníme. Pro více informací využijte nezávaznou poptávku.
         </p>
         <div style="margin-top:14px">
-          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+          <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
         </div>
       </div>
     </div>
@@ -1403,7 +1398,7 @@ Bydlení, kde vznikají nové životní příběhy.
 
     <div style="background:#f8f9f7;padding:20px;border-radius:16px;box-shadow:0 8px 22px rgba(0,0,0,0.06);">
       <div style="font-weight:600;margin-bottom:8px;color:#1f3d2b;font-size:16px;">Informace</div>
-      <div style="color:#444;line-height:1.6;">Pro více informací k projektu nás neváhejte kontaktovat.</div>
+      <div style="color:#444;line-height:1.6;">Pro více informací využijte nezávaznou poptávku.</div>
     </div>
 
   </div>
@@ -1421,7 +1416,7 @@ Bydlení, kde vznikají nové životní příběhy.
     </div>
 
     <div style="margin-top:24px;">
-      <a href="#poptavka" class="btn-primary">Kontaktní formulář</a>
+      <a href="#poptavka" class="btn-primary">Nezávazná poptávka</a>
     </div>
 
   </div>
@@ -1467,7 +1462,7 @@ Bydlení, kde vznikají nové životní příběhy.
       </div>
 
       <div style="margin-top:24px">
-        <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
+        <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Nezávazná poptávka</button>
       </div>
     </div>
   </section>
@@ -1495,7 +1490,7 @@ Bydlení, kde vznikají nové životní příběhy.
     <!-- Levá část -->
     <div style="flex:1; min-width:260px; text-align:left; font-size:16px; line-height:1.6;">
       <h3 style="margin-bottom:20px; font-size:24px;">Adresa a sídlo společnosti</h3>
-      <strong>NEMOVEX a.s.</strong><br>
+      <strong>Nemovex a.s.</strong><br>
       IČO: 17682622<br>
       Havlíčkova 7<br>
       537 01 Chrudim
@@ -1556,136 +1551,407 @@ Bydlení, kde vznikají nové životní příběhy.
 </footer>
   
 <script>
-  // ===== DOPLNĚNÍ FUNKCÍ PRO HTML onclick =====
+  
+  // ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get('project');
 
-window.openProject = function(viewId){
-  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-  const el = document.getElementById(viewId);
-  if(el) el.style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  if (!project) {
+    // zavři všechny detaily projektů
+    document.querySelectorAll('.project-detail').forEach(el => {
+      el.style.display = 'none';
+    });
 
-window.goHomeThenScroll = function(anchorId){
-  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-  const home = document.getElementById('homepage');
-  if(home) home.style.display = 'block';
+    // zobraz úvodní stránku
+    const homepage = document.getElementById('homepage');
+    if (homepage) homepage.style.display = 'block';
+  }
+});
 
-  setTimeout(() => {
-    const target = document.getElementById(anchorId);
-    if(target){
-      target.scrollIntoView({ behavior: 'smooth' });
+(function(){
+  const navLinks = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+
+  const offerOverlay = document.getElementById('offerOverlay');
+  const prepOverlay  = document.getElementById('prepOverlay');
+
+  const btnOffer = document.getElementById('btnOffer');
+  const btnPrep  = document.getElementById('btnPrep');
+
+  const btnCloseOffer = document.getElementById('btnCloseOffer');
+  const btnClosePrep  = document.getElementById('btnClosePrep');
+
+  const leadForm = document.getElementById('leadForm');
+
+  function toggleMenu(){
+    if(!navLinks) return;
+    navLinks.classList.toggle('show');
+  }
+  window.closeMenu = function(){
+    if(!navLinks) return;
+    navLinks.classList.remove('show');
+  }
+  if(hamburger){
+    hamburger.addEventListener('click', toggleMenu);
+  }
+
+  function closeOverlay(){
+    if(offerOverlay){ offerOverlay.classList.remove('show'); offerOverlay.setAttribute('aria-hidden','true'); }
+    if(prepOverlay){  prepOverlay.classList.remove('show');  prepOverlay.setAttribute('aria-hidden','true'); }
+    document.body.style.overflow = '';
+  }
+
+  function openOverlay(which){
+    closeOverlay();
+    if(which === 'offer' && offerOverlay){
+      offerOverlay.classList.add('show');
+      offerOverlay.setAttribute('aria-hidden','false');
     }
-  }, 60);
-}
+    if(which === 'prep' && prepOverlay){
+      prepOverlay.classList.add('show');
+      prepOverlay.setAttribute('aria-hidden','false');
+    }
+    document.body.style.overflow = 'hidden';
+  }
 
-window.openAbout = function(){
-  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-  const about = document.getElementById('view-about');
-  if(about) about.style.display = 'block';
-}
+  if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
+  if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
 
-// ===== GALERIE =====
-window.__gallery = { list: [], index: 0 };
+  if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
+  if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
 
-window.openGallery = function(clickedImg, index){
-  const grid = clickedImg.closest('.gallery-grid');
-  if(!grid) return;
+  if(offerOverlay){
+    offerOverlay.addEventListener('click', (e) => { if(e.target === offerOverlay) closeOverlay(); });
+  }
+  if(prepOverlay){
+    prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
+  }
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    closeOverlay();
+    if(window.closeImage) window.closeImage();
+  }
+});
 
-  const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-  window.__gallery.list = imgs.map(i => i.src);
-  window.__gallery.index = index || 0;
+  function showView(viewId){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const el = document.getElementById(viewId);
+    if(el) el.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
 
-  const overlay = document.getElementById('imgOverlay');
-  const img = document.getElementById('imgOverlayEl');
+  window.goHome = function(){
+    closeOverlay();
+    closeMenu();
+    showView('view-home');
+  }
 
-  if(!overlay || !img) return;
+  window.openAbout = function(){
+    closeOverlay();
+    closeMenu();
+    showView('view-about');
+  }
 
-  img.src = window.__gallery.list[window.__gallery.index];
-  overlay.classList.add('active');
-}
+  window.openProject = function(key){
+    closeOverlay();
+    closeMenu();
+    showView('view-' + key);
+  }
 
-window.lbShow = function(){
-  if(!window.__gallery.list.length) return;
-  const img = document.getElementById('imgOverlayEl');
-  if(!img) return;
-  img.src = window.__gallery.list[window.__gallery.index];
-}
+  window.goHomeThenScroll = function(sectionId){
+    goHome();
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }, 80);
+  }
 
-window.lbPrev = function(e){
-  if(e) e.stopPropagation();
-  if(!window.__gallery.list.length) return;
-  window.__gallery.index =
-    (window.__gallery.index - 1 + window.__gallery.list.length) %
-    window.__gallery.list.length;
-  window.lbShow();
-}
+  if(leadForm){
+    leadForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name')?.value.trim() || '';
+      const phone = document.getElementById('phone')?.value.trim() || '';
+      const email = document.getElementById('email')?.value.trim() || '';
+      const project = document.getElementById('project')?.value.trim() || '';
+      const msg = document.getElementById('msg')?.value.trim() || '';
 
-window.lbNext = function(e){
-  if(e) e.stopPropagation();
-  if(!window.__gallery.list.length) return;
-  window.__gallery.index =
-    (window.__gallery.index + 1) %
-    window.__gallery.list.length;
-  window.lbShow();
-}
+      const subject = encodeURIComponent('Nezávazná poptávka – NEMOVEX GROUP');
+      const body = encodeURIComponent(
+        `Jméno: ${name}\nTelefon: ${phone}\nE-mail: ${email}\nProjekt: ${project}\n\nZpráva:\n${msg}\n`
+      );
 
-window.closeImage = function(){
-  const overlay = document.getElementById('imgOverlay');
-  if(!overlay) return;
-  overlay.classList.remove('active');
-}
+      window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
+    });
+  }
+    // ===== Lightbox =====
+  window.openImage = function(src, altText){
+    const ov = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(!ov || !img) return;
 
-// Klik na obrázek
+    img.src = src;
+    img.alt = altText || '';
+    ov.classList.add('show');
+    ov.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  window.closeImage = function(){
+    const ov = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(img) img.src = '';
+    if(ov){
+      ov.classList.remove('show');
+      ov.setAttribute('aria-hidden','true');
+    }
+    document.body.style.overflow = '';
+  }
+
+
+  // Klik na fotku v galerii otevře lightbox (bez inline onclicků)
+  document.addEventListener('click', (e) => {
+    const t = e.target;
+    if(t && t.classList && t.classList.contains('gallery-img')){
+      window.openImage(t.currentSrc || t.src, t.alt || '');
+    }
+  });
+
+  // Zavření lightboxu klikem mimo obrázek
+  const imgOverlay = document.getElementById('imgOverlay');
+  if(imgOverlay){
+    imgOverlay.addEventListener('click', (e) => {
+      if(e.target === imgOverlay) window.closeImage();
+    });
+  }
+
+})();
+</script>
+
+
+
+<!-- ===== Lightbox (zvětšení fotek) ===== -->
+<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
+
+<!-- Šipka vlevo -->
+<button type="button"
+onclick="event.stopPropagation(); lbPrev(event)"
+style="
+position:fixed;
+left:24px;
+top:50%;
+transform:translateY(-50%);
+width:60px;
+height:60px;
+border-radius:50%;
+background:rgba(0,0,0,0.75);
+border:2px solid rgba(255,255,255,0.9);
+color:#ffffff;
+box-shadow:0 12px 35px rgba(0,0,0,0.6);
+font-size:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:9999;
+transition:all .25s ease;
+"
+onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
+onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
+>
+❮
+</button>
+
+
+
+<!-- Šipka vpravo -->
+<button type="button"
+onclick="event.stopPropagation(); lbNext(event)"
+style="
+position:fixed;
+right:24px;
+top:50%;
+transform:translateY(-50%);
+width:60px;
+height:60px;
+border-radius:50%;
+background:rgba(0,0,0,0.75);
+border:2px solid rgba(255,255,255,0.9);
+color:#ffffff;
+box-shadow:0 12px 35px rgba(0,0,0,0.6);
+font-size:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:9999;
+transition:all .25s ease;
+"
+onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
+onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
+>
+  ❯
+</button>
+
+
+
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none"> 
+
+    <img id="imgOverlayEl" src="" alt=""
+      onclick="event.stopPropagation()"
+   style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);"
+  </div>
+</div>
+
+<script>
+  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
+  window.__gallery = { list: [], index: 0 };
+
+  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
+  window.openGallery = function(clickedImg, index){
+    const grid = clickedImg.closest('.gallery-grid');
+    if(!grid) return;
+
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    window.__gallery.list = imgs.map(i => i.src);
+    window.__gallery.index = index || 0;
+
+    // použije existující lightbox funkci
+    openLightbox(window.__gallery.list[window.__gallery.index]);
+  }
+ 
+// Automatické otevírání galerie pro obrázky bez inline onclick
 document.addEventListener('click', function(e){
   const img = e.target.closest('img.gallery-img');
   if(!img) return;
 
+  // pokud už má obrázek vlastní onclick, nech to na něm
+  if(img.hasAttribute('onclick')) return;
+
   const grid = img.closest('.gallery-grid');
   if(!grid) return;
 
-  const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-  const idx = imgs.indexOf(img);
+  const list = Array.from(grid.querySelectorAll('img.gallery-img'));
+  const idx = list.indexOf(img);
   if(idx < 0) return;
 
-  window.openGallery(img, idx);
+  openGallery(img, idx);
 });
 
-// Klávesnice
-document.addEventListener('keydown', function(e){
-  const overlay = document.getElementById('imgOverlay');
-  if(!overlay || !overlay.classList.contains('active')) return;
+ window.lbShow = function(){
+  if(!window.__gallery.list.length) return;
 
-  if(e.key === 'ArrowLeft') window.lbPrev();
-  if(e.key === 'ArrowRight') window.lbNext();
-  if(e.key === 'Escape') window.closeImage();
-});
+  const img = document.getElementById('imgOverlayEl');
+  if(!img) return;
 
-// ===== FUNKCE PRO MENU A VIEW =====
-window.openProject = function(viewId){
-  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-  const el = document.getElementById(viewId);
-  if(el) el.style.display = 'block';
+  img.src = window.__gallery.list[window.__gallery.index];
 }
 
-window.goHomeThenScroll = function(anchorId){
-  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-  const home = document.getElementById('homepage');
-  if(home) home.style.display = 'block';
+  window.lbPrev = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
+    window.lbShow();
+  }
 
-  setTimeout(() => {
-    const target = document.getElementById(anchorId);
-    if(target){
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, 60);
-}
+  window.lbNext = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
+    window.lbShow();
+  }
 
-window.openAbout = function(){
-  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-  const about = document.getElementById('view-about');
-  if(about) about.style.display = 'block';
-}
+  // Klávesnice: šipky + ESC
+  document.addEventListener('keydown', (e) => {
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay) return;
+    const isOpen = overlay.classList.contains('active');
+    if(!isOpen) return;
 
+    if(e.key === 'ArrowLeft') window.lbPrev();
+    if(e.key === 'ArrowRight') window.lbNext();
+    if(e.key === 'Escape') closeImage();
+  });
+
+  <script>
+  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
+  window.__gallery = { list: [], index: 0 };
+
+  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
+  window.openGallery = function(clickedImg, index){
+    const grid = clickedImg.closest('.gallery-grid');
+    if(!grid) return;
+
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    window.__gallery.list = imgs.map(i => i.src);
+    window.__gallery.index = index || 0;
+
+    openLightbox(window.__gallery.list[window.__gallery.index]);
+  }
+
+  // Automatické otevírání galerie pro obrázky bez inline onclick
+  document.addEventListener('click', function(e){
+    const img = e.target.closest('img.gallery-img');
+    if(!img) return;
+
+    // Pokud už má obrázek vlastní onclick, nech ho být
+    if(img.hasAttribute('onclick')) return;
+
+    const grid = img.closest('.gallery-grid');
+    if(!grid) return;
+
+    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
+    const idx = imgs.indexOf(img);
+    if(idx < 0) return;
+
+    window.openGallery(img, idx);
+  });
+
+  window.lbShow = function(){
+    if(!window.__gallery.list.length) return;
+    const img = document.getElementById('imgOverlayEl');
+    if(!img) return;
+    img.src = window.__gallery.list[window.__gallery.index];
+  }
+
+  window.lbPrev = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
+    window.lbShow();
+  }
+
+  window.lbNext = function(e){
+    if(e) e.stopPropagation();
+    if(!window.__gallery.list.length) return;
+    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
+    window.lbShow();
+  }
+
+  function openLightbox(src){
+    const overlay = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(!overlay || !img) return;
+    img.src = src;
+    overlay.classList.add('active');
+  }
+
+  window.closeImage = function(){
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay) return;
+    overlay.classList.remove('active');
+  }
+
+  // Klávesnice: šipky + ESC
+  document.addEventListener('keydown', (e) => {
+    const overlay = document.getElementById('imgOverlay');
+    if(!overlay) return;
+    if(!overlay.classList.contains('active')) return;
+
+    if(e.key === 'ArrowLeft') window.lbPrev();
+    if(e.key === 'ArrowRight') window.lbNext();
+    if(e.key === 'Escape') window.closeImage();
+  });
 </script>
 
 </body>
