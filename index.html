@@ -846,21 +846,36 @@ Bydlení, kde vznikají nové životní příběhy.
         </div>
         <div class="field">
           <label for="project">Typ dotazu</label>
-          <select id="project" name="project">
-            <option value="">— vyberte —</option>
-            <optgroup label="Dotaz k projektu">
-            </optgroup>
-            <optgroup label="Ostatní">
-            </optgroup>
-          </select>
+         <select id="project" name="project" required>
+  <option value="" selected>— vyberte —</option>
+
+  <optgroup label="Dotaz k projektu">
+    <option value="Dotaz k projektu: Nová Třešňovka III. etapa">Nová Třešňovka III. etapa</option>
+    <option value="Dotaz k projektu: Pura Vida">Pura Vida</option>
+    <option value="Dotaz k projektu: Nové Medlešice">Nové Medlešice</option>
+    <option value="Dotaz k projektu: Západní terasy">Západní terasy</option>
+    <option value="Dotaz k projektu: Projekt Voleč">Projekt Voleč</option>
+    <option value="Dotaz k projektu: R-Club">R-Club</option>
+    <option value="Dotaz k projektu: Rezidenční čtvrť Hervítkovice">Rezidenční čtvrť Hervítkovice</option>
+    <option value="Dotaz k projektu: RD Třibřichy">RD Třibřichy</option>
+    <option value="Dotaz k projektu: Projekt Rudník">Projekt Rudník</option>
+  </optgroup>
+
+  <optgroup label="Ostatní">
+    <option value="Investice">Investice</option>
+    <option value="Obecný dotaz">Obecný dotaz</option>
+    <option value="Schůzka / prohlídka">Schůzka / prohlídka</option>
+     <option value="Spolupráce">Spolupráce</option>
+  </optgroup>
+</select>
         </div>
         <div class="field" style="grid-column:1/-1">
           <label for="msg">Zpráva</label>
-          <textarea id="msg" name="msg" placeholder="Napište nám, co hledáte (investici, dispozice, termín, rozpočet…)"></textarea>
+          <textarea id="msg" name="msg" placeholder="Napište nám, co vás zajímá "></textarea>
         </div>
         <div class="form-actions">
           <button class="btn-primary" type="submit">Odeslat</button>
-          <span class="note">Po kliknutí se otevře váš e-mailový klient s připravenou zprávou.</span>
+          <span class="note"></span>
         </div>
       </form>
     </div>
