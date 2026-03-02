@@ -1963,6 +1963,33 @@ document.addEventListener('click', function(e){
     if(e.key === 'ArrowRight') window.lbNext();
     if(e.key === 'Escape') window.closeImage();
   });
+  // ===== DOPLNĚNÍ FUNKCÍ PRO HTML onclick =====
+
+window.openProject = function(viewId){
+  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+  const el = document.getElementById(viewId);
+  if(el) el.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.goHomeThenScroll = function(anchorId){
+  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+  const home = document.getElementById('homepage');
+  if(home) home.style.display = 'block';
+
+  setTimeout(() => {
+    const target = document.getElementById(anchorId);
+    if(target){
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 60);
+}
+
+window.openAbout = function(){
+  document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+  const about = document.getElementById('view-about');
+  if(about) about.style.display = 'block';
+}
 </script>
 
 </body>
