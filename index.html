@@ -1690,275 +1690,152 @@ document.addEventListener('keydown', (e) => {
       window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
     });
   }
-    // ===== Lightbox =====
-  window.openImage = function(src, altText){
-    const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(!ov || !img) return;
+  <!-- ===== LIGHTBOX GALERIE – FINÁLNÍ VERZE ===== -->
 
-    img.src = src;
-    img.alt = altText || '';
-    ov.classList.add('show');
-    ov.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
+<div class="overlay" id="imgOverlay" aria-hidden="true" style="padding:0;align-items:center;justify-content:center;">
 
-  window.closeImage = function(){
-    const ov = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(img) img.src = '';
-    if(ov){
-      ov.classList.remove('show');
-      ov.setAttribute('aria-hidden','true');
-    }
-    document.body.style.overflow = '';
-  }
+  <!-- Šipka vlevo -->
+  <button type="button"
+    onclick="lbPrev(event)"
+    style="
+    position:fixed;
+    left:24px;
+    top:50%;
+    transform:translateY(-50%);
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.75);
+    border:2px solid rgba(255,255,255,0.9);
+    color:#ffffff;
+    box-shadow:0 12px 35px rgba(0,0,0,0.6);
+    font-size:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:9999;
+    transition:all .25s ease;">
+    ❮
+  </button>
 
+  <!-- Šipka vpravo -->
+  <button type="button"
+    onclick="lbNext(event)"
+    style="
+    position:fixed;
+    right:24px;
+    top:50%;
+    transform:translateY(-50%);
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.75);
+    border:2px solid rgba(255,255,255,0.9);
+    color:#ffffff;
+    box-shadow:0 12px 35px rgba(0,0,0,0.6);
+    font-size:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:9999;
+    transition:all .25s ease;">
+    ❯
+  </button>
 
-  // Klik na fotku v galerii otevře lightbox (bez inline onclicků)
-  document.addEventListener('click', (e) => {
-    const t = e.target;
-    if(t && t.classList && t.classList.contains('gallery-img')){
-      window.openImage(t.currentSrc || t.src, t.alt || '');
-    }
-  });
-
-  // Zavření lightboxu klikem mimo obrázek
-  const imgOverlay = document.getElementById('imgOverlay');
-  if(imgOverlay){
-    imgOverlay.addEventListener('click', (e) => {
-      if(e.target === imgOverlay) window.closeImage();
-    });
-  }
-
-})();
-</script>
-
-
-
-<!-- ===== Lightbox (zvětšení fotek) ===== -->
-<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
-
-<!-- Šipka vlevo -->
-<button type="button"
-onclick="event.stopPropagation(); lbPrev(event)"
-style="
-position:fixed;
-left:24px;
-top:50%;
-transform:translateY(-50%);
-width:60px;
-height:60px;
-border-radius:50%;
-background:rgba(0,0,0,0.75);
-border:2px solid rgba(255,255,255,0.9);
-color:#ffffff;
-box-shadow:0 12px 35px rgba(0,0,0,0.6);
-font-size:32px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:9999;
-transition:all .25s ease;
-"
-onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
-onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
->
-❮
-</button>
-
-
-
-<!-- Šipka vpravo -->
-<button type="button"
-onclick="event.stopPropagation(); lbNext(event)"
-style="
-position:fixed;
-right:24px;
-top:50%;
-transform:translateY(-50%);
-width:60px;
-height:60px;
-border-radius:50%;
-background:rgba(0,0,0,0.75);
-border:2px solid rgba(255,255,255,0.9);
-color:#ffffff;
-box-shadow:0 12px 35px rgba(0,0,0,0.6);
-font-size:32px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:9999;
-transition:all .25s ease;
-"
-onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
-onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
->
-  ❯
-</button>
-
-
-
-  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none"> 
-
-    <img id="imgOverlayEl" src="" alt=""
-      onclick="event.stopPropagation()"
-   style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);"
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
+    <img id="imgOverlayEl"
+         src=""
+         alt=""
+         style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);">
   </div>
 </div>
 
 <script>
-  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
+(function(){
+
+  // Globální galerie
   window.__gallery = { list: [], index: 0 };
 
-  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
   window.openGallery = function(clickedImg, index){
     const grid = clickedImg.closest('.gallery-grid');
     if(!grid) return;
 
     const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    window.__gallery.list = imgs.map(i => i.src);
-    window.__gallery.index = index || 0;
+    window.__gallery.list = imgs.map(img => img.src);
+    window.__gallery.index = index;
 
-    // použije existující lightbox funkci
-    openLightbox(window.__gallery.list[window.__gallery.index]);
+    showLightbox();
   }
- 
-// Automatické otevírání galerie pro obrázky bez inline onclick
-document.addEventListener('click', function(e){
-  const img = e.target.closest('img.gallery-img');
-  if(!img) return;
 
-  // pokud už má obrázek vlastní onclick, nech to na něm
-  if(img.hasAttribute('onclick')) return;
+  function showLightbox(){
+    const overlay = document.getElementById('imgOverlay');
+    const img = document.getElementById('imgOverlayEl');
+    if(!overlay || !img) return;
 
-  const grid = img.closest('.gallery-grid');
-  if(!grid) return;
-
-  const list = Array.from(grid.querySelectorAll('img.gallery-img'));
-  const idx = list.indexOf(img);
-  if(idx < 0) return;
-
-  openGallery(img, idx);
-});
-
- window.lbShow = function(){
-  if(!window.__gallery.list.length) return;
-
-  const img = document.getElementById('imgOverlayEl');
-  if(!img) return;
-
-  img.src = window.__gallery.list[window.__gallery.index];
-}
+    img.src = window.__gallery.list[window.__gallery.index];
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
 
   window.lbPrev = function(e){
     if(e) e.stopPropagation();
     if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
-    window.lbShow();
+
+    window.__gallery.index =
+      (window.__gallery.index - 1 + window.__gallery.list.length)
+      % window.__gallery.list.length;
+
+    updateImage();
   }
 
   window.lbNext = function(e){
     if(e) e.stopPropagation();
     if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
-    window.lbShow();
+
+    window.__gallery.index =
+      (window.__gallery.index + 1)
+      % window.__gallery.list.length;
+
+    updateImage();
   }
 
-  // Klávesnice: šipky + ESC
-  document.addEventListener('keydown', (e) => {
-    const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    const isOpen = overlay.classList.contains('active');
-    if(!isOpen) return;
-
-    if(e.key === 'ArrowLeft') window.lbPrev();
-    if(e.key === 'ArrowRight') window.lbNext();
-    if(e.key === 'Escape') closeImage();
-  });
-
-  <script>
-  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
-  window.__gallery = { list: [], index: 0 };
-
-  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
-  window.openGallery = function(clickedImg, index){
-    const grid = clickedImg.closest('.gallery-grid');
-    if(!grid) return;
-
-    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    window.__gallery.list = imgs.map(i => i.src);
-    window.__gallery.index = index || 0;
-
-    openLightbox(window.__gallery.list[window.__gallery.index]);
-  }
-
-  // Automatické otevírání galerie pro obrázky bez inline onclick
-  document.addEventListener('click', function(e){
-    const img = e.target.closest('img.gallery-img');
-    if(!img) return;
-
-    // Pokud už má obrázek vlastní onclick, nech ho být
-    if(img.hasAttribute('onclick')) return;
-
-    const grid = img.closest('.gallery-grid');
-    if(!grid) return;
-
-    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    const idx = imgs.indexOf(img);
-    if(idx < 0) return;
-
-    window.openGallery(img, idx);
-  });
-
-  window.lbShow = function(){
-    if(!window.__gallery.list.length) return;
+  function updateImage(){
     const img = document.getElementById('imgOverlayEl');
     if(!img) return;
     img.src = window.__gallery.list[window.__gallery.index];
   }
 
-  window.lbPrev = function(e){
-    if(e) e.stopPropagation();
-    if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
-    window.lbShow();
-  }
-
-  window.lbNext = function(e){
-    if(e) e.stopPropagation();
-    if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
-    window.lbShow();
-  }
-
-  function openLightbox(src){
-    const overlay = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(!overlay || !img) return;
-    img.src = src;
-    overlay.classList.add('active');
-  }
-
   window.closeImage = function(){
     const overlay = document.getElementById('imgOverlay');
     if(!overlay) return;
-    overlay.classList.remove('active');
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
   }
 
-  // Klávesnice: šipky + ESC
-  document.addEventListener('keydown', (e) => {
+  // Zavření klikem mimo obrázek
+  const overlay = document.getElementById('imgOverlay');
+  if(overlay){
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay){
+        closeImage();
+      }
+    });
+  }
+
+  // Klávesnice
+  document.addEventListener('keydown', function(e){
     const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    if(!overlay.classList.contains('active')) return;
+    if(!overlay || !overlay.classList.contains('show')) return;
 
-    if(e.key === 'ArrowLeft') window.lbPrev();
-    if(e.key === 'ArrowRight') window.lbNext();
-    if(e.key === 'Escape') window.closeImage();
+    if(e.key === 'ArrowLeft') lbPrev();
+    if(e.key === 'ArrowRight') lbNext();
+    if(e.key === 'Escape') closeImage();
   });
-</script>
 
+})();
+</script>
+  
 </body>
 </html>
