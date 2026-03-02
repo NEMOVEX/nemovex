@@ -1552,24 +1552,109 @@ Bydlení, kde vznikají nové životní příběhy.
   
 <script>
   
-  // ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
+<footer id="kontakt" style="background:#1f1f1f; color:#ffffff; padding:60px 0;">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; padding:0 80px; max-width:1200px; margin:0 auto;">
+
+    <!-- Levá část -->
+    <div style="flex:1; min-width:260px; text-align:left; font-size:16px; line-height:1.6;">
+      <h3 style="margin-bottom:20px; font-size:24px;">Adresa a sídlo společnosti</h3>
+      <strong>Nemovex a.s.</strong><br>
+      IČO: 17682622<br>
+      Havlíčkova 7<br>
+      537 01 Chrudim
+    </div>
+
+    <!-- Pravá část -->
+    <div style="min-width:260px; text-align:left; font-size:16px; line-height:1.6;">
+      <h3 style="margin-bottom:20px; font-size:24px;">Kontakt</h3>
+
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
+        <a href="mailto:info@nemovex.cz" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M4 4h16v16H4z"></path>
+            <path d="M4 4l8 8 8-8"></path>
+          </svg>
+          info@nemovex.cz
+        </a>
+
+        <a href="tel:+420461040466" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.48a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          461 040 466
+        </a>
+
+        <a href="https://www.nemovex.cz" target="_blank" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15 15 0 0 1 0 20"></path>
+            <path d="M12 2a15 15 0 0 0 0 20"></path>
+          </svg>
+          www.nemovex.cz
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <hr style="margin:40px 0; border:0; height:1px; background:#333;">
+
+  <div style="text-align:center; font-size:13px; color:#aaaaaa; max-width:1200px; margin:0 auto;">
+    © 2026 NEMOVEX GROUP - Developerské projekty<br>
+    Stránky jsou ve výstavbě, některé fotky mohou být pouze ilustrační.
+  </div>
+</footer>
+
+<!-- ===== Lightbox (zvětšení fotek + šipky) ===== -->
+<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
+
+  <button type="button"
+    onclick="event.stopPropagation(); lbPrev(event)"
+    style="position:fixed;left:24px;top:50%;transform:translateY(-50%);
+           width:60px;height:60px;border-radius:50%;
+           background:rgba(0,0,0,0.75);border:2px solid rgba(255,255,255,0.9);
+           color:#fff;box-shadow:0 12px 35px rgba(0,0,0,0.6);
+           font-size:32px;display:flex;align-items:center;justify-content:center;
+           cursor:pointer;z-index:9999;">
+    ❮
+  </button>
+
+  <button type="button"
+    onclick="event.stopPropagation(); lbNext(event)"
+    style="position:fixed;right:24px;top:50%;transform:translateY(-50%);
+           width:60px;height:60px;border-radius:50%;
+           background:rgba(0,0,0,0.75);border:2px solid rgba(255,255,255,0.9);
+           color:#fff;box-shadow:0 12px 35px rgba(0,0,0,0.6);
+           font-size:32px;display:flex;align-items:center;justify-content:center;
+           cursor:pointer;z-index:9999;">
+    ❯
+  </button>
+
+  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none">
+    <img id="imgOverlayEl" src="" alt=""
+      onclick="event.stopPropagation()"
+      style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;
+             border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);">
+  </div>
+</div>
+
+<script>
+/* Všechno spouštíme až po načtení DOM – tím se už NIKDY nerozbije menu/detaily */
 document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const project = params.get('project');
 
-  if (!project) {
-    // zavři všechny detaily projektů
-    document.querySelectorAll('.project-detail').forEach(el => {
-      el.style.display = 'none';
-    });
+  // ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const project = params.get('project');
+    if (!project) {
+      document.querySelectorAll('.project-detail').forEach(el => { el.style.display = 'none'; });
+      const homepage = document.getElementById('homepage');
+      if (homepage) homepage.style.display = 'block';
+    }
+  } catch (e) {}
 
-    // zobraz úvodní stránku
-    const homepage = document.getElementById('homepage');
-    if (homepage) homepage.style.display = 'block';
-  }
-});
-
-(function(){
+  // ===== MENU + OVERLAY Nabídka/Příprava + VIEW přepínání =====
   const navLinks = document.getElementById('navLinks');
   const hamburger = document.getElementById('hamburger');
 
@@ -1615,8 +1700,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
   }
 
-  if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
-  if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
+  function showView(viewId){
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    const el = document.getElementById(viewId);
+    if(el) el.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  window.goHome = function(){
+    closeOverlay();
+    window.closeMenu();
+    showView('view-home');
+  }
+
+  window.openAbout = function(){
+    closeOverlay();
+    window.closeMenu();
+    showView('view-about');
+  }
+
+  window.openProject = function(key){
+    closeOverlay();
+    window.closeMenu();
+    showView('view-' + key);
+  }
+
+  window.goHomeThenScroll = function(sectionId){
+    window.goHome();
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }, 80);
+  }
+
+  if(btnOffer) btnOffer.addEventListener('click', () => { window.goHome(); openOverlay('offer'); window.closeMenu(); });
+  if(btnPrep)  btnPrep.addEventListener('click',  () => { window.goHome(); openOverlay('prep');  window.closeMenu(); });
 
   if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
   if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
@@ -1627,46 +1745,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if(prepOverlay){
     prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
   }
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape'){
-    closeOverlay();
-    if(window.closeImage) window.closeImage();
-  }
-});
 
-  function showView(viewId){
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    const el = document.getElementById(viewId);
-    if(el) el.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  window.goHome = function(){
-    closeOverlay();
-    closeMenu();
-    showView('view-home');
-  }
-
-  window.openAbout = function(){
-    closeOverlay();
-    closeMenu();
-    showView('view-about');
-  }
-
-  window.openProject = function(key){
-    closeOverlay();
-    closeMenu();
-    showView('view-' + key);
-  }
-
-  window.goHomeThenScroll = function(sectionId){
-    goHome();
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if(el) el.scrollIntoView({behavior:'smooth'});
-    }, 80);
-  }
-
+  // ===== FORM =====
   if(leadForm){
     leadForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -1684,7 +1764,10 @@ document.addEventListener('keydown', (e) => {
       window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
     });
   }
-    // ===== Lightbox =====
+
+  // ===== GALERIE + ŠIPKY =====
+  window.__gallery = { list: [], index: 0 };
+
   window.openImage = function(src, altText){
     const ov = document.getElementById('imgOverlay');
     const img = document.getElementById('imgOverlayEl');
@@ -1695,7 +1778,7 @@ document.addEventListener('keydown', (e) => {
     ov.classList.add('show');
     ov.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
-  }
+  };
 
   window.closeImage = function(){
     const ov = document.getElementById('imgOverlay');
@@ -1706,196 +1789,32 @@ document.addEventListener('keydown', (e) => {
       ov.setAttribute('aria-hidden','true');
     }
     document.body.style.overflow = '';
-  }
+  };
 
-
-  // Klik na fotku v galerii otevře lightbox (bez inline onclicků)
-  document.addEventListener('click', (e) => {
-    const t = e.target;
-    if(t && t.classList && t.classList.contains('gallery-img')){
-      window.openImage(t.currentSrc || t.src, t.alt || '');
-    }
-  });
-
-  // Zavření lightboxu klikem mimo obrázek
-  const imgOverlay = document.getElementById('imgOverlay');
-  if(imgOverlay){
-    imgOverlay.addEventListener('click', (e) => {
-      if(e.target === imgOverlay) window.closeImage();
-    });
-  }
-
-})();
-</script>
-
-
-
-<!-- ===== Lightbox (zvětšení fotek) ===== -->
-<div class="overlay" id="imgOverlay" aria-hidden="true" onclick="closeImage()" style="padding:0;align-items:center;justify-content:center;">
-
-<!-- Šipka vlevo -->
-<button type="button"
-onclick="event.stopPropagation(); lbPrev(event)"
-style="
-position:fixed;
-left:24px;
-top:50%;
-transform:translateY(-50%);
-width:60px;
-height:60px;
-border-radius:50%;
-background:rgba(0,0,0,0.75);
-border:2px solid rgba(255,255,255,0.9);
-color:#ffffff;
-box-shadow:0 12px 35px rgba(0,0,0,0.6);
-font-size:32px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:9999;
-transition:all .25s ease;
-"
-onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
-onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
->
-❮
-</button>
-
-
-
-<!-- Šipka vpravo -->
-<button type="button"
-onclick="event.stopPropagation(); lbNext(event)"
-style="
-position:fixed;
-right:24px;
-top:50%;
-transform:translateY(-50%);
-width:60px;
-height:60px;
-border-radius:50%;
-background:rgba(0,0,0,0.75);
-border:2px solid rgba(255,255,255,0.9);
-color:#ffffff;
-box-shadow:0 12px 35px rgba(0,0,0,0.6);
-font-size:32px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:9999;
-transition:all .25s ease;
-"
-onmouseover="this.style.background='rgba(0,0,0,0.95)'; this.style.transform='translateY(-50%) scale(1.1)'"
-onmouseout="this.style.background='rgba(0,0,0,0.75)'; this.style.transform='translateY(-50%) scale(1)'"
->
-  ❯
-</button>
-
-
-
-  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;box-shadow:none"> 
-
-    <img id="imgOverlayEl" src="" alt=""
-      onclick="event.stopPropagation()"
-   style="width:min(1100px,90vw);height:auto;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.35);"
-  </div>
-</div>
-
-<script>
-  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
-  window.__gallery = { list: [], index: 0 };
-
-  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
-  window.openGallery = function(clickedImg, index){
-    const grid = clickedImg.closest('.gallery-grid');
-    if(!grid) return;
-
-    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    window.__gallery.list = imgs.map(i => i.src);
-    window.__gallery.index = index || 0;
-
-    // použije existující lightbox funkci
-    openLightbox(window.__gallery.list[window.__gallery.index]);
-  }
- 
-// Automatické otevírání galerie pro obrázky bez inline onclick
-document.addEventListener('click', function(e){
-  const img = e.target.closest('img.gallery-img');
-  if(!img) return;
-
-  // pokud už má obrázek vlastní onclick, nech to na něm
-  if(img.hasAttribute('onclick')) return;
-
-  const grid = img.closest('.gallery-grid');
-  if(!grid) return;
-
-  const list = Array.from(grid.querySelectorAll('img.gallery-img'));
-  const idx = list.indexOf(img);
-  if(idx < 0) return;
-
-  openGallery(img, idx);
-});
-
- window.lbShow = function(){
-  if(!window.__gallery.list.length) return;
-
-  const img = document.getElementById('imgOverlayEl');
-  if(!img) return;
-
-  img.src = window.__gallery.list[window.__gallery.index];
-}
+  window.lbShow = function(){
+    if(!window.__gallery.list.length) return;
+    const img = document.getElementById('imgOverlayEl');
+    if(!img) return;
+    img.src = window.__gallery.list[window.__gallery.index];
+  };
 
   window.lbPrev = function(e){
     if(e) e.stopPropagation();
     if(!window.__gallery.list.length) return;
     window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
     window.lbShow();
-  }
+  };
 
   window.lbNext = function(e){
     if(e) e.stopPropagation();
     if(!window.__gallery.list.length) return;
     window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
     window.lbShow();
-  }
+  };
 
-  // Klávesnice: šipky + ESC
-  document.addEventListener('keydown', (e) => {
-    const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    const isOpen = overlay.classList.contains('active');
-    if(!isOpen) return;
-
-    if(e.key === 'ArrowLeft') window.lbPrev();
-    if(e.key === 'ArrowRight') window.lbNext();
-    if(e.key === 'Escape') closeImage();
-  });
-
-  <script>
-  // Globální stav galerie (funguje pro jakoukoliv .gallery-grid)
-  window.__gallery = { list: [], index: 0 };
-
-  // Otevře galerii podle toho, na jaký obrázek v gridu se kliklo
-  window.openGallery = function(clickedImg, index){
-    const grid = clickedImg.closest('.gallery-grid');
-    if(!grid) return;
-
-    const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-    window.__gallery.list = imgs.map(i => i.src);
-    window.__gallery.index = index || 0;
-
-    openLightbox(window.__gallery.list[window.__gallery.index]);
-  }
-
-  // Automatické otevírání galerie pro obrázky bez inline onclick
   document.addEventListener('click', function(e){
     const img = e.target.closest('img.gallery-img');
     if(!img) return;
-
-    // Pokud už má obrázek vlastní onclick, nech ho být
-    if(img.hasAttribute('onclick')) return;
 
     const grid = img.closest('.gallery-grid');
     if(!grid) return;
@@ -1904,54 +1823,22 @@ document.addEventListener('click', function(e){
     const idx = imgs.indexOf(img);
     if(idx < 0) return;
 
-    window.openGallery(img, idx);
+    window.__gallery.list = imgs.map(i => i.currentSrc || i.src);
+    window.__gallery.index = idx;
+
+    window.openImage(window.__gallery.list[window.__gallery.index], img.alt || '');
   });
 
-  window.lbShow = function(){
-    if(!window.__gallery.list.length) return;
-    const img = document.getElementById('imgOverlayEl');
-    if(!img) return;
-    img.src = window.__gallery.list[window.__gallery.index];
-  }
-
-  window.lbPrev = function(e){
-    if(e) e.stopPropagation();
-    if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index - 1 + window.__gallery.list.length) % window.__gallery.list.length;
-    window.lbShow();
-  }
-
-  window.lbNext = function(e){
-    if(e) e.stopPropagation();
-    if(!window.__gallery.list.length) return;
-    window.__gallery.index = (window.__gallery.index + 1) % window.__gallery.list.length;
-    window.lbShow();
-  }
-
-  function openLightbox(src){
+  document.addEventListener('keydown', function(e){
     const overlay = document.getElementById('imgOverlay');
-    const img = document.getElementById('imgOverlayEl');
-    if(!overlay || !img) return;
-    img.src = src;
-    overlay.classList.add('active');
-  }
-
-  window.closeImage = function(){
-    const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    overlay.classList.remove('active');
-  }
-
-  // Klávesnice: šipky + ESC
-  document.addEventListener('keydown', (e) => {
-    const overlay = document.getElementById('imgOverlay');
-    if(!overlay) return;
-    if(!overlay.classList.contains('active')) return;
+    if(!overlay || !overlay.classList.contains('show')) return;
 
     if(e.key === 'ArrowLeft') window.lbPrev();
     if(e.key === 'ArrowRight') window.lbNext();
     if(e.key === 'Escape') window.closeImage();
   });
+
+});
 </script>
 
 </body>
