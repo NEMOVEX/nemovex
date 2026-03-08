@@ -7,6 +7,7 @@
 <title>Nový Malešov | NEMOVEX GROUP</title>
 
 <meta name="description" content="Rezidenční projekt Nový Malešov – developerský projekt společnosti NEMOVEX GROUP.">
+
 <meta name="keywords" content="Nový Malešov, developerský projekt Malešov, novostavby Malešov, bydlení Malešov, NEMOVEX GROUP">
 
 <meta property="og:title" content="Nový Malešov – developerský projekt NEMOVEX GROUP">
@@ -15,9 +16,31 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nemovex.github.io/nemovex/novy-malesov.html">
 
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Residence",
+ "name": "Nový Malešov",
+ "description": "Rezidenční projekt Nový Malešov od společnosti NEMOVEX GROUP.",
+ "url": "https://nemovex.github.io/nemovex/novy-malesov.html",
+ "image": "https://nemovex.github.io/nemovex/images/malesov.png",
+ "address": {
+   "@type": "PostalAddress",
+   "addressLocality": "Malešov",
+   "addressCountry": "CZ"
+ },
+ "developer": {
+   "@type": "Organization",
+   "name": "NEMOVEX GROUP",
+   "url": "https://nemovex.github.io/nemovex/"
+ }
+}
+</script>
+
 <style>
+
 body{
-font-family:Segoe UI, Arial, sans-serif;
+font-family:"Segoe UI",Arial,sans-serif;
 margin:0;
 background:#f9fafb;
 color:#222;
@@ -30,30 +53,67 @@ padding:40px 20px;
 }
 
 .detail-hero{
-height:420px;
-background-image:url('images/malesov.png');
-background-position:center;
+min-height:52vh;
+color:white;
 display:flex;
 align-items:center;
-justify-content:center;
-color:white;
-text-align:center;
+background:
+linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
+url('images/malesov.png') center/cover no-repeat;
 }
 
-.detail-hero h1{
+.detail-hero h2{
 font-size:42px;
-margin:0;
+margin-bottom:10px;
 }
 
-.btn-back{
+.btn-primary{
 display:inline-block;
-margin-top:20px;
-padding:10px 18px;
-background:#222;
+padding:6px 14px;
+background:#2b2b2b;
 color:white;
-text-decoration:none;
 border-radius:6px;
+font-size:14px;
+text-decoration:none;
 }
+
+.project-info-grid{
+display:grid;
+gap:24px;
+margin-bottom:20px;
+grid-template-columns:1fr;
+}
+
+@media (min-width:900px){
+.project-info-grid{
+grid-template-columns:1fr 1fr;
+}
+}
+
+.project-info-card{
+background:#f8f9f7;
+padding:20px;
+border-radius:16px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
+}
+
+.project-info-card h4{
+margin-bottom:8px;
+font-size:16px;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
+}
+
+.gallery-img{
+width:100%;
+border-radius:16px;
+cursor:pointer;
+}
+
 </style>
 
 </head>
@@ -61,26 +121,76 @@ border-radius:6px;
 <body>
 
 <section class="detail-hero">
-<div>
-<h1>Nový Malešov</h1>
-<p>Rezidenční projekt Nový Malešov společnosti NEMOVEX GROUP</p>
-<a class="btn-back" href="index.html">← Zpět na hlavní stránku</a>
-</div>
-</section>
-
 <div class="container">
 
-<h2>O projektu</h2>
+<a class="btn-primary" href="index.html">← Zpět</a>
+
+<h2>Nový Malešov</h2>
 
 <p>
-Rezidenční projekt Nový Malešov přináší moderní bydlení v klidném prostředí městyse s kompletní občanskou vybaveností, jen pár minut od historické Kutné Hory.
-Vzniká zde nová lokalita určená pro výstavbu rodinných domů, která spojuje výhody venkovského klidu s pohodlím městské dostupnosti.  
-Městys Malešov disponuje dobrou základní občanskou vybaveností, která pokrývá potřeby pro vzdělávání, nákupy i volný čas. 
-Žije zde přibližně 1 100 obyvatel. Malešov leží na regionální železniční trati Kutná Hora – Zruč nad Sázavou.
-
+Rezidenční projekt společnosti NEMOVEX GROUP
 </p>
 
 </div>
+</section>
+
+<section>
+
+<div class="container">
+
+<div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+
+<div class="project-info-grid">
+
+<div class="project-info-card">
+<h4>Dispozice</h4>
+<p>
+Projekt Nový Malešov přináší moderní bydlení v nové lokalitě určené
+pro výstavbu rodinných domů. Lokalita nabízí klidné prostředí
+s dobrou dostupností do Kutné Hory i dalších okolních měst.
+</p>
+</div>
+
+<div class="project-info-card">
+<h4>Stav projektu</h4>
+<p>
+Projekt je momentálně ve fázi přípravy.
+</p>
+</div>
+
+<div class="project-info-card">
+<h4>Lokalita</h4>
+<p>
+Městys Malešov se nachází nedaleko historické Kutné Hory
+a nabízí základní občanskou vybavenost včetně obchodů,
+služeb i možností pro volnočasové aktivity.
+</p>
+</div>
+
+<div class="project-info-card">
+<h4>Informace</h4>
+<p>
+Pro více informací nás kontaktujte.
+</p>
+</div>
+
+</div>
+
+<div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
+
+<h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+
+<div class="gallery-grid">
+
+<img class="gallery-img" src="images/malesov.png">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </body>
 </html>
