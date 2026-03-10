@@ -193,6 +193,68 @@ Pro více informací nás kontaktujte.
 </div>
 
 </section>
+<script>
 
+let galleryImages;
+let galleryIndex=0;
+
+function openGallery(el,index){
+galleryImages=document.querySelectorAll('.gallery-img');
+galleryIndex=index;
+showImage();
+}
+
+function showImage(){
+const src=galleryImages[galleryIndex].src;
+
+let overlay=document.getElementById("galleryOverlay");
+
+if(!overlay){
+
+overlay=document.createElement("div");
+overlay.id="galleryOverlay";
+overlay.style.position="fixed";
+overlay.style.top="0";
+overlay.style.left="0";
+overlay.style.width="100%";
+overlay.style.height="100%";
+overlay.style.background="rgba(0,0,0,0.85)";
+overlay.style.display="flex";
+overlay.style.alignItems="center";
+overlay.style.justifyContent="center";
+overlay.style.zIndex="9999";
+
+overlay.innerHTML=`
+<button onclick="prevImg()" style="position:absolute;left:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">‹</button>
+<img id="galleryImage" style="max-width:90%;max-height:90%">
+<button onclick="nextImg()" style="position:absolute;right:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">›</button>
+<button onclick="closeGallery()" style="position:absolute;top:30px;right:40px;font-size:28px;background:none;border:none;color:white;cursor:pointer">✕</button>
+`;
+
+document.body.appendChild(overlay);
+
+}
+
+document.getElementById("galleryImage").src=src;
+
+}
+
+function nextImg(){
+galleryIndex++;
+if(galleryIndex>=galleryImages.length) galleryIndex=0;
+showImage();
+}
+
+function prevImg(){
+galleryIndex--;
+if(galleryIndex<0) galleryIndex=galleryImages.length-1;
+showImage();
+}
+
+function closeGallery(){
+document.getElementById("galleryOverlay").remove();
+}
+
+</script>
 </body>
 </html>
