@@ -1,1062 +1,198 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-<title>Projekt Voleč | NEMOVEX GROUP</title>
-<meta name="description" content="Projekt Voleč – rezidenční projekt rodinných domů společnosti NEMOVEX GROUP." />
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content="Projekt Voleč, rodinné domy Voleč, novostavby Voleč, developerský projekt Voleč, bydlení Voleč, NEMOVEX GROUP">
+<title>Projekt Voleč | NEMOVEX GROUP</title>
+
+<meta name="description" content="Projekt Voleč – moderní rezidenční projekt společnosti NEMOVEX GROUP.">
+
+<meta name="keywords" content="Projekt Voleč, Voleč, rodinné domy Voleč, developerský projekt Voleč, NEMOVEX GROUP">
 
 <meta property="og:title" content="Projekt Voleč – developerský projekt NEMOVEX GROUP">
-<meta property="og:description" content="Rezidenční projekt rodinných domů v obci Voleč od společnosti NEMOVEX GROUP. Moderní bydlení v klidné lokalitě.">
+<meta property="og:description" content="Moderní rezidenční projekt Voleč od společnosti NEMOVEX GROUP.">
 <meta property="og:image" content="https://nemovex.github.io/nemovex/images/volec-hl.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nemovex.github.io/nemovex/volec.html">
-  
-  <style>
-  *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Roboto,Arial,sans-serif}
-    body{background:#f9fafb;color:#222;line-height:1.6;scroll-behavior:smooth}
-    a{color:inherit;text-decoration:none}
-    button{font-family:inherit}
-    [id]{scroll-margin-top:90px}
 
-    /* HEADER */
-    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e0e0e0}
-  .nav{
-  width:100%;
- padding:0 40px 0 0;
-  height:120px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-  position:relative;
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Residence",
+ "name": "Projekt Voleč",
+ "description": "Moderní rezidenční projekt společnosti NEMOVEX GROUP.",
+ "url": "https://nemovex.github.io/nemovex/volec.html",
+ "image": "https://nemovex.github.io/nemovex/images/volec-hl.jpg",
+ "developer": {
+   "@type": "Organization",
+   "name": "NEMOVEX GROUP",
+   "url": "https://nemovex.github.io/nemovex/"
+ }
+}
+</script>
+
+<style>
+
+body{
+font-family:"Segoe UI",Arial,sans-serif;
+margin:0;
+background:#f9fafb;
+color:#222;
 }
 
-   .logo{
-  display:flex;
-  align-items:center;
-  cursor:pointer;
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
 }
 
-.logo img{
-  height:80px;
-  width:auto;
-  display:block;
+.detail-hero{
+min-height:52vh;
+color:white;
+display:flex;
+align-items:center;
+background:
+linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
+url('images/volec-hl.jpg') center/cover no-repeat;
 }
 
-
-    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
-    .hamburger div{width:25px;height:3px;background:#1f7a4f;border-radius:3px}
-
-    .nav-links{display:flex;align-items:center;gap:28px}
-    .nav-links > a, .nav-links > button{
-      font-size:16px;font-weight:800;color:#333;position:relative;padding:8px 0;cursor:pointer;
-      background:none;border:none
-    }
-    .nav-links > a::after, .nav-links > button::after{
-      content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#1f7a4f;transition:.25s
-    }
-    .nav-links > a:hover::after, .nav-links > button:hover::after{width:100%}
+.detail-hero h2{
+font-size:42px;
+margin-bottom:10px;
+}
 
 .btn-primary{
-    display:inline-block;
-    padding:4px 12px;
-    background:#2b2b2b;
-    color:#ffffff;
-    border-radius:5px;
-    font-size:13px;
-    font-weight:500;
-    transition:all 0.2s ease;
-
+display:inline-block;
+padding:6px 14px;
+background:#2b2b2b;
+color:white;
+border-radius:6px;
+font-size:14px;
+text-decoration:none;
 }
 
-   .btn-primary:hover{
-  background:#3a3a3a;
-}
-
-    /* HERO */
-    .hero{
-      min-height:72vh;
-      background:
-        linear-gradient(to right,rgba(0,0,0,.65),rgba(0,0,0,.25)),
-        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
-      display:flex;align-items:center;color:#fff
-    }
-    .hero-inner{max-width:1200px;margin:auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:18px}
-    .hero h1{
-      font-size:clamp(44px,5.4vw,68px);
-      margin-bottom:0;
-      max-width:22ch;
-      opacity:0;
-      transform:translateY(14px);
-      animation:heroIn .9s ease-out .12s forwards;
-    }
-    .hero h1 .sub{
-      display:block;
-      font-size:.52em;
-      font-weight:600;
-      margin-top:12px;
-      opacity:0;
-      transform:translateY(10px);
-      animation:heroIn .9s ease-out .32s forwards;
-    }
-    @keyframes heroIn{
-      to{opacity:1;transform:translateY(0)}
-    }
-
-
-    section{padding:70px 20px}
-    .container{max-width:1200px;margin:auto}
-    .section-title{font-size:26px;margin-bottom:10px}
-    .section-sub{font-size:14px;color:#666;margin-bottom:24px}
-    
-    /* CONTACT FULL WIDTH */
-.contact-section{
-  background:#2b2b2b;
-  padding:80px 0;
-}
-
-.contact{
-  color:#fff;
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  align-items:center;
-  justify-content:space-between;
-}
-
-    /* INTRO TEXT (pod hero) – bez rámečku, větší text */
-    .intro-section{padding:40px 20px}
-    .intro{background:transparent;border:none;box-shadow:none;border-radius:0;padding:0}
-    .intro-quote{font-size:30px;font-weight:900;margin-bottom:12px;color:#222}
-    .intro{max-width:1200px;margin:0 auto;}
-    .intro p{color:#444;font-size:18px;line-height:1.75}
-
-/* ===================== */
-/*        CARDS          */
-/* ===================== */
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-  gap:28px;
-}
-
-/* samotná karta */
-.card{
-  display:flex;
-  flex-direction:column;
-
-  background:#fff;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid #efefef;
-
-  box-shadow:
-    0 6px 18px rgba(0,0,0,0.06),
-    0 2px 6px rgba(0,0,0,0.04);
-
-  transition:0.25s ease;
-  cursor:pointer;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:
-    0 14px 28px rgba(0,0,0,0.08),
-    0 6px 10px rgba(0,0,0,0.05);
-}
-
-/* obrázek */
-.card-img{
-  height:210px;
-  overflow:hidden;
-}
-
-.card-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* obsah */
-.card-body{
-  padding:24px 26px;
-  display:flex;
-  flex-direction:column;
-  flex:1;
-}
-
-/* nadpis */
-.card-body h3{
-  font-size:18px;
-  margin-bottom:10px;
-}
-
-/* popis */
-.card-body p{
-  font-size:14px;
-  color:#666;
-  margin-bottom:22px;
-  line-height:1.5;
-}
-
-/* tlačítko dole */
-.card-body .btn-primary{
-  margin-top:auto;
-  align-self:flex-start;
-}
-
-/* jistota stejné výšky */
-.card{
-  min-height:100%;
-}
-
-    /* OVERLAY PANELS */
-    .overlay{
-      position:fixed;inset:0;z-index:80;
-      background:rgba(0,0,0,.45);
-      display:none;align-items:flex-start;justify-content:center;
-      padding:96px 16px 24px;
-    }
-    .overlay.show{display:flex}
-    .panel{
-      width:min(980px, 100%);
-      background:#fff;border-radius:20px;
-      box-shadow:0 18px 60px rgba(0,0,0,.22);
-      overflow:hidden;border:1px solid #eef0f2;
-    }
-    .panel-inner{padding:18px}
-    .proj-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-    .proj-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px 14px;
-  border-radius:14px;
-  background:#f7f8f9;
-  border:1px solid #eceff2;
-  transition:.2s;
-  cursor:pointer;
-
-}
-
-/* ====== Náhled obrázku – hlavní karty ====== */
-.proj-img{
-  height:200px;
-  background-size:cover;
-  background-position:center;
-  border-radius:16px 16px 0 0;
-}
-
-/* ====== Náhled obrázku – MODAL (malé vlevo) ====== */
-.overlay .proj-item{
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-.overlay .proj-item .proj-img{
-  flex:0 0 84px;
-  width:84px;
-  height:56px;
-  border-radius:10px;
-
-}
-
-    .proj-item:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
-    .proj-left{display:flex;flex-direction:column;gap:2px}
-    .proj-title{font-weight:900;font-size:14px}
-    .proj-sub{font-size:12px;color:#666}
-    .chip{font-size:12px;font-weight:900;color:#1f7a4f;background:#e8f4ee;border-radius:999px;padding:6px 10px;white-space:nowrap}
-
-    /* VIEW SWITCH */
-    .view{display:none}
-    .view.active{display:block}
-
-    /* DETAIL HERO */
-    .detail-hero{
-      min-height:52vh;color:#fff;display:flex;align-items:center;
-      background:
-        linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
-        var(--bg) center/cover no-repeat;
-    }
-    .detail-hero .container{padding:0 20px}
-    .detail-hero h2{font-size:clamp(30px,4.5vw,48px);margin:14px 0 10px}
-    .detail-hero p{max-width:85ch}
-
-    /* FORM */
-    .form-wrap{
-      background:#fff;border-radius:20px;padding:34px;
-      box-shadow:0 10px 28px rgba(0,0,0,.06);
-      display:grid;grid-template-columns:1fr 1fr;gap:18px
-    }
-    .field{display:flex;flex-direction:column;gap:6px}
-    label{font-size:12px;color:#555;font-weight:900}
-    input,select,textarea{
-      border:1px solid #e1e1e1;border-radius:14px;
-      padding:12px 12px;font-size:14px;outline:none;background:#fff
-    }
-    input:focus,select:focus,textarea:focus{
-      border-color:#1f7a4f;box-shadow:0 0 0 3px rgba(31,122,79,.12)
-    }
-    textarea{min-height:140px;resize:vertical}
-    .form-actions{grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
-    .note{font-size:12px;color:#666}
-
-    /* CONTACT */
-    .contact{
-     background:#2f2f2f;color:#fff;border-radius:20px;
-      padding:40px;display:flex;flex-wrap:wrap;
-      gap:20px;align-items:center;justify-content:space-between
-    }
-    .contact h3{font-size:22px;margin-bottom:6px}
-    .contact a{color:#fff}
-    .contact a:hover{text-decoration:underline}
-
-    footer{padding:30px 20px;text-align:center;font-size:12px;color:#777}
-
-    
-    /* GALLERY */
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .gallery-img{width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:zoom-in;display:block}
-
-@media(max-width:900px){
-      .hamburger{display:flex}
-      .nav-links{
-        display:none;flex-direction:column;width:100%;
-        background:#fff;position:absolute;top:58px;left:0;
-        border-top:1px solid #e0e0e0;gap:0;padding:6px 0
-      }
-      .nav-links.show{display:flex}
-      .nav-links > a, .nav-links > button{
-        width:100%;text-align:left;
-        padding:14px 20px;border-bottom:1px solid #e0e0e0
-      }
-      .nav-links > a::after, .nav-links > button::after{display:none}
-      .form-wrap{grid-template-columns:1fr}
-      .overlay{padding-top:86px}
-      .hero-inner{padding:0 14px}
-    }
-    /* ==== SOCIAL IKONY ==== */
-
-.social-links{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  margin-top:10px;
-}
-
-.social-links a{
-  width:40px;
-  height:40px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:50%;
-  transition: all .2s ease;
-}
-
-.social-links a svg{
-  width:18px;
-  height:18px;
-  fill:#ffffff;
-  transition:.2s;
-}
-
-.social-links a:hover{
-  border-color:#ffffff;
-  transform:translateY(-3px);
-  background:rgba(255,255,255,0.1);
-}
-/* ===== FOOTER ===== */
-.footer{
-  background:#1f1f1f;
-  color:#ffffff;
-  padding:60px 0 28px;
-}
-
-.footer-top{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 20px;
-
-  display:flex;
-  gap:80px;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  align-items:flex-start;
-}
-
-.footer-col{
-  min-width:260px;
-}
-
-.footer h3{
-  margin:0 0 18px;
-  font-size:24px;
-}
-
-.footer-link{
-  display:block;
-  color:#ffffff;
-  text-decoration:none;
-  margin-bottom:12px;
-}
-
-.footer-link:hover{
-  text-decoration:underline;
-}
-
-/* social ikony uprostřed */
-.social-links{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  margin:28px 0 18px;
-}
-
-.social-links a{
-  width:40px;
-  height:40px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:50%;
-  transition:0.2s ease;
-}
-
-.social-links a:hover{
-  transform:translateY(-3px);
-  background:rgba(255,255,255,.08);
-}
-
-.social-links svg{
-  width:18px;
-  height:18px;
-  fill:#fff;
-}
-
-/* copyright dole uprostřed */
-.footer-bottom{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 20px;
-
-  text-align:center;
-  font-size:13px;
-  color:#aaaaaa;
-  line-height:1.6;
-}
-
-/* INFO KARTY – jedna pod druhou */
-    .info-grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:16px;
-  margin-top:14px;
-  margin-bottom:18px;
-  max-width: 900px;
-}
-.info-card{
-  background:#f8f9f7;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 8px 22px rgba(0,0,0,.06);
-}
-.info-card h4{
-  font-weight:600;
-  margin:0 0 8px;
-  color:#1f3d2b;
-  font-size:16px;
-}
-.info-card p{
-  margin:0;
-  color:#444;
-  line-height:1.6;
-}
-/* ===== Project info cards (lepší čitelnost dlouhých textů) ===== */
 .project-info-grid{
-  display:grid;
-  gap:24px;
-  margin-bottom:18px;
-  grid-template-columns: 1fr; /* mobil */
+display:grid;
+gap:24px;
+margin-bottom:20px;
+grid-template-columns:1fr;
 }
 
-@media (min-width: 900px){
-  .project-info-grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* PC: 2 sloupce */
-  }
+@media (min-width:900px){
+.project-info-grid{
+grid-template-columns:1fr 1fr;
+}
 }
 
 .project-info-card{
-  background:#f8f9f7;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 8px 22px rgba(0,0,0,0.06);
+background:#f8f9f7;
+padding:20px;
+border-radius:16px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
 }
 
 .project-info-card h4{
-  font-weight:600;
-  margin-bottom:8px;
-  color:#1f3d2b;
-  font-size:16px;
+margin-bottom:8px;
+font-size:16px;
 }
 
-.project-info-card p{
-  color:#444;
-  line-height:1.6;
-  margin:0;
-}
-.project-info-card h4{
-  position: relative;
-  padding-bottom: 8px;
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
 }
 
-.project-info-card h4::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:40px;
-  height:3px;
-  background:#c0392b; /* můžeš změnit barvu */
-  border-radius:2px;
-}
-    .project-info-card{
-  transition: all 0.3s ease;
+.gallery-img{
+width:100%;
+border-radius:16px;
+cursor:pointer;
 }
 
-.project-info-card:hover{
-  transform: translateY(-6px);
-  box-shadow:0 14px 30px rgba(0,0,0,0.10);
-}
-    .project-item{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:12px;
-    background:#f5f5f5;
-    border-radius:10px;
-    margin-bottom:10px;
-}
+</style>
 
-.project-img{
-    width:80px;
-    height:60px;
-    object-fit:cover;
-    border-radius:8px;
-}
-
-.project-text{
-    text-align:left;
-}
-
-.project-text h3{
-    margin:0;
-    font-size:18px;
-}
-
-.project-text p{
-    margin:3px 0 0 0;
-    color:#666;
-    font-size:14px;
-}
-
-.open-btn{
-    margin-left:auto;
-    background:#cfe9db;
-    border:none;
-    padding:8px 14px;
-    border-radius:15px;
-    cursor:pointer;
-}
-    .proj-item{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.proj-left{
-text-align:left;
-}
-
-.proj-title{
-margin:0;
-}
-
-.proj-sub{
-margin:2px 0 0 0;
-}
-
-.chip{
-margin-left:auto;
-}
-    .fb-link:hover .fb-icon {
-  fill: #1877f2;
-}
-    .ig-link:hover .ig-icon {
-  stroke: #E1306C;
-}
-  </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Residence",
-  "name": "Projekt Voleč",
-  "description": "Rezidenční projekt rodinných domů v obci Voleč od společnosti NEMOVEX GROUP.",
-  "url": "https://nemovex.github.io/nemovex/volec.html",
-  "image": "https://nemovex.github.io/nemovex/images/volec-hl.jpg",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Voleč",
-    "addressCountry": "CZ"
-  },
-  "developer": {
-    "@type": "Organization",
-    "name": "NEMOVEX GROUP",
-    "url": "https://nemovex.github.io/nemovex/"
-  }
-}
-</script>
 </head>
 
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo" onclick="goHome()">
-      <img src="images/logo.png" alt="NEMOVEX GROUP">
-    </div>
+<section class="detail-hero">
+<div class="container">
 
-    <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
-      <div></div><div></div><div></div>
-    </div>
+<a class="btn-primary" href="index.html">← Zpět</a>
 
-    <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <a href="#" onclick="openAbout(); return false;">O NÁS</a>
-      <button type="button" id="btnOffer">PROJEKTY V NABÍDCE</button>
-      <button type="button" id="btnPrep">PROJEKTY V PŘÍPRAVĚ</button>
-      <a href="#poptavka" onclick="goHomeThenScroll('poptavka'); return false;">KONTAKTUJTE NÁS</a>
-      <a href="#kontakt" onclick="goHomeThenScroll('kontakt'); return false;">KONTAKT</a>
-    </nav>
-  </div>
-</header>
+<h2>Projekt Voleč</h2>
 
-  <main>
-    
-<section class="detail-hero" style="background-image:url('images/volec-hl.jpg');">
+<p>
+Komplex 14 rodinných domů v obci Voleč.
+</p>
 
-<div>
+</div>
+</section>
 
-<h1>Projekt Voleč</h1>
-<p>Komplex 14 rodinných domů v obci Voleč.</p>
-  
-<a class="btn-back" href="index.html">← Zpět na hlavní stránku</a>
+<section>
+
+<div class="container">
+
+<div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
+
+<div class="project-info-grid">
+
+<div class="project-info-card">
+<h4>Dispozice</h4>
+<p>
+Projekt Voleč nabízí moderní rodinné domy navržené s důrazem
+na kvalitní architekturu, funkční dispozice a komfortní
+rodinné bydlení v klidné lokalitě.
+</p>
+</div>
+
+<div class="project-info-card">
+<h4>Stav projektu</h4>
+<p>
+Projekt je momentálně ve fázi přípravy.
+</p>
+</div>
+
+<div class="project-info-card">
+<h4>Lokalita</h4>
+<p>
+Obec Voleč nabízí příjemné bydlení v klidném prostředí
+s dobrou dostupností do okolních měst a občanské vybavenosti
+v regionu.
+</p>
+</div>
+
+<div class="project-info-card">
+<h4>Informace</h4>
+<p>
+Pro více informací nás kontaktujte.
+</p>
+</div>
+
+</div>
+
+<div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
+
+<h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+
+<div class="gallery-grid">
+
+<img class="gallery-img" src="images/volec1.jpg">
+<img class="gallery-img" src="images/volec2.jpg">
+<img class="gallery-img" src="images/volec3.jpg">
+<img class="gallery-img" src="images/volec4.jpg">
+<img class="gallery-img" src="images/volec5.jpg">
+<img class="gallery-img" src="images/volec6.jpg">
+<img class="gallery-img" src="images/volec7.jpg">
+<img class="gallery-img" src="images/volec8.jpg">
+
+</div>
+
+</div>
 
 </div>
 
 </section>
-    
-    <div class="container">
-     <div style="background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.06)">
 
-<div class="project-info-grid">
-
-  <div class="project-info-card">
-    <h4>Dispozice</h4>
-<p>
-Projekt Voleč nabízí moderní rodinné domy navržené s důrazem na kvalitní architekturu,
-funkční dispozice a komfortní rodinné bydlení v klidné lokalitě.
-</p>
-  </div>
-
-  <div class="project-info-card">
-    <h4>Stav projektu</h4>
-    <p>Ve fázi přípravy.</p>
-  </div>
-
-  <div class="project-info-card">
-    <h4>Lokalita</h4>
-    <p>Projekt se nachází v obci Voleč v klidném prostředí s dobrou dostupností do okolních měst. </p>
-  </div>
-
-  <div class="project-info-card">
-    <h4>Informace</h4>
-    <p>Pro více informací nás kontaktujte.</p>
-  </div>
-
-  </div>
-
-  <div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
-
-  <h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
-  <div class="gallery-grid">
-<img class="gallery-img"
-src="images/volec1.jpg"
-loading="lazy"
-onclick="openGallery(this, 0)">
-
-<img class="gallery-img"
-src="images/volec2.jpg"
-loading="lazy"
-onclick="openGallery(this, 1)">
-
-<img class="gallery-img"
-src="images/volec3.jpg"
-loading="lazy"
-onclick="openGallery(this, 2)">
-
-<img class="gallery-img"
-src="images/volec4.jpg"
-loading="lazy"
-onclick="openGallery(this, 3)">
-
-<img class="gallery-img"
-src="images/volec5.jpg"
-loading="lazy"
-onclick="openGallery(this, 4)">
-
-<img class="gallery-img"
-src="images/volec6.jpg"
-loading="lazy"
-onclick="openGallery(this, 5)">
-
-<img class="gallery-img"
-src="images/volec7.jpg"
-loading="lazy"
-onclick="openGallery(this, 6)">
-
-<img class="gallery-img"
-src="images/volec8.jpg"
-loading="lazy"
-onclick="openGallery(this, 7)">
-    
-  <div style="margin-top:14px">
-    <button class="btn-primary" type="button" onclick="goHomeThenScroll('poptavka')">Kontaktní formulář</button>
-  </div>
-</div>
-
-  </section>
-</div>
-  </main>
-
-  <footer id="kontakt" style="background:#1f1f1f; color:#ffffff; padding:60px 0;">
-  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; padding:0 80px; max-width:1200px; margin:0 auto;">
-
-    <!-- Levá část -->
-    <div style="flex:1; min-width:260px; text-align:left; font-size:16px; line-height:1.6;">
-      <h3 style="margin-bottom:20px; font-size:24px;">Adresa a sídlo společnosti</h3>
-      <strong>NEMOVEX a.s.</strong><br>
-      IČO: 17682622<br>
-      Havlíčkova 7<br>
-      537 01 Chrudim
-    </div>
-
-    <!-- Pravá část -->
-    <div style="min-width:260px; text-align:left; font-size:16px; line-height:1.6;">
-      <h3 style="margin-bottom:20px; font-size:24px;">Kontakt</h3>
-
-      <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
-
-        <a href="mailto:info@nemovex.cz" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <path d="M4 4h16v16H4z"></path>
-            <path d="M4 4l8 8 8-8"></path>
-          </svg>
-          info@nemovex.cz
-        </a>
-
-        <a href="tel:+420461040466" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2
-            19.79 19.79 0 0 1-8.63-3.07
-            19.5 19.5 0 0 1-6-6
-            19.79 19.79 0 0 1-3.07-8.67A2
-            2 0 0 1 4.11 2h3a2 2 0 0 1
-            2 1.72c.12.9.33 1.77.63
-            2.6a2 2 0 0 1-.45
-            2.11L8.09 9.91a16 16 0 0 0
-            6 6l1.48-1.48a2 2 0 0 1
-            2.11-.45c.83.3 1.7.51
-            2.6.63A2 2 0 0 1 22 16.92z"></path>
-          </svg>
-          461 040 466
-        </a>
-
-        <a href="https://www.nemovex.cz" target="_blank" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15 15 0 0 1 0 20"></path>
-            <path d="M12 2a15 15 0 0 0 0 20"></path>
-          </svg>
-          www.nemovex.cz
-        </a>
-<a href="https://www.facebook.com/nemovex" target="_blank" class="fb-link" style="color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;">
-  <svg class="fb-icon" width="18" height="18" viewBox="0 0 24 24" fill="white">
-    <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.7v-2.9h2.7V9.7c0-2.7 1.6-4.2 4-4.2 1.2 0 2.4.2 2.4.2v2.6h-1.4c-1.4 0-1.8.9-1.8 1.8v2.2h3.1l-.5 2.9h-2.6v7A10 10 0 0 0 22 12z"/>
-  </svg>
-  facebook.com/nemovex
-</a>
-        <a href="https://www.instagram.com/" target="_blank" class="ig-link" style="display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;">
-  <svg class="ig-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-    <rect x="2" y="2" width="20" height="20" rx="5"></rect>
-    <circle cx="12" cy="12" r="4"></circle>
-    <circle cx="17" cy="7" r="1.5"></circle>
-  </svg>
-  Instagram
-</a>
-      </div>
-    </div>
-
-  </div>
-
-  <hr style="margin:40px 0; border:0; height:1px; background:#333;">
-
-  <div style="text-align:center; font-size:13px; color:#aaaaaa; max-width:1200px; margin:0 auto;">
-    © 2026 NEMOVEX GROUP - Developerské projekty<br>
-    Stránky jsou ve výstavbě, některé fotky mohou být pouze ilustrační.
-  </div>
-</footer>
-
-   <script>
-
-// ===== OPRAVA: neotevírej detail projektu bez parametru v URL =====
-document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const project = params.get('project');
-
-  if (!project) {
-    document.querySelectorAll('.project-detail').forEach(el => {
-      el.style.display = 'none';
-    });
-
-    const homepage = document.getElementById('homepage');
-    if (homepage) homepage.style.display = 'block';
-  }
-});
-
-(function(){
-
-  const navLinks = document.getElementById('navLinks');
-  const hamburger = document.getElementById('hamburger');
-
-  const offerOverlay = document.getElementById('offerOverlay');
-  const prepOverlay  = document.getElementById('prepOverlay');
-
-  const btnOffer = document.getElementById('btnOffer');
-  const btnPrep  = document.getElementById('btnPrep');
-
-  const btnCloseOffer = document.getElementById('btnCloseOffer');
-  const btnClosePrep  = document.getElementById('btnClosePrep');
-
-  const leadForm = document.getElementById('leadForm');
-
-  function toggleMenu(){
-    if(!navLinks) return;
-    navLinks.classList.toggle('show');
-  }
-
-  window.closeMenu = function(){
-    if(!navLinks) return;
-    navLinks.classList.remove('show');
-  }
-
-  if(hamburger){
-    hamburger.addEventListener('click', toggleMenu);
-  }
-
-  function closeOverlay(){
-    if(offerOverlay){ offerOverlay.classList.remove('show'); offerOverlay.setAttribute('aria-hidden','true'); }
-    if(prepOverlay){  prepOverlay.classList.remove('show');  prepOverlay.setAttribute('aria-hidden','true'); }
-    document.body.style.overflow = '';
-  }
-
-  function openOverlay(which){
-    closeOverlay();
-    if(which === 'offer' && offerOverlay){
-      offerOverlay.classList.add('show');
-      offerOverlay.setAttribute('aria-hidden','false');
-    }
-    if(which === 'prep' && prepOverlay){
-      prepOverlay.classList.add('show');
-      prepOverlay.setAttribute('aria-hidden','false');
-    }
-    document.body.style.overflow = 'hidden';
-  }
-
-  if(btnOffer) btnOffer.addEventListener('click', () => { goHome(); openOverlay('offer'); closeMenu(); });
-  if(btnPrep)  btnPrep.addEventListener('click',  () => { goHome(); openOverlay('prep');  closeMenu(); });
-
-  if(btnCloseOffer) btnCloseOffer.addEventListener('click', closeOverlay);
-  if(btnClosePrep)  btnClosePrep.addEventListener('click', closeOverlay);
-
-  if(offerOverlay){
-    offerOverlay.addEventListener('click', (e) => { if(e.target === offerOverlay) closeOverlay(); });
-  }
-
-  if(prepOverlay){
-    prepOverlay.addEventListener('click', (e) => { if(e.target === prepOverlay) closeOverlay(); });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape'){
-      closeOverlay();
-      if(window.closeImage) window.closeImage();
-    }
-  });
-
-  function showView(viewId){
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    const el = document.getElementById(viewId);
-    if(el) el.classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  window.goHome = function(){
-    closeOverlay();
-    closeMenu();
-    showView('view-home');
-  }
-
-  window.openAbout = function(){
-    closeOverlay();
-    closeMenu();
-    showView('view-about');
-  }
-
-  window.openProject = function(key){
-    closeOverlay();
-    closeMenu();
-    showView('view-' + key);
-  }
-
-  window.goHomeThenScroll = function(sectionId){
-    goHome();
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if(el) el.scrollIntoView({behavior:'smooth'});
-    }, 80);
-  }
-
-  if(leadForm){
-    leadForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const name = document.getElementById('name')?.value.trim() || '';
-      const phone = document.getElementById('phone')?.value.trim() || '';
-      const email = document.getElementById('email')?.value.trim() || '';
-      const project = document.getElementById('project')?.value.trim() || '';
-      const msg = document.getElementById('msg')?.value.trim() || '';
-
-      const subject = encodeURIComponent('Nezávazná poptávka – NEMOVEX GROUP');
-      const body = encodeURIComponent(
-        `Jméno: ${name}\nTelefon: ${phone}\nE-mail: ${email}\nProjekt: ${project}\n\nZpráva:\n${msg}\n`
-      );
-
-      window.location.href = `mailto:info@nemovex.cz?subject=${subject}&body=${body}`;
-    });
-  }
-
-})();  // ← důležité správné uzavření
-</script>
-
-
-<!-- ===== LIGHTBOX GALERIE ===== -->
-
-<div class="overlay" id="imgOverlay" aria-hidden="true" style="padding:0;align-items:center;justify-content:center;">
-
-  <button type="button" onclick="lbPrev(event)"
-    style="position:fixed;left:24px;top:50%;transform:translateY(-50%);
-    width:60px;height:60px;border-radius:50%;
-    background:rgba(0,0,0,0.75);border:2px solid #fff;color:#fff;
-    font-size:32px;display:flex;align-items:center;justify-content:center;
-    cursor:pointer;z-index:9999;">❮</button>
-
-  <button type="button" onclick="lbNext(event)"
-    style="position:fixed;right:24px;top:50%;transform:translateY(-50%);
-    width:60px;height:60px;border-radius:50%;
-    background:rgba(0,0,0,0.75);border:2px solid #fff;color:#fff;
-    font-size:32px;display:flex;align-items:center;justify-content:center;
-    cursor:pointer;z-index:9999;">❯</button>
-
-  <div class="panel" style="width:min(1100px,100%);background:transparent;border:none;">
-    <img id="imgOverlayEl" src="" alt=""
-      style="width:min(1100px,90vw);max-height:90vh;object-fit:contain;border-radius:16px;">
-  </div>
-</div>
-
-
-<script>
-
-window.__gallery = { list: [], index: 0 };
-
-window.openGallery = function(clickedImg, index){
-  const grid = clickedImg.closest('.gallery-grid');
-  if(!grid) return;
-
-  const imgs = Array.from(grid.querySelectorAll('img.gallery-img'));
-  window.__gallery.list = imgs.map(img => img.src);
-  window.__gallery.index = index;
-
-  const overlay = document.getElementById('imgOverlay');
-  const img = document.getElementById('imgOverlayEl');
-  img.src = window.__gallery.list[index];
-  overlay.classList.add('show');
-  document.body.style.overflow = 'hidden';
-};
-
-window.lbPrev = function(e){
-  if(e) e.stopPropagation();
-  if(!window.__gallery.list.length) return;
-
-  window.__gallery.index =
-    (window.__gallery.index - 1 + window.__gallery.list.length)
-    % window.__gallery.list.length;
-
-  document.getElementById('imgOverlayEl').src =
-    window.__gallery.list[window.__gallery.index];
-};
-
-window.lbNext = function(e){
-  if(e) e.stopPropagation();
-  if(!window.__gallery.list.length) return;
-
-  window.__gallery.index =
-    (window.__gallery.index + 1)
-    % window.__gallery.list.length;
-
-  document.getElementById('imgOverlayEl').src =
-    window.__gallery.list[window.__gallery.index];
-};
-
-window.closeImage = function(){
-  document.getElementById('imgOverlay').classList.remove('show');
-  document.body.style.overflow = '';
-};
-
-document.getElementById('imgOverlay').addEventListener('click', function(e){
-  if(e.target === this) closeImage();
-});
-
-document.addEventListener('keydown', function(e){
-  const overlay = document.getElementById('imgOverlay');
-  if(!overlay.classList.contains('show')) return;
-
-  if(e.key === 'ArrowLeft') lbPrev();
-  if(e.key === 'ArrowRight') lbNext();
-  if(e.key === 'Escape') closeImage();
-});
-
-</script>
 </body>
 </html>
