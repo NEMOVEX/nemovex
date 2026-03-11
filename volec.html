@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="cs">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,44 +17,6 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nemovex.github.io/nemovex/volec.html">
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "Residence",
- "name": "Projekt Voleč",
- "description": "Moderní rezidenční projekt společnosti NEMOVEX GROUP.",
- "url": "https://nemovex.github.io/nemovex/volec.html",
- "image": "https://nemovex.github.io/nemovex/images/volec-hl.jpg",
- "developer": {
-   "@type": "Organization",
-   "name": "NEMOVEX GROUP",
-   "url": "https://nemovex.github.io/nemovex/"
- }
-}
-</script>
-/* HEADER */
-
-.site-header{
-  position:sticky;
-  top:0;
-  background:#fff;
-  z-index:1000;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.header-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 20px;
-}
-
-.main-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  font-weight:600;
-  color:#222;
-}
 <style>
 
 body{
@@ -61,6 +24,38 @@ font-family:"Segoe UI",Arial,sans-serif;
 margin:0;
 background:#f9fafb;
 color:#222;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+background:#fff;
+border-bottom:1px solid #e0e0e0;
+}
+
+.nav{
+width:100%;
+padding:0 40px 0 0;
+height:120px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo img{
+height:80px;
+}
+
+.nav-links{
+display:flex;
+gap:28px;
+font-weight:800;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#333;
 }
 
 .container{
@@ -114,11 +109,6 @@ border-radius:16px;
 box-shadow:0 8px 22px rgba(0,0,0,0.06);
 }
 
-.project-info-card h4{
-margin-bottom:8px;
-font-size:16px;
-}
-
 .gallery-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -131,11 +121,52 @@ border-radius:16px;
 cursor:pointer;
 }
 
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.85);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.overlay.show{
+display:flex;
+}
+
+footer{
+background:#1f1f1f;
+color:#fff;
+padding:60px 20px;
+text-align:center;
+}
+
 </style>
 
 </head>
 
 <body>
+
+<header>
+<div class="nav">
+
+<div class="logo">
+<img src="images/logo.png" alt="NEMOVEX GROUP">
+</div>
+
+<nav class="nav-links">
+<a href="index.html#about">O NÁS</a>
+<a href="index.html#nabidka">PROJEKTY V NABÍDCE</a>
+<a href="index.html#priprava">PROJEKTY V PŘÍPRAVĚ</a>
+<a href="index.html#poptavka">KONTAKTUJTE NÁS</a>
+<a href="index.html#kontakt">KONTAKT</a>
+</nav>
+
+</div>
+</header>
+
+<main>
 
 <section class="detail-hero">
 <div class="container">
@@ -144,9 +175,7 @@ cursor:pointer;
 
 <h2>Projekt Voleč</h2>
 
-<p>
-Komplex 14 rodinných domů v obci Voleč.
-</p>
+<p>Komplex 14 rodinných domů v obci Voleč.</p>
 
 </div>
 </section>
@@ -207,6 +236,7 @@ Pro více informací nás kontaktujte.
 <img class="gallery-img" src="images/volec6.jpg" onclick="openGallery(this,5)">
 <img class="gallery-img" src="images/volec7.jpg" onclick="openGallery(this,6)">
 <img class="gallery-img" src="images/volec8.jpg" onclick="openGallery(this,7)">
+
 </div>
 
 </div>
@@ -214,88 +244,70 @@ Pro více informací nás kontaktujte.
 </div>
 
 </section>
+
+</main>
+
+<footer>
+
+<h3>NEMOVEX a.s.</h3>
+
+<p>
+Havlíčkova 7<br>
+537 01 Chrudim
+</p>
+
+<p>
+info@nemovex.cz<br>
+461 040 466
+</p>
+
+</footer>
+
+<div class="overlay" id="galleryOverlay">
+
+<button onclick="prevImg()" style="position:absolute;left:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">‹</button>
+
+<img id="galleryImage" style="max-width:90%;max-height:90%">
+
+<button onclick="nextImg()" style="position:absolute;right:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">›</button>
+
+<button onclick="closeGallery()" style="position:absolute;top:30px;right:40px;font-size:28px;background:none;border:none;color:white;cursor:pointer">✕</button>
+
+</div>
+
 <script>
 
-let galleryImages;
-let galleryIndex=0;
+let galleryImages
+let galleryIndex=0
 
 function openGallery(el,index){
-galleryImages=document.querySelectorAll('.gallery-img');
-galleryIndex=index;
-showImage();
+galleryImages=document.querySelectorAll('.gallery-img')
+galleryIndex=index
+showImage()
+document.getElementById("galleryOverlay").classList.add("show")
 }
 
 function showImage(){
-const src=galleryImages[galleryIndex].src;
-
-let overlay=document.getElementById("galleryOverlay");
-
-if(!overlay){
-
-overlay=document.createElement("div");
-overlay.id="galleryOverlay";
-overlay.style.position="fixed";
-overlay.style.top="0";
-overlay.style.left="0";
-overlay.style.width="100%";
-overlay.style.height="100%";
-overlay.style.background="rgba(0,0,0,0.85)";
-overlay.style.display="flex";
-overlay.style.alignItems="center";
-overlay.style.justifyContent="center";
-overlay.style.zIndex="9999";
-
-overlay.innerHTML=`
-<button onclick="prevImg()" style="position:absolute;left:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">‹</button>
-<img id="galleryImage" style="max-width:90%;max-height:90%">
-<button onclick="nextImg()" style="position:absolute;right:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">›</button>
-<button onclick="closeGallery()" style="position:absolute;top:30px;right:40px;font-size:28px;background:none;border:none;color:white;cursor:pointer">✕</button>
-`;
-
-document.body.appendChild(overlay);
-
-}
-
-document.getElementById("galleryImage").src=src;
-
+document.getElementById("galleryImage").src=galleryImages[galleryIndex].src
 }
 
 function nextImg(){
-galleryIndex++;
-if(galleryIndex>=galleryImages.length) galleryIndex=0;
-showImage();
+galleryIndex++
+if(galleryIndex>=galleryImages.length) galleryIndex=0
+showImage()
 }
 
 function prevImg(){
-galleryIndex--;
-if(galleryIndex<0) galleryIndex=galleryImages.length-1;
-showImage();
+galleryIndex--
+if(galleryIndex<0) galleryIndex=galleryImages.length-1
+showImage()
 }
 
 function closeGallery(){
-document.getElementById("galleryOverlay").remove();
+document.getElementById("galleryOverlay").classList.remove("show")
 }
 
 </script>
+
 </body>
- 
- <header>
-  <div class="nav">
-    <div class="logo" onclick="goHome()">
-      <img src="images/logo.png" alt="NEMOVEX GROUP">
-    </div>
-
-    <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
-      <div></div><div></div><div></div>
-    </div>
-
-    <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <a href="index.html#about">O NÁS</a>
-      <a href="index.html#nabidka">PROJEKTY V NABÍDCE</a>
-<a href="index.html#priprava">PROJEKTY V PŘÍPRAVĚ</a>
-    <a href="index.html#poptavka">KONTAKTUJTE NÁS</a>
-      <a href="index.html#kontakt">KONTAKT</a>
-    </nav>
-  </div>
-</header>
 </html>
