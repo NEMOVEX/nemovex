@@ -1,77 +1,71 @@
 <!doctype html>
 <html lang="cs">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Rudník | NEMOVEX GROUP</title>
 
 <meta name="description" content="Projekt Rudník – rezidenční projekt společnosti NEMOVEX GROUP.">
-
 <meta name="keywords" content="Rudník, developerský projekt Rudník, nové bydlení Rudník, NEMOVEX GROUP">
 
 <meta property="og:title" content="Rudník – developerský projekt NEMOVEX GROUP">
 <meta property="og:description" content="Rezidenční projekt Rudník od společnosti NEMOVEX GROUP.">
-<meta property="og:image" content="https://nemovex.github.io/nemovex/images/rudnik.jpg">
+<meta property="og:image" content="https://nemovex.github.io/nemovex/images/rudnik1.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://nemovex.github.io/nemovex/rudnik.html">
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "Residence",
- "name": "Rudník",
- "description": "Rezidenční projekt společnosti NEMOVEX GROUP.",
- "url": "https://nemovex.github.io/nemovex/rudnik.html",
- "image": "https://nemovex.github.io/nemovex/images/rudnik.jpg",
- "address": {
-   "@type": "PostalAddress",
-   "addressLocality": "Rudník",
-   "addressCountry": "CZ"
- },
- "developer": {
-   "@type": "Organization",
-   "name": "NEMOVEX GROUP",
-   "url": "https://nemovex.github.io/nemovex/"
- }
-}
-</script>
-/* HEADER */
-
-.site-header{
-  position:sticky;
-  top:0;
-  background:#fff;
-  z-index:1000;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.header-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 20px;
-}
-
-.main-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  font-weight:600;
-  color:#222;
-}
 <style>
 
-body{
-font-family:"Segoe UI",Arial,sans-serif;
+*{
+box-sizing:border-box;
 margin:0;
+padding:0;
+font-family:"Segoe UI",Roboto,Arial,sans-serif
+}
+
+body{
 background:#f9fafb;
 color:#222;
+line-height:1.6
+}
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+background:#fff;
+border-bottom:1px solid #e0e0e0
+}
+
+.nav{
+width:100%;
+padding:0 40px 0 0;
+height:120px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.logo img{
+height:80px
+}
+
+.nav-links{
+display:flex;
+gap:28px;
+font-weight:800
+}
+
+.nav-links a{
+text-decoration:none;
+color:#333
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
-padding:40px 20px;
+padding:0 20px
 }
 
 .detail-hero{
@@ -79,14 +73,19 @@ min-height:52vh;
 color:white;
 display:flex;
 align-items:center;
+
 background:
 linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
-url('images/rudnik.jpg') center/cover no-repeat;
+url("images/rudnik.jpg") center/cover no-repeat
 }
 
-.detail-hero h2{
-font-size:42px;
-margin-bottom:10px;
+.detail-hero h1{
+font-size:46px;
+margin-bottom:10px
+}
+
+section{
+padding:70px 20px
 }
 
 .btn-primary{
@@ -96,44 +95,62 @@ background:#2b2b2b;
 color:white;
 border-radius:6px;
 font-size:14px;
-text-decoration:none;
+text-decoration:none
 }
 
 .project-info-grid{
 display:grid;
 gap:24px;
 margin-bottom:20px;
-grid-template-columns:1fr;
+grid-template-columns:1fr
 }
 
 @media (min-width:900px){
+
 .project-info-grid{
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr 1fr
 }
+
 }
 
 .project-info-card{
 background:#f8f9f7;
 padding:20px;
 border-radius:16px;
-box-shadow:0 8px 22px rgba(0,0,0,0.06);
-}
-
-.project-info-card h4{
-margin-bottom:8px;
-font-size:16px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06)
 }
 
 .gallery-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:18px;
+gap:18px
 }
 
 .gallery-img{
 width:100%;
 border-radius:16px;
-cursor:pointer;
+cursor:pointer
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999
+}
+
+.overlay.show{
+display:flex
+}
+
+footer{
+background:#1f1f1f;
+color:#fff;
+padding:60px 20px;
+text-align:center
 }
 
 </style>
@@ -142,18 +159,42 @@ cursor:pointer;
 
 <body>
 
+<header>
+
+<div class="nav">
+
+<div class="logo" onclick="goHome()">
+<img src="images/logo.png" alt="NEMOVEX GROUP">
+</div>
+
+<nav class="nav-links">
+<a href="index.html#about">O NÁS</a>
+<a href="index.html#nabidka">PROJEKTY V NABÍDCE</a>
+<a href="index.html#priprava">PROJEKTY V PŘÍPRAVĚ</a>
+<a href="index.html#poptavka">KONTAKTUJTE NÁS</a>
+<a href="index.html#kontakt">KONTAKT</a>
+</nav>
+
+</div>
+
+</header>
+
+<main>
+
 <section class="detail-hero">
+
 <div class="container">
 
 <a class="btn-primary" href="index.html">← Zpět</a>
 
-<h2>Projekt Rudník</h2>
+<h1>Projekt Rudník</h1>
 
 <p>
 Rezidenční projekt společnosti NEMOVEX GROUP
 </p>
 
 </div>
+
 </section>
 
 <section>
@@ -182,8 +223,10 @@ Projekt je aktuálně ve fázi přípravy.
 <div class="project-info-card">
 <h4>Lokalita</h4>
 <p>
-Lokalita pro výstavbu rodinných domů na dosah atraktivních krkonošských lyžařských center (Pec pod Sněžkou, Černá Hora, Janské lázně, Černý Důl, Vrchlabí), 
-určených k bydlení, rekreaci i investičnímu nákupu za účelem pronájmů. Perfektní místo pro rekreaci, víkendové pobyty i celoroční bydlení.
+Lokalita pro výstavbu rodinných domů na dosah atraktivních
+krkonošských lyžařských center (Pec pod Sněžkou, Černá Hora,
+Janské lázně, Černý Důl, Vrchlabí), určených k bydlení,
+rekreaci i investičnímu nákupu za účelem pronájmů.
 </p>
 </div>
 
@@ -196,9 +239,9 @@ Pro více informací nás kontaktujte.
 
 </div>
 
-<div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
+<div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0;"></div>
 
-<h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+<h3 style="margin-bottom:14px">Fotogalerie projektu</h3>
 
 <div class="gallery-grid">
 
@@ -213,96 +256,79 @@ Pro více informací nás kontaktujte.
 </div>
 
 </section>
+
+</main>
+
+<footer>
+
+<h3>NEMOVEX a.s.</h3>
+
+<p>
+Havlíčkova 7<br>
+537 01 Chrudim
+</p>
+
+<p>
+info@nemovex.cz<br>
+461 040 466
+</p>
+
+</footer>
+
+<div class="overlay" id="galleryOverlay">
+
+<button onclick="prevImg()" style="position:absolute;left:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">‹</button>
+
+<img id="galleryImage" style="max-width:90%;max-height:90%">
+
+<button onclick="nextImg()" style="position:absolute;right:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">›</button>
+
+<button onclick="closeGallery()" style="position:absolute;top:30px;right:40px;font-size:28px;background:none;border:none;color:white;cursor:pointer">✕</button>
+
+</div>
+
 <script>
 
-let galleryImages;
-let galleryIndex = 0;
+function goHome(){
+window.location.href="index.html"
+}
+
+let galleryImages
+let galleryIndex=0
 
 function openGallery(el,index){
-galleryImages=document.querySelectorAll('.gallery-img');
-galleryIndex=index;
-showImage();
+
+galleryImages=document.querySelectorAll(".gallery-img")
+galleryIndex=index
+
+showImage()
+
+document.getElementById("galleryOverlay").classList.add("show")
+
 }
 
 function showImage(){
-
-const src=galleryImages[galleryIndex].src;
-
-let overlay=document.getElementById("galleryOverlay");
-
-if(!overlay){
-
-overlay=document.createElement("div");
-overlay.id="galleryOverlay";
-overlay.style.position="fixed";
-overlay.style.top="0";
-overlay.style.left="0";
-overlay.style.width="100%";
-overlay.style.height="100%";
-overlay.style.background="rgba(0,0,0,0.85)";
-overlay.style.display="flex";
-overlay.style.alignItems="center";
-overlay.style.justifyContent="center";
-overlay.style.zIndex="9999";
-
-overlay.onclick=()=>overlay.remove();
-
-const img=document.createElement("img");
-img.id="galleryBigImg";
-img.style.maxWidth="90%";
-img.style.maxHeight="85%";
-img.style.borderRadius="10px";
-
-overlay.appendChild(img);
-
-const prev=document.createElement("div");
-prev.innerHTML="❮";
-prev.style.position="absolute";
-prev.style.left="40px";
-prev.style.fontSize="50px";
-prev.style.color="white";
-prev.style.cursor="pointer";
-prev.onclick=(e)=>{e.stopPropagation();galleryIndex--;if(galleryIndex<0)galleryIndex=galleryImages.length-1;showImage();};
-
-const next=document.createElement("div");
-next.innerHTML="❯";
-next.style.position="absolute";
-next.style.right="40px";
-next.style.fontSize="50px";
-next.style.color="white";
-next.style.cursor="pointer";
-next.onclick=(e)=>{e.stopPropagation();galleryIndex++;if(galleryIndex>=galleryImages.length)galleryIndex=0;showImage();};
-
-overlay.appendChild(prev);
-overlay.appendChild(next);
-
-document.body.appendChild(overlay);
+document.getElementById("galleryImage").src=
+galleryImages[galleryIndex].src
 }
 
-document.getElementById("galleryBigImg").src=src;
+function nextImg(){
+galleryIndex++
+if(galleryIndex>=galleryImages.length) galleryIndex=0
+showImage()
+}
 
+function prevImg(){
+galleryIndex--
+if(galleryIndex<0) galleryIndex=galleryImages.length-1
+showImage()
+}
+
+function closeGallery(){
+document.getElementById("galleryOverlay").classList.remove("show")
 }
 
 </script>
 
- <header>
-  <div class="nav">
-    <div class="logo" onclick="goHome()">
-      <img src="images/logo.png" alt="NEMOVEX GROUP">
-    </div>
-
-    <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
-      <div></div><div></div><div></div>
-    </div>
-
-    <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <a href="index.html#onas">O NÁS</a>
-      <a href="index.html#nabidka">PROJEKTY V NABÍDCE</a>
-<a href="index.html#priprava">PROJEKTY V PŘÍPRAVĚ</a>
-    <a href="index.html#poptavka">KONTAKTUJTE NÁS</a>
-      <a href="index.html#kontakt">KONTAKT</a>
-    </nav>
-  </div>
-</header>
- </body>
+</body>
 </html>
