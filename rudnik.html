@@ -180,9 +180,9 @@ Pro více informací nás kontaktujte.
 
 <div class="gallery-grid">
 
-<img class="gallery-img" src="images/rudnik1.jpg">
-<img class="gallery-img" src="images/rudnik2.jpg">
-<img class="gallery-img" src="images/rudnik3.jpg">
+<img class="gallery-img" src="images/rudnik1.jpg" onclick="openGallery(this,0)">
+<img class="gallery-img" src="images/rudnik2.jpg" onclick="openGallery(this,1)">
+<img class="gallery-img" src="images/rudnik3.jpg" onclick="openGallery(this,2)">
 
 </div>
 
@@ -191,6 +191,76 @@ Pro více informací nás kontaktujte.
 </div>
 
 </section>
+<script>
 
+let galleryImages;
+let galleryIndex = 0;
+
+function openGallery(el,index){
+galleryImages=document.querySelectorAll('.gallery-img');
+galleryIndex=index;
+showImage();
+}
+
+function showImage(){
+
+const src=galleryImages[galleryIndex].src;
+
+let overlay=document.getElementById("galleryOverlay");
+
+if(!overlay){
+
+overlay=document.createElement("div");
+overlay.id="galleryOverlay";
+overlay.style.position="fixed";
+overlay.style.top="0";
+overlay.style.left="0";
+overlay.style.width="100%";
+overlay.style.height="100%";
+overlay.style.background="rgba(0,0,0,0.85)";
+overlay.style.display="flex";
+overlay.style.alignItems="center";
+overlay.style.justifyContent="center";
+overlay.style.zIndex="9999";
+
+overlay.onclick=()=>overlay.remove();
+
+const img=document.createElement("img");
+img.id="galleryBigImg";
+img.style.maxWidth="90%";
+img.style.maxHeight="85%";
+img.style.borderRadius="10px";
+
+overlay.appendChild(img);
+
+const prev=document.createElement("div");
+prev.innerHTML="❮";
+prev.style.position="absolute";
+prev.style.left="40px";
+prev.style.fontSize="50px";
+prev.style.color="white";
+prev.style.cursor="pointer";
+prev.onclick=(e)=>{e.stopPropagation();galleryIndex--;if(galleryIndex<0)galleryIndex=galleryImages.length-1;showImage();};
+
+const next=document.createElement("div");
+next.innerHTML="❯";
+next.style.position="absolute";
+next.style.right="40px";
+next.style.fontSize="50px";
+next.style.color="white";
+next.style.cursor="pointer";
+next.onclick=(e)=>{e.stopPropagation();galleryIndex++;if(galleryIndex>=galleryImages.length)galleryIndex=0;showImage();};
+
+overlay.appendChild(prev);
+overlay.appendChild(next);
+
+document.body.appendChild(overlay);
+}
+
+document.getElementById("galleryBigImg").src=src;
+
+}
+
+</script>
 </body>
 </html>
