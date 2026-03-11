@@ -326,7 +326,16 @@
     
     /* GALLERY */
     .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .gallery-img{width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.12);cursor:zoom-in;display:block}
+  .gallery-img{
+width:100%;
+border-radius:16px;
+cursor:zoom-in;
+transition:transform .25s ease;
+}
+
+.gallery-img:hover{
+transform:scale(1.03);
+}
 
 @media(max-width:900px){
       .hamburger{display:flex}
