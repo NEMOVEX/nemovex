@@ -1,77 +1,71 @@
 <!doctype html>
 <html lang="cs">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>R-Club | NEMOVEX GROUP</title>
 
 <meta name="description" content="R-Club – moderní bytový projekt společnosti NEMOVEX GROUP v Chrudimi.">
-
 <meta name="keywords" content="R-Club Chrudim, bytový projekt Chrudim, nové byty Chrudim, developerský projekt NEMOVEX GROUP">
 
 <meta property="og:title" content="R-Club – developerský projekt NEMOVEX GROUP">
 <meta property="og:description" content="Moderní bytový projekt R-Club od společnosti NEMOVEX GROUP v Chrudimi.">
 <meta property="og:image" content="https://nemovex.github.io/nemovex/images/rclub.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://nemovex.github.io/nemovex/r-club.html">
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "ApartmentComplex",
- "name": "R-Club",
- "description": "Moderní bytový projekt společnosti NEMOVEX GROUP v Chrudimi.",
- "url": "https://nemovex.github.io/nemovex/r-club.html",
- "image": "https://nemovex.github.io/nemovex/images/rclub.jpg",
- "address": {
-   "@type": "PostalAddress",
-   "addressLocality": "Chrudim",
-   "addressCountry": "CZ"
- },
- "developer": {
-   "@type": "Organization",
-   "name": "NEMOVEX GROUP",
-   "url": "https://nemovex.github.io/nemovex/"
- }
-}
-</script>
-/* HEADER */
-
-.site-header{
-  position:sticky;
-  top:0;
-  background:#fff;
-  z-index:1000;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
-
-.header-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 20px;
-}
-
-.main-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  font-weight:600;
-  color:#222;
-}
 <style>
 
-body{
-font-family:"Segoe UI",Arial,sans-serif;
+*{
+box-sizing:border-box;
 margin:0;
+padding:0;
+font-family:"Segoe UI",Roboto,Arial,sans-serif
+}
+
+body{
 background:#f9fafb;
 color:#222;
+line-height:1.6
+}
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+background:#fff;
+border-bottom:1px solid #e0e0e0
+}
+
+.nav{
+width:100%;
+padding:0 40px 0 0;
+height:120px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.logo img{
+height:80px
+}
+
+.nav-links{
+display:flex;
+gap:28px;
+font-weight:800
+}
+
+.nav-links a{
+text-decoration:none;
+color:#333
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
-padding:40px 20px;
+padding:0 20px
 }
 
 .detail-hero{
@@ -79,14 +73,19 @@ min-height:52vh;
 color:white;
 display:flex;
 align-items:center;
+
 background:
 linear-gradient(to right,rgba(0,0,0,.62),rgba(0,0,0,.18)),
-url('images/rclub.jpg') center/cover no-repeat;
+url("images/rclub.jpg") center/cover no-repeat
 }
 
-.detail-hero h2{
-font-size:42px;
-margin-bottom:10px;
+.detail-hero h1{
+font-size:46px;
+margin-bottom:10px
+}
+
+section{
+padding:70px 20px
 }
 
 .btn-primary{
@@ -96,19 +95,19 @@ background:#2b2b2b;
 color:white;
 border-radius:6px;
 font-size:14px;
-text-decoration:none;
+text-decoration:none
 }
 
 .project-info-grid{
 display:grid;
 gap:24px;
 margin-bottom:20px;
-grid-template-columns:1fr;
+grid-template-columns:1fr
 }
 
 @media (min-width:900px){
 .project-info-grid{
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr 1fr
 }
 }
 
@@ -116,24 +115,40 @@ grid-template-columns:1fr 1fr;
 background:#f8f9f7;
 padding:20px;
 border-radius:16px;
-box-shadow:0 8px 22px rgba(0,0,0,0.06);
-}
-
-.project-info-card h4{
-margin-bottom:8px;
-font-size:16px;
+box-shadow:0 8px 22px rgba(0,0,0,0.06)
 }
 
 .gallery-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:18px;
+gap:18px
 }
 
 .gallery-img{
 width:100%;
 border-radius:16px;
-cursor:pointer;
+cursor:pointer
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999
+}
+
+.overlay.show{
+display:flex
+}
+
+footer{
+background:#1f1f1f;
+color:#fff;
+padding:60px 20px;
+text-align:center
 }
 
 </style>
@@ -142,18 +157,42 @@ cursor:pointer;
 
 <body>
 
+<header>
+
+<div class="nav">
+
+<div class="logo" onclick="goHome()">
+<img src="images/logo.png" alt="NEMOVEX GROUP">
+</div>
+
+<nav class="nav-links">
+<a href="index.html#about">O NÁS</a>
+<a href="index.html#nabidka">PROJEKTY V NABÍDCE</a>
+<a href="index.html#priprava">PROJEKTY V PŘÍPRAVĚ</a>
+<a href="index.html#poptavka">KONTAKTUJTE NÁS</a>
+<a href="index.html#kontakt">KONTAKT</a>
+</nav>
+
+</div>
+
+</header>
+
+<main>
+
 <section class="detail-hero">
+
 <div class="container">
 
 <a class="btn-primary" href="index.html">← Zpět</a>
 
-<h2>R-Club</h2>
+<h1>R-Club</h1>
 
 <p>
 Moderní bytový projekt společnosti NEMOVEX GROUP v Chrudimi
 </p>
 
 </div>
+
 </section>
 
 <section>
@@ -167,10 +206,9 @@ Moderní bytový projekt společnosti NEMOVEX GROUP v Chrudimi
 <div class="project-info-card">
 <h4>Projekt</h4>
 <p>
-Moderní novostavba bytového domu v severovýchodní části města Chrudim s byty od 1+kk až po 4+kk a atypických mezonetových. 
-Celkem obsahuje 77 jednotek.
-
-
+Moderní novostavba bytového domu v severovýchodní části města Chrudim
+s byty od 1+kk až po 4+kk a atypickými mezonetovými jednotkami.
+Celkem obsahuje 77 bytů.
 </p>
 </div>
 
@@ -198,42 +236,96 @@ Pro více informací nás kontaktujte.
 
 </div>
 
-<div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0 18px;"></div>
+<div style="height:1px;background:rgba(0,0,0,0.08);margin:18px 0;"></div>
 
-<h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
- 
-<div class="gallery">
-<img class="gallery-img" src="images/rclub.jpg" alt="R-Club vizualizace 1" loading="lazy" onclick="openGallery(this, 0)">
-<img class="gallery-img" src="images/rclub1.jpg" alt="R-Club vizualizace 2" loading="lazy" onclick="openGallery(this, 1)">
-<img class="gallery-img" src="images/rclub2.jpg" alt="R-Club vizualizace 3" loading="lazy" onclick="openGallery(this, 2)">
+<h3 style="margin-bottom:14px">Fotogalerie projektu</h3>
+
+<div class="gallery-grid">
+
+<img class="gallery-img" src="images/rclub.jpg" onclick="openGallery(this,0)">
+<img class="gallery-img" src="images/rclub1.jpg" onclick="openGallery(this,1)">
+<img class="gallery-img" src="images/rclub2.jpg" onclick="openGallery(this,2)">
 
 </div>
- 
+
 </div>
 
 </div>
 
 </section>
 
+</main>
 
- <header>
-  <div class="nav">
-    <div class="logo" onclick="goHome()">
-      <img src="images/logo.png" alt="NEMOVEX GROUP">
-    </div>
+<footer>
 
-    <div class="hamburger" aria-label="Otevřít menu" id="hamburger">
-      <div></div><div></div><div></div>
-    </div>
+<h3>NEMOVEX a.s.</h3>
 
-    <nav class="nav-links" aria-label="Hlavní navigace" id="navLinks">
-      <a href="index.html#onas">O NÁS</a>
-      <a href="index.html#nabidka">PROJEKTY V NABÍDCE</a>
-<a href="index.html#priprava">PROJEKTY V PŘÍPRAVĚ</a>
-    <a href="index.html#poptavka">KONTAKTUJTE NÁS</a>
-      <a href="index.html#kontakt">KONTAKT</a>
-    </nav>
-  </div>
-</header>
- </body>
+<p>
+Havlíčkova 7<br>
+537 01 Chrudim
+</p>
+
+<p>
+info@nemovex.cz<br>
+461 040 466
+</p>
+
+</footer>
+
+<div class="overlay" id="galleryOverlay">
+
+<button onclick="prevImg()" style="position:absolute;left:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">‹</button>
+
+<img id="galleryImage" style="max-width:90%;max-height:90%">
+
+<button onclick="nextImg()" style="position:absolute;right:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">›</button>
+
+<button onclick="closeGallery()" style="position:absolute;top:30px;right:40px;font-size:28px;background:none;border:none;color:white;cursor:pointer">✕</button>
+
+</div>
+
+<script>
+
+function goHome(){
+window.location.href="index.html"
+}
+
+let galleryImages
+let galleryIndex=0
+
+function openGallery(el,index){
+
+galleryImages=document.querySelectorAll(".gallery-img")
+galleryIndex=index
+
+showImage()
+
+document.getElementById("galleryOverlay").classList.add("show")
+
+}
+
+function showImage(){
+document.getElementById("galleryImage").src=
+galleryImages[galleryIndex].src
+}
+
+function nextImg(){
+galleryIndex++
+if(galleryIndex>=galleryImages.length) galleryIndex=0
+showImage()
+}
+
+function prevImg(){
+galleryIndex--
+if(galleryIndex<0) galleryIndex=galleryImages.length-1
+showImage()
+}
+
+function closeGallery(){
+document.getElementById("galleryOverlay").classList.remove("show")
+}
+
+</script>
+
+</body>
 </html>
