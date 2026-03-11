@@ -176,14 +176,18 @@ Pro více informací nás kontaktujte.
 
 <div class="gallery-grid">
 
-<img class="gallery-img" src="images/puravida1.png">
-<img class="gallery-img" src="images/puravida2.png">
-<img class="gallery-img" src="images/puravida3.png">
-<img class="gallery-img" src="images/puravida4.png">
-<img class="gallery-img" src="images/puravida5.png">
-<img class="gallery-img" src="images/puravida6.png">
-<img class="gallery-img" src="images/puravida7.png">
-<img class="gallery-img" src="images/puravida8.png">
+<h3 style="margin:18px 0 14px">Fotogalerie projektu</h3>
+
+<div class="gallery-grid">
+
+<img class="gallery-img" src="images/puravida1.png" onclick="openGallery(this,0)">
+<img class="gallery-img" src="images/puravida2.png" onclick="openGallery(this,1)">
+<img class="gallery-img" src="images/puravida3.png" onclick="openGallery(this,2)">
+<img class="gallery-img" src="images/puravida4.png" onclick="openGallery(this,3)">
+<img class="gallery-img" src="images/puravida5.png" onclick="openGallery(this,4)">
+<img class="gallery-img" src="images/puravida6.png" onclick="openGallery(this,5)">
+<img class="gallery-img" src="images/puravida7.png" onclick="openGallery(this,6)">
+<img class="gallery-img" src="images/puravida8.png" onclick="openGallery(this,7)">
 
 </div>
 
@@ -193,5 +197,76 @@ Pro více informací nás kontaktujte.
 
 </section>
 
+ <script>
+
+let galleryImages;
+let galleryIndex = 0;
+
+function openGallery(el,index){
+galleryImages=document.querySelectorAll('.gallery-img');
+galleryIndex=index;
+showImage();
+}
+
+function showImage(){
+
+const src=galleryImages[galleryIndex].src;
+
+let overlay=document.getElementById("galleryOverlay");
+
+if(!overlay){
+
+overlay=document.createElement("div");
+overlay.id="galleryOverlay";
+overlay.style.position="fixed";
+overlay.style.top="0";
+overlay.style.left="0";
+overlay.style.width="100%";
+overlay.style.height="100%";
+overlay.style.background="rgba(0,0,0,0.85)";
+overlay.style.display="flex";
+overlay.style.alignItems="center";
+overlay.style.justifyContent="center";
+overlay.style.zIndex="9999";
+
+overlay.onclick=()=>overlay.remove();
+
+const img=document.createElement("img");
+img.id="galleryBigImg";
+img.style.maxWidth="90%";
+img.style.maxHeight="85%";
+img.style.borderRadius="10px";
+
+overlay.appendChild(img);
+
+const prev=document.createElement("div");
+prev.innerHTML="❮";
+prev.style.position="absolute";
+prev.style.left="40px";
+prev.style.fontSize="50px";
+prev.style.color="white";
+prev.style.cursor="pointer";
+prev.onclick=(e)=>{e.stopPropagation();galleryIndex--;if(galleryIndex<0)galleryIndex=galleryImages.length-1;showImage();};
+
+const next=document.createElement("div");
+next.innerHTML="❯";
+next.style.position="absolute";
+next.style.right="40px";
+next.style.fontSize="50px";
+next.style.color="white";
+next.style.cursor="pointer";
+next.onclick=(e)=>{e.stopPropagation();galleryIndex++;if(galleryIndex>=galleryImages.length)galleryIndex=0;showImage();};
+
+overlay.appendChild(prev);
+overlay.appendChild(next);
+
+document.body.appendChild(overlay);
+}
+
+document.getElementById("galleryBigImg").src=src;
+
+}
+
+</script>
 </body>
 </html>
