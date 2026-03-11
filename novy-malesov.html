@@ -183,15 +183,12 @@ Pro více informací nás kontaktujte.
 
 <div class="gallery-grid">
 
-<img class="gallery-img" src="images/malesov1.jpg">
-<img class="gallery-img" src="images/malesov2.jpg">
-<img class="gallery-img" src="images/malesov3.jpg">
-<img class="gallery-img" src="images/malesov4.jpg">
-<img class="gallery-img" src="images/malesov5.jpg">
-
-</div>
-
-<img class="gallery-img" src="images/malesov.png">
+<img class="gallery-img" src="images/malesov1.jpg" onclick="openGallery(this,0)">
+<img class="gallery-img" src="images/malesov2.jpg" onclick="openGallery(this,1)">
+<img class="gallery-img" src="images/malesov3.jpg" onclick="openGallery(this,2)">
+<img class="gallery-img" src="images/malesov4.jpg" onclick="openGallery(this,3)">
+<img class="gallery-img" src="images/malesov5.jpg" onclick="openGallery(this,4)">
+<img class="gallery-img" src="images/malesov.jpg" onclick="openGallery(this,5)">
 
 </div>
 
@@ -200,6 +197,69 @@ Pro více informací nás kontaktujte.
 </div>
 
 </section>
+<script>
 
+let galleryImages;
+let galleryIndex=0;
+
+function openGallery(el,index){
+galleryImages=document.querySelectorAll('.gallery-img');
+galleryIndex=index;
+showImage();
+}
+
+function showImage(){
+
+const src=galleryImages[galleryIndex].src;
+
+let overlay=document.getElementById("galleryOverlay");
+
+if(!overlay){
+
+overlay=document.createElement("div");
+overlay.id="galleryOverlay";
+overlay.style.position="fixed";
+overlay.style.top="0";
+overlay.style.left="0";
+overlay.style.width="100%";
+overlay.style.height="100%";
+overlay.style.background="rgba(0,0,0,0.85)";
+overlay.style.display="flex";
+overlay.style.alignItems="center";
+overlay.style.justifyContent="center";
+overlay.style.zIndex="9999";
+
+overlay.innerHTML=`
+<button onclick="prevImg()" style="position:absolute;left:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">‹</button>
+<img id="galleryImage" style="max-width:90%;max-height:90%">
+<button onclick="nextImg()" style="position:absolute;right:40px;font-size:40px;background:none;border:none;color:white;cursor:pointer">›</button>
+<button onclick="closeGallery()" style="position:absolute;top:30px;right:40px;font-size:28px;background:none;border:none;color:white;cursor:pointer">✕</button>
+`;
+
+document.body.appendChild(overlay);
+
+}
+
+document.getElementById("galleryImage").src=src;
+
+}
+
+function nextImg(){
+galleryIndex++;
+if(galleryIndex>=galleryImages.length) galleryIndex=0;
+showImage();
+}
+
+function prevImg(){
+galleryIndex--;
+if(galleryIndex<0) galleryIndex=galleryImages.length-1;
+showImage();
+}
+
+function closeGallery(){
+document.getElementById("galleryOverlay").remove();
+}
+
+</script>
 </body>
 </html>
